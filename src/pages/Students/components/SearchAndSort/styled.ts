@@ -10,6 +10,7 @@ export const SearchAndSortContainer = styled.div`
     flex-direction: row;
     align-items: center;
     text-align: start;
+    justify-content: space-between;
     margin-bottom: 36px;
     ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
@@ -25,4 +26,11 @@ export const SearchAndSortContainer = styled.div`
     max-width: 414px;
     padding: 0 10px;
   }
+`
+export const InputWrapper = styled.div`
+  width: 80%;
+`
+export const PopupWrapper = styled.div`
+  width: 17%;
+  height: 48px;
 `
