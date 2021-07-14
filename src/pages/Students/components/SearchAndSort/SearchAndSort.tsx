@@ -27,7 +27,8 @@ const StudentsFields: FC = () => {
                 'Высокий рейтинг',
                 'Низкий рейтинг'
               ]}
-            value="Имя А-Я"></PopupComponent>
+            value="Имя А-Я"
+            />
         </SC.PopupWrapper>
     </SC.SearchAndSortContainer>)
 }
