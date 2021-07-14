@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  frontend-template:
+    container_name: frontend-template
+    build: .
+    image: ${IMAGE_NAME}
+    ports:
+      - ${PORT}:80
+    restart: always

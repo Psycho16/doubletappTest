@@ -1,0 +1,17 @@
+@import './fonts.css';
+
+html,body {
+  height: 100%
+}
+
+body {
+  font-family: 'geometria';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+  display: flex; 
+  flex-direction: column; 
+}

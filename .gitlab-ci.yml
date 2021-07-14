@@ -1,0 +1,68 @@
+image: docker/compose:alpine-1.28.0
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - apk add make
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - cp $DOT_ENV $(pwd)/.env
+
+# === BUILD ===
+build.test:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev" && $CI_PIPELINE_SOURCE == "push"
+      when: always
+    - when: never
+  script: # commands to execute
+    - make build
+    - docker-compose push
+  tags: # tags to select specific runners
+    - job:build.test
+  environment: # env name to get env variables
+    name: test
+
+build.prod:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "push"
+      when: always
+    - when: never
+  script: # commands to execute
+    - make build
+    - docker-compose push
+  tags: # tags to select specific runners
+    - job:build.test
+  environment: # env name to get env variables
+    name: prod
+
+# === DEPLOY ===
+deploy.test:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev" && $CI_PIPELINE_SOURCE == "push"
+      when: always
+    - when: never
+  script: # commands to execute
+    - docker-compose pull
+    - make up
+  tags: # tags to select specific runners
+    - job:deploy.test
+  environment: # env name to get env variables
+    name: test
+
+deploy.prod:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "push"
+      when: manual
+    - when: never
+  script: # commands to execute
+    - docker-compose pull
+    - make down up
+  tags: # tags to select specific runners
+    - job:deploy.prod
+  environment: # env name to get env variables
+    name: prod
