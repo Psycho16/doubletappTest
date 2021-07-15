@@ -1,7 +1,20 @@
 export type getStudentsRequest = {
-  success: boolean
+  
 }
 
 export type getStudentsResponse = {
-  json: JSON
+  "students": [
+    {
+      "id": "number",
+      "email": "string",
+      "name": "string",
+      "sex": "string",
+      "specialty": "string",
+      "group": "string",
+      "color": "string",
+      "rating": "number",
+      "birthday": "string",
+      "avatar": "string"
+    }
+  ]
 }
