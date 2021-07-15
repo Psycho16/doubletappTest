@@ -12,6 +12,7 @@ export const PopupWrapper = styled.div`
   width: 100%;
   height: 100%;
   align-items: center;
+  cursor: pointer;
 `
 export const PopupLabel = styled.div`
   width: 100%;

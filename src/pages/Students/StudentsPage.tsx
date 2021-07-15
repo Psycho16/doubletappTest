@@ -1,8 +1,10 @@
 import React from 'react'
 import axios from 'axios'
+import { observer } from 'mobx-react-lite'
 
 import { Container } from '@components/styled/Container'
 import MainLayout from '@components/shared/MainLayout'
+import StudentsStore from '@stores/Students/StudentsStore'
 
 import StudentsTitle from './components/StudentsTitle'
 import StudentsFields from './components/StudentsFields'
@@ -13,20 +15,12 @@ import * as SC from './styled'
 
 
 const StudentsPage = () => {
-  const [students, setStudents] = React.useState([])
+  // const [students, setStudents] = React.useState([])
   React.useEffect(() => {
     axios.get('https://front-assignment-api.2tapp.cc/api/persons').then(({ data }) => {
-      setStudents(data.students)
+      // setStudents(data.students)
+      StudentsStore.getStudents(data.students)
     })
-    //     fetch('https://front-assignment-api.2tapp.cc/api/persons')
-    // .then(resp => resp.json())
-    // .then((json) => {
-    //     console.log(json.students)
-    //   arr = json.students
-    // //   setStudents(json.students)
-    //   console.log(arr)
-
-    // })
   }, [])
 
   return (
@@ -36,7 +30,8 @@ const StudentsPage = () => {
         <SearchAndSort />
         <StudentsFields />
         <SC.StudentWrapper>
-          {students && students.map((student: studentProps) => <Student key={student.id} {...student} />)}
+          {StudentsStore.studentsForView 
+          && StudentsStore.studentsForView.map((student: studentProps) => <Student key={student.id} {...student} />)}
         </SC.StudentWrapper>
         
       </Container>
@@ -44,4 +39,4 @@ const StudentsPage = () => {
   )
 }
 
-export default StudentsPage
+export default observer(StudentsPage)

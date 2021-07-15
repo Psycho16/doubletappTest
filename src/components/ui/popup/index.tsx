@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import sort from '@assets/icons/sort.svg'
+import StudentsStore from '@stores/Students/StudentsStore'
 
 import * as SC from './styled'
 
@@ -9,13 +10,14 @@ export interface PopupProps {
     items: string[];
     hasIcon?: boolean;
     placeholder?: string;
-    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+    type?: string;
 }
 
 const PopupComponent: FC<PopupProps> = (props) => {
     const {
         items,
-        hasIcon
+        hasIcon,
+        type
     } = props
 
     const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false)
@@ -28,14 +30,18 @@ const PopupComponent: FC<PopupProps> = (props) => {
     const changeActiveLabel = (index: number) =>{
         toggleVisiblePopup()
         setActiveItem(index)
+        if (type === "sort") {
+            StudentsStore.setSortType(items[index])    
+        }
     }
     return (
         <SC.Base>
             <SC.PopupWrapper>
                 <SC.PopupLabel onClick={toggleVisiblePopup}>
-                    <SC.PopupSpan>{activeLabel}</SC.PopupSpan>
+                    <SC.PopupSpan >{activeLabel}</SC.PopupSpan>
                     {hasIcon ? <SC.Icon src={sort} alt="popup-icon" /> : ''}
                 </SC.PopupLabel>
+
                 {visiblePopup ? (
                 <SC.Popup>
                     <SC.PopupUl>
@@ -43,14 +49,14 @@ const PopupComponent: FC<PopupProps> = (props) => {
                     items.map((item: string, index: number) =>
                         <SC.PopupLi key={item} onClick={() => 
                             changeActiveLabel(index)
-                        }>{item}</SC.PopupLi>) 
-                        : ''
                         }
+                    >
+                    {item}
+                    </SC.PopupLi>) 
+                        : ''}
                     </SC.PopupUl>
                 </SC.Popup>
-                ) : (
-                ''
-                )}
+                ) : '' }
             </SC.PopupWrapper>
             
         </SC.Base>

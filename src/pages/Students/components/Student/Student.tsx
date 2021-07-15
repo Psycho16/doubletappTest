@@ -3,7 +3,7 @@ import { rusGroups, layoutColors, rusSpecialties, specialties } from '@consts/st
 
 import { getRusGroup, getRusSpecialty, getAgeFromBirthday, fixAgeWord } from '@utils/getStudentInfo'
 import { ReactComponent as DeleteIcon } from '@assets/icons/delete.svg'
-
+import StudentsStore from '@stores/Students/StudentsStore'
 
 import * as SC from './styled'
 
@@ -57,7 +57,7 @@ const Student: FC<studentProps> = (props) => {
       </SC.StudentRatingAndColor>
 
       <SC.DeleteButton
-        // onClick={() => store.deleteStudent(id)}
+        onClick={() => StudentsStore.deleteStudent(id)}
       >
         <SC.DeleteWrapper>
           <DeleteIcon/>
