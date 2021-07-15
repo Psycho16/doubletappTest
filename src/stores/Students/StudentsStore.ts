@@ -4,7 +4,6 @@ import {studentProps} from '@pages/Students/components/Student/Student'
 
 import { sortBy } from '@utils/manipulateStudents'
 import RootStore from '@stores/RootStore'
-import ApiRequestStore from '@stores/common/ApiRequestStore'
 
 
 export const deleteStudent = (students: studentProps[], id: number) => {
@@ -19,17 +18,17 @@ export const sortStudents = (students: studentProps[], sortType: string) => {
   return students.sort((a, b) => sortBy(a, b, sortType))
 }
 
-class StudentsStore {
-  // private _rootStore: RootStore
+export default class StudentsStore {
+  private _rootStore: RootStore
   students: studentProps[] = [];
   studentsForView: studentProps[] = [];
   input = '';
   sortType = 'Имя А-Я';
 
   constructor(
-    // rootStore: RootStore
+    rootStore: RootStore
     ) {
-    // this._rootStore = rootStore
+    this._rootStore = rootStore
     makeAutoObservable(this)
   }
   deleteStudent(id: number) {
@@ -51,7 +50,3 @@ class StudentsStore {
     this.input = input
   }
 }
-
-const store = new StudentsStore()
-
-export default store

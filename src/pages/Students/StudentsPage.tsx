@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 
 import { Container } from '@components/styled/Container'
 import MainLayout from '@components/shared/MainLayout'
-import StudentsStore from '@stores/Students/StudentsStore'
+import { useRootStore } from '@hooks/common/useStore'
 
 import StudentsTitle from './components/StudentsTitle'
 import StudentsFields from './components/StudentsFields'
@@ -16,12 +16,13 @@ import * as SC from './styled'
 
 const StudentsPage = () => {
   // const [students, setStudents] = React.useState([])
+  const {StudentsStore} = useRootStore()
   React.useEffect(() => {
     axios.get('https://front-assignment-api.2tapp.cc/api/persons').then(({ data }) => {
       // setStudents(data.students)
       StudentsStore.getStudents(data.students)
     })
-  }, [])
+  }, [StudentsStore])
 
   return (
     <MainLayout>

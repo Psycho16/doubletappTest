@@ -6,12 +6,12 @@ import StudentsStore from './Students/StudentsStore'
 export default class RootStore {
   userStore: UserStore
   authStore: AuthStore
-  // StudentsStore: StudentsStore
+  StudentsStore: StudentsStore
 
   constructor() {
     this.userStore = new UserStore(this)
     this.authStore = new AuthStore(this)
-    // this.StudentsStore = new StudentsStore(this)
+    this.StudentsStore = new StudentsStore(this)
   }
 }
 

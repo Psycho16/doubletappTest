@@ -3,7 +3,7 @@ import { rusGroups, layoutColors, rusSpecialties, specialties } from '@consts/st
 
 import { getRusGroup, getRusSpecialty, getAgeFromBirthday, fixAgeWord } from '@utils/getStudentInfo'
 import { ReactComponent as DeleteIcon } from '@assets/icons/delete.svg'
-import StudentsStore from '@stores/Students/StudentsStore'
+import { useRootStore } from "@hooks/common/useStore"
 
 import * as SC from './styled'
 
@@ -27,7 +27,7 @@ const Student: FC<studentProps> = (props) => {
   const age: number = getAgeFromBirthday(birthday)
   const layoutColor: string = layoutColors[color]
   const ageWord: string = fixAgeWord(age)
-
+  const {StudentsStore} = useRootStore()
   return (
     <SC.StudentWrapper>
       <SC.StudentAvatar alt="student" src={avatar} />

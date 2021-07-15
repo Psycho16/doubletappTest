@@ -3,12 +3,13 @@ import React, { FC } from 'react'
 import InputComponent from '@components/ui/Input'
 import PopupComponent from '@components/ui/popup'
 import {ReactComponent as SearchIcon} from '@assets/icons/search.svg'
-import StudentsStore from '@stores/Students/StudentsStore'
+import { useRootStore } from '@hooks/common/useStore'
 
 import * as SC from './styled'
 
 
 const StudentsFields: FC = () => {
+  const {StudentsStore} = useRootStore()
   return (
     <SC.SearchAndSortContainer>
       <SC.InputWrapper>

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import sort from '@assets/icons/sort.svg'
-import StudentsStore from '@stores/Students/StudentsStore'
+import { useRootStore } from '@hooks/common/useStore'
 
 import * as SC from './styled'
 
@@ -23,6 +23,7 @@ const PopupComponent: FC<PopupProps> = (props) => {
     const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false)
     const [activeItem, setActiveItem] = React.useState<number>(0)
     const activeLabel = items[activeItem]
+    const {StudentsStore} = useRootStore()
     
     const toggleVisiblePopup = () => {
       setVisiblePopup(!visiblePopup)
