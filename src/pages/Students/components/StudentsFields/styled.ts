@@ -18,7 +18,6 @@ export const StudentsFieldsContainer = styled.div`
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    box-sizing: border-box;
     max-width: 768px;
   }
 
@@ -29,15 +28,14 @@ export const StudentsFieldsContainer = styled.div`
   }
 `
 export const StudentName = styled.h1`
-  font-weight: 500;
+  font-weight: normal;
   font-size: 16px;
   line-height: 20px;
   margin-left: 80px;
-  /* margin-right: 220px; */
   max-width: 320px;
   width: 100%;
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
-    max-width: 220px;
+    max-width: 216px;
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
@@ -50,7 +48,7 @@ export const StudentName = styled.h1`
   }
 `
 export const StudentSpecialty = styled.h2`
-  font-weight: 500;
+  font-weight: normal;
   font-size: 16px;
   line-height: 20px;
   width: 100%;
@@ -69,19 +67,45 @@ export const StudentSpecialty = styled.h2`
   }
 `
 export const StudentGroup = styled.h2`
-  font-weight: 500;
+  font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-  width: 143px;
+  max-width: 135px;
+  width: 100%;
+  ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
+    /* max-width: 135px; */
+  }
+
+  ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+    max-width: 88px;
+  }
+
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    max-width: 414px;
+    padding: 0 10px;
+  }
 `
 export const StudentAge = styled.h2`
-  font-weight: 500;
+  font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-  width: 140px;
+  max-width: 135px;
+  width: 100%;
+  ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
+    /* max-width: 135px; */
+  }
+
+  ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+    max-width: 88px;
+  }
+
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    max-width: 414px;
+    padding: 0 10px;
+  }
 `
 export const StudentRating = styled.h2`
-  font-weight: 500;
+  font-weight: normal;
   font-size: 16px;
   line-height: 20px;
   width: 6.8%;

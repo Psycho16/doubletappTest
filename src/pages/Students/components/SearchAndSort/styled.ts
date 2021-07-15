@@ -24,13 +24,19 @@ export const SearchAndSortContainer = styled.div`
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     max-width: 414px;
-    padding: 0 10px;
   }
 `
 export const InputWrapper = styled.div`
   width: 80%;
+  position: relative;
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    width: 100%;
+  }
 `
 export const PopupWrapper = styled.div`
   width: 17%;
   height: 48px;
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    display: none;
+  }
 `

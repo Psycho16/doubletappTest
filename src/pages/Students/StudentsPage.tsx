@@ -9,15 +9,15 @@ import StudentsFields from './components/StudentsFields'
 import SearchAndSort from './components/SearchAndSort'
 import Student from './components/Student'
 import { studentProps } from './components/Student/Student'
-// import * as SC from './styled'
+import * as SC from './styled'
 
 
 const StudentsPage = () => {
-    const [students, setStudents] = React.useState([])
-    React.useEffect(() => {
-        axios.get('https://front-assignment-api.2tapp.cc/api/persons').then(({ data }) => {
-            setStudents(data)
-        })
+  const [students, setStudents] = React.useState([])
+  React.useEffect(() => {
+    axios.get('https://front-assignment-api.2tapp.cc/api/persons').then(({ data }) => {
+      setStudents(data.students)
+    })
     //     fetch('https://front-assignment-api.2tapp.cc/api/persons')
     // .then(resp => resp.json())
     // .then((json) => {
@@ -25,23 +25,23 @@ const StudentsPage = () => {
     //   arr = json.students
     // //   setStudents(json.students)
     //   console.log(arr)
-      
+
     // })
-    }, [])
-    
-    return (
-        <MainLayout>
-            <Container>
-                <StudentsTitle/>
-                <SearchAndSort/>
-                <StudentsFields/>
-                {students &&
-                students.map((student: studentProps) => <Student key={student.id} {...student}/>)}
-            </Container>
-        </MainLayout>
-        )
-    
-    
+  }, [])
+
+  return (
+    <MainLayout>
+      <Container>
+        <StudentsTitle />
+        <SearchAndSort />
+        <StudentsFields />
+        <SC.StudentWrapper>
+          {students && students.map((student: studentProps) => <Student key={student.id} {...student} />)}
+        </SC.StudentWrapper>
+        
+      </Container>
+    </MainLayout>
+  )
 }
 
 export default StudentsPage
