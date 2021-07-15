@@ -1,8 +1,5 @@
 import React, {FC} from 'react'
 
-import Button from '@components/ui/Button'
-import browserHistory from '@utils/browserHistory'
-
 import * as SC from './styled'
 
 

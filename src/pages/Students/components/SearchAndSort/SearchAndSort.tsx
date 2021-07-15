@@ -13,7 +13,7 @@ const StudentsFields: FC = () => {
   return (
     <SC.SearchAndSortContainer>
       <SC.InputWrapper>
-        <SearchIcon style={{position:"absolute", top: "calc(50% - 9px)", left: "20px"}}/>
+        <SearchIcon style={{position:"absolute", top: "calc(50% - 9px)", left: "10px"}}/>
         <InputComponent
           onChange={event => StudentsStore.setInput(event.target.value)}
           name="search"
