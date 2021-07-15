@@ -45,7 +45,7 @@ export const defaultTheme: DefaultTheme = {
       secondary: '#ebebeb'
     }
   },
-  borderRadius: 5,
+  borderRadius: 10,
   boxShadow: {
     common: '0px 7px 64px rgba(0, 0, 0, 0.07);'
   }
