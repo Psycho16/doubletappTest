@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
 
+import sort from '@assets/icons/sort.svg'
+
 import * as SC from './styled'
 
 
 export interface PopupProps {
     items: string[];
     hasIcon?: boolean;
-    value: string;
     placeholder?: string;
     icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 }
@@ -14,28 +15,37 @@ export interface PopupProps {
 const PopupComponent: FC<PopupProps> = (props) => {
     const {
         items,
-        hasIcon,
-        value,
-        placeholder,
-        icon
+        hasIcon
     } = props
+
     const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false)
-    function toggleVisiblePopup() {
+    const [activeItem, setActiveItem] = React.useState<number>(0)
+    const activeLabel = items[activeItem]
+    
+    const toggleVisiblePopup = () => {
       setVisiblePopup(!visiblePopup)
+    }
+    const changeActiveLabel = (index: number) =>{
+        toggleVisiblePopup()
+        setActiveItem(index)
     }
     return (
         <SC.Base>
             <SC.PopupWrapper>
                 <SC.PopupLabel onClick={toggleVisiblePopup}>
-                    <SC.PopupSpan>{value}</SC.PopupSpan>
-                    {icon && <SC.Icon>{React.createElement(icon)}</SC.Icon>}
-                    {/* {hasIcon ? <SC.PopupLogo src={popupLogo} alt="popup-icon"/> : ''} */}
+                    <SC.PopupSpan>{activeLabel}</SC.PopupSpan>
+                    {hasIcon ? <SC.Icon src={sort} alt="popup-icon" /> : ''}
                 </SC.PopupLabel>
                 {visiblePopup ? (
                 <SC.Popup>
                     <SC.PopupUl>
                     {items ? 
-                    items.map((item: string) => <SC.PopupLi key={item}>{item}</SC.PopupLi>) : ''}
+                    items.map((item: string, index: number) =>
+                        <SC.PopupLi key={item} onClick={() => 
+                            changeActiveLabel(index)
+                        }>{item}</SC.PopupLi>) 
+                        : ''
+                        }
                     </SC.PopupUl>
                 </SC.Popup>
                 ) : (

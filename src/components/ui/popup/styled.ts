@@ -26,17 +26,12 @@ export const PopupSpan = styled.span`
     font-size: 12px;
     line-height: 15px;
 `
-export const Icon = styled.div`
+export const Icon = styled.img`
   margin-right: 10px;
-  flex-shrink: 0;
-  line-height: 0;
-  width: 30px;
-  height: 30px;
-
-  svg {
-    max-width: 100%;
-    max-height: 100%;
-  }
+  position: absolute;
+  right: 15px;
+  width: 20px;
+  height: 20px;
 `
 export const Popup = styled.div`
   position: absolute;
