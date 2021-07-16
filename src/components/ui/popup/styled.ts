@@ -16,23 +16,38 @@ export const PopupWrapper = styled.div`
 `
 export const PopupLabel = styled.div`
   width: 100%;
+  box-sizing: border-box;
   text-align: start;
-  width: 100%;
   height: 100%;
+  padding: 0 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `
+export const PlaceholderSpan = styled.p`
+font-size: 16px;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 70%;
+opacity: 0.3;
+` 
 export const PopupSpan = styled.span`
-    padding-left: 20px;
     font-size: 12px;
     line-height: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 70%;
 `
-export const Icon = styled.img`
-  margin-right: 10px;
-  position: absolute;
-  right: 15px;
-  width: 20px;
-  height: 20px;
+export const Icon = styled.div`
+  max-width: 16px;
+  height: 16px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `
 export const Popup = styled.div`
   position: absolute;
@@ -41,7 +56,8 @@ export const Popup = styled.div`
   border-radius: 10px;
   width: 100%;
   text-align: start;
-  padding-top: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-top: 6px;
   z-index: 1;
 `
@@ -49,9 +65,10 @@ export const PopupUl = styled.ul`
   overflow: hidden;
   font-size: 12px;
   line-height: 15px;
+  margin: 0;
   padding: 0;
 `
-export const PopupLi = styled.li`
+export const PopupLi = styled.p`
   box-sizing: border-box;
   width: 96%;
   height: 35px;

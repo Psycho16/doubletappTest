@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 
-import sort from '@assets/icons/sort.svg'
 import { useRootStore } from '@hooks/common/useStore'
 
 import * as SC from './styled'
@@ -8,21 +7,21 @@ import * as SC from './styled'
 
 export interface PopupProps {
     items: string[];
-    hasIcon?: boolean;
     placeholder?: string;
+    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
     type?: string;
 }
 
 const PopupComponent: FC<PopupProps> = (props) => {
     const {
         items,
-        hasIcon,
-        type
+        icon,
+        type,
+        placeholder
     } = props
 
     const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false)
-    const [activeItem, setActiveItem] = React.useState<number>(0)
-    const activeLabel = items[activeItem]
+    const [activeLabel, setActiveLabel] = React.useState<string>(placeholder || items[0])
     const {StudentsStore} = useRootStore()
     
     const toggleVisiblePopup = () => {
@@ -30,31 +29,39 @@ const PopupComponent: FC<PopupProps> = (props) => {
     }
     const changeActiveLabel = (index: number) =>{
         toggleVisiblePopup()
-        setActiveItem(index)
+        setActiveLabel(items[index])
         if (type === "sort") {
             StudentsStore.setSortType(items[index])    
         }
     }
+    
     return (
         <SC.Base>
             <SC.PopupWrapper>
                 <SC.PopupLabel onClick={toggleVisiblePopup}>
-                    <SC.PopupSpan >{activeLabel}</SC.PopupSpan>
-                    {hasIcon ? <SC.Icon src={sort} alt="popup-icon" /> : ''}
+                    {(type === "withPlaceholder") ?
+                    <SC.PlaceholderSpan title={activeLabel}>{activeLabel}</SC.PlaceholderSpan> 
+                    : 
+                    <SC.PopupSpan >{activeLabel}</SC.PopupSpan>}
+                    
+                    {icon && <SC.Icon>{React.createElement(icon)}</SC.Icon>}
                 </SC.PopupLabel>
 
                 {visiblePopup ? (
                 <SC.Popup>
-                    <SC.PopupUl>
-                    {items ? 
-                    items.map((item: string, index: number) =>
-                        <SC.PopupLi key={item} onClick={() => 
-                            changeActiveLabel(index)
-                        }
-                    >
-                    {item}
-                    </SC.PopupLi>) 
-                        : ''}
+                     <SC.PopupUl>
+                        {items ? 
+                        items.map((item: string, index: number) =>
+                            <SC.PopupLi
+                            title={item} 
+                            key={item} 
+                            onClick={() => 
+                                changeActiveLabel(index)
+                            }
+                            >
+                            {item}
+                            </SC.PopupLi>) 
+                            : ''}
                     </SC.PopupUl>
                 </SC.Popup>
                 ) : '' }
