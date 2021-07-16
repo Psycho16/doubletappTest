@@ -1,4 +1,4 @@
-import {studentProps} from '@pages/Students/components/Student/Student'
+import { studentProps } from '@models/students/EntityModels/student'
 
 import { getAgeFromBirthday } from './getStudentInfo'
 
