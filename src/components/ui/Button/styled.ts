@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/macro'
+import {viewportWidth, widthBreakpoints} from 'styles/mediaQueryMixins'
 
 
 type BaseProps = {
@@ -37,9 +38,15 @@ export const Base = styled.button<BaseProps>`
 `
 
 export const Icon = styled.div`
-  width: 30px;
-  height: 30px;
-  
+  width: 16px;
+  height: 16px;
+  margin-right: 16px;
+  ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+  margin-right: 1px;
+}
+${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+  margin-right: 20px;
+}
   svg {
     width: 100%;
     height: 100%;
