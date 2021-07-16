@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { defaultTheme } from '@consts/appTheme'
 import { viewportWidth, widthBreakpoints } from 'styles/mediaQueryMixins'
+import { Link } from 'react-router-dom'
 
 
 export const StudentsTitleContainer = styled.div`
@@ -24,9 +25,14 @@ export const StudentsTitle = styled.h1`
     width: 100%;
   }
 `
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled(Link)`
   width: 30%;
   position: relative;
+  text-decoration: none;
+  :focus {
+    outline: none;
+    border: none;
+  }
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 30%;
   }

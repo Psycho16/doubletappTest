@@ -1,4 +1,5 @@
 import React, {FC} from 'react'
+import { PATH_NEWSTUDENT } from '@consts/routes'
 
 import Button from '@components/ui/Button'
 import browserHistory from '@utils/browserHistory'
@@ -10,11 +11,8 @@ import * as SC from './styled'
 const StudentsTitle: FC = () => {
     return <SC.StudentsTitleContainer>
         <SC.StudentsTitle>Студенты</SC.StudentsTitle>
-        <SC.ButtonWrapper>
-                <PlusIcon 
-                style={{position: "absolute",top: "calc(50% - 8px)",left: "9%"}}
-                />
-            <Button text="Добавить студента" onClick={browserHistory.goBack}></Button>
+        <SC.ButtonWrapper to={PATH_NEWSTUDENT}>
+            <Button text="Добавить студента" onClick={browserHistory.goBack} icon={PlusIcon}></Button>
         </SC.ButtonWrapper> 
     </SC.StudentsTitleContainer>
 }

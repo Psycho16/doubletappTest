@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import PopupComponent from '@components/ui/popup'
+import PopupComponent from '@components/ui/Popup'
 import { ReactComponent as Triangle } from '@assets/icons/popup.svg'
 
 import ColorsPopup from '../ColorsPopup'

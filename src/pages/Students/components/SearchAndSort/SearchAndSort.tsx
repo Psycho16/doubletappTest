@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
 
 import InputComponent from '@components/ui/Input'
-import PopupComponent from '@components/ui/popup'
+import PopupComponent from '@components/ui/Popup'
 import {ReactComponent as SearchIcon} from '@assets/icons/search.svg'
 import { useRootStore } from '@hooks/common/useStore'
+import {ReactComponent as SortIcon} from '@assets/icons/sort.svg'
 
 import * as SC from './styled'
 
@@ -25,7 +26,7 @@ const StudentsFields: FC = () => {
       <SC.PopupWrapper>
         <PopupComponent
           items={['Имя А-Я', 'Имя Я-А', 'Сначала моложе', 'Сначала старше', 'Высокий рейтинг', 'Низкий рейтинг']}
-          hasIcon
+          icon={SortIcon}
           type="sort"
         />
       </SC.PopupWrapper>

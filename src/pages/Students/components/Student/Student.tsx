@@ -4,20 +4,12 @@ import { rusGroups, layoutColors, rusSpecialties, specialties } from '@consts/st
 import { getRusGroup, getRusSpecialty, getAgeFromBirthday, fixAgeWord } from '@utils/getStudentInfo'
 import { ReactComponent as DeleteIcon } from '@assets/icons/delete.svg'
 import { useRootStore } from "@hooks/common/useStore"
+import {ReactComponent as StarIcon} from '@assets/icons/star.svg'
+import { studentProps } from '@models/students/EntityModels/student'
 
 import * as SC from './styled'
 
 
-export interface studentProps {
-  id: number
-  avatar: string
-  name: string
-  specialty: string
-  group: string
-  color: string
-  rating: number
-  birthday: string
-}
 
 const Student: FC<studentProps> = (props) => {
   const { id, avatar, name, specialty, group, color, rating, birthday } = props
@@ -31,26 +23,29 @@ const Student: FC<studentProps> = (props) => {
   return (
     <SC.StudentWrapper>
       <SC.StudentAvatar alt="student" src={avatar} />
+      {/* <SC.StudentDivAvatar style={{backgroundImage: `url(${avatar})`}}/> */}
       <SC.StudentName>{name}</SC.StudentName>
       <SC.SeparatingLine />
       <SC.StudentSpecialty>
-        {/* <SC.ListPoint src={listPoint} /> */}
+        <SC.ListPoint />
         {rusSpecialty}
       </SC.StudentSpecialty>
       <SC.StudentGroup>
-        {/* <SC.ListPoint src={listPoint} /> */}
+        <SC.ListPoint  />
         {rusGroup}
       </SC.StudentGroup>
       <SC.StudentAge>
-        {/* <ListPoint src={listPoint} /> */}
+        <SC.ListPoint/>
         {age}
         <SC.AgeWord>{ageWord}</SC.AgeWord>
       </SC.StudentAge>
       <SC.StudentRatingAndColor>
         <SC.StudentRating>
-          <SC.RatingStar
-          //   src={ratingStar}
-          />
+          <SC.RatingStar>
+            <StarIcon 
+            />
+          </SC.RatingStar>
+          
           {rating}
         </SC.StudentRating>
         <SC.StudentColor style={{ background: layoutColor }} />
