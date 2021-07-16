@@ -1,9 +1,11 @@
 import { makeAutoObservable } from 'mobx'
 // import { getStudents } from 'api/students'
-import {studentProps} from '@pages/Students/components/Student/Student'
+import { getStudents } from 'api/students'
 
+import { studentProps } from '@models/students/EntityModels/student'
 import { sortBy } from '@utils/manipulateStudents'
 import RootStore from '@stores/RootStore'
+import ApiRequestStore from '@stores/common/ApiRequestStore'
 
 
 export const deleteStudent = (students: studentProps[], id: number) => {
@@ -25,12 +27,16 @@ export default class StudentsStore {
   input = '';
   sortType = 'Имя А-Я';
 
+  studentsRequest = new ApiRequestStore({
+    apiFunction: getStudents
+  })
   constructor(
     rootStore: RootStore
     ) {
     this._rootStore = rootStore
     makeAutoObservable(this)
   }
+
   deleteStudent(id: number) {
     this.students = deleteStudent(this.students, id)
     this.studentsForView = filterStudents(this.students, this.input)
