@@ -8,7 +8,11 @@ export const rusSpecialties: string[] = [
 
 export const rusGroups: string[] = ['МТ', 'КБ', 'КН']
 
-export const layoutColors: any = {
+type colorsOfLayout = {
+  [key: string]: string
+}
+
+export const layoutColors: colorsOfLayout = {
     green: '#83C872',
     blue: '#49C2E8',
     red: '#E25B5B',
