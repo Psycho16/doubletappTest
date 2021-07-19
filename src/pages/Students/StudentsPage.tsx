@@ -12,22 +12,27 @@ import StudentsFields from './components/StudentsFields'
 import SearchAndSort from './components/SearchAndSort'
 import Student from './components/Student'
 import * as SC from './styled'
+import useStudentsLogic from './useStudentsLogic'
 
 
 const StudentsPage = () => {
   // const [students, setStudents] = React.useState([])
   const {StudentsStore} = useRootStore()
+  const {
+    onSubmit
+  } = useStudentsLogic()
   React.useEffect(() => {
-    axios.get('https://front-assignment-api.2tapp.cc/api/persons').then(({ data }) => {
-      // setStudents(data.students)
-      StudentsStore.getStudents(data.students)
-    })
-
-  }, [StudentsStore])
+    // axios.get('https://front-assignment-api.2tapp.cc/api/persons').then(({ data }) => {
+    //   // setStudents(data.students)
+    //   StudentsStore.getStudents(data.students)
+    // })
+    onSubmit
+  }, [])
 
   return (
     <MainLayout>
       <Container>
+        <button onClick={onSubmit}></button>
         <StudentsTitle />
         <SearchAndSort />
         <StudentsFields />

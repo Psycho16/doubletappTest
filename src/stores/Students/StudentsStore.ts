@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx'
 // import { getStudents } from 'api/students'
 import { getStudents } from 'api/students'
 
+import { getStudentsRequest, getStudentsResponse } from '@models/students/ApiModels/getStudents'
 import { studentProps } from '@models/students/EntityModels/student'
 import { sortBy } from '@utils/manipulateStudents'
 import RootStore from '@stores/RootStore'
@@ -27,12 +28,10 @@ export default class StudentsStore {
   input = '';
   sortType = 'Имя А-Я';
 
-  studentsRequest = new ApiRequestStore({
+  studentsRequest = new ApiRequestStore<getStudentsRequest, getStudentsResponse>({
     apiFunction: getStudents
   })
-  constructor(
-    rootStore: RootStore
-    ) {
+  constructor(rootStore: RootStore) {
     this._rootStore = rootStore
     makeAutoObservable(this)
   }
