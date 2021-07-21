@@ -101,7 +101,7 @@ export const StudentDivAvatar = styled.div`
     align-self: flex-start;
   }
 `
-export const StudentName = styled.h1`
+export const StudentName = styled.h2`
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
@@ -115,6 +115,9 @@ export const StudentName = styled.h1`
     padding: 0 7px;
     max-width: 100px;
     min-width: 94px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     /* font-size: 14px; */
   }
 
