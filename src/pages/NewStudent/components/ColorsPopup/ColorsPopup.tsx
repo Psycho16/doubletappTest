@@ -17,12 +17,12 @@ const ColorsPopup: FC<ColorsPopupProps> = (props) => {
     icon
   } = props
 
-  const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false)
+  const [isVisiblePopup, setIsVisiblePopup] = React.useState<boolean>(false)
   const [activeLabel, setActiveLabel] = React.useState<string>(placeholder)
 
   
   const toggleVisiblePopup = () => {
-    setVisiblePopup(!visiblePopup)
+    setIsVisiblePopup(!isVisiblePopup)
   }
   const colorsArray = ["Голубой", "Красный","Зеленый","Желтый","Черный","Оранжевый","Радужный"]
   const changeActiveLabel = (index: number) =>{
@@ -32,7 +32,7 @@ const ColorsPopup: FC<ColorsPopupProps> = (props) => {
   const popupRef = React.useRef(null)
 
     useOutsideClick(popupRef, () => {
-        setVisiblePopup(false)
+        setIsVisiblePopup(false)
     })
 
 
@@ -52,7 +52,7 @@ const ColorsPopup: FC<ColorsPopupProps> = (props) => {
             {icon && <SC.Icon>{React.createElement(icon)}</SC.Icon>}
         </SC.ColorsPopupLabel>
 
-        {visiblePopup ? (
+        {isVisiblePopup ? (
         <SC.ColorsPopup>
             <SC.ColorsPopupUl>
                 {items ? 
