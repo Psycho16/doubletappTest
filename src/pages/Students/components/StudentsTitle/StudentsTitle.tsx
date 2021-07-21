@@ -11,8 +11,10 @@ const StudentsTitle: FC = () => {
     return <SC.StudentsTitleContainer>
         <SC.StudentsTitle>Студенты</SC.StudentsTitle>
         <SC.ButtonWrapper to={PATH_NEWSTUDENT}>
-            <Button text="Добавить студента" onClick={() => console.log('hi')
-            } icon={PlusIcon}></Button>
+            <Button 
+            text="Добавить студента" 
+            onClick={e => e}
+            icon={PlusIcon}></Button>
         </SC.ButtonWrapper> 
     </SC.StudentsTitleContainer>
 }
