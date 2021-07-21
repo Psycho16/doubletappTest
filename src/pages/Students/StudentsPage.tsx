@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { observer } from 'mobx-react-lite'
 
 import { Container } from '@components/styled/Container'
@@ -12,33 +11,29 @@ import StudentsFields from './components/StudentsFields'
 import SearchAndSort from './components/SearchAndSort'
 import Student from './components/Student'
 import * as SC from './styled'
-import useStudentsLogic from './useStudentsLogic'
 
 
 const StudentsPage = () => {
-  // const [students, setStudents] = React.useState([])
-  const {StudentsStore} = useRootStore()
-  const {
-    onSubmit
-  } = useStudentsLogic()
+  const { studentsStore: { studentsRequest, students } } = useRootStore()
   React.useEffect(() => {
-    // axios.get('https://front-assignment-api.2tapp.cc/api/persons').then(({ data }) => {
-    //   // setStudents(data.students)
-    //   StudentsStore.getStudents(data.students)
-    // })
-    onSubmit
-  }, [])
+
+    studentsRequest.send(undefined)
+
+  }, [studentsRequest])
 
   return (
     <MainLayout>
       <Container>
-        <button onClick={onSubmit}></button>
         <StudentsTitle />
         <SearchAndSort />
         <StudentsFields />
         <SC.StudentWrapper>
-          {StudentsStore.studentsForView 
-          && StudentsStore.studentsForView.map((student: studentProps) => <Student key={student.id} {...student} />)}
+          {
+            students &&
+            students.length !== 0 ? students
+            .map((student: studentProps) => <Student key={student.id} {...student} />) 
+            : <p>Нет студентов</p>
+          }
         </SC.StudentWrapper>
         
       </Container>
