@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import { useRootStore } from '@hooks/common/useStore'
+import { useOutsideClick } from '@hooks/common/useOutsideClick'
 
 import * as SC from './styled'
 
@@ -22,8 +23,13 @@ const PopupComponent: FC<PopupProps> = (props) => {
 
     const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false)
     const [activeLabel, setActiveLabel] = React.useState<string>(placeholder || items[0])
-    const {StudentsStore} = useRootStore()
-    
+    const {studentsStore} = useRootStore()
+    const popupRef = React.useRef(null)
+
+    useOutsideClick(popupRef, () => {
+        setVisiblePopup(false)
+    })
+
     const toggleVisiblePopup = () => {
       setVisiblePopup(!visiblePopup)
     }
@@ -31,16 +37,18 @@ const PopupComponent: FC<PopupProps> = (props) => {
         toggleVisiblePopup()
         setActiveLabel(items[index])
         if (type === "sort") {
-            StudentsStore.setSortType(items[index])    
+            studentsStore.setSortType(items[index])    
         }
+        
     }
     
     return (
         <SC.Base>
             <SC.PopupWrapper>
-                <SC.PopupLabel onClick={toggleVisiblePopup}>
+                <SC.PopupLabel onClick={toggleVisiblePopup} ref={popupRef}>
                     {(type === "withPlaceholder") ?
-                    <SC.PlaceholderSpan title={activeLabel}>{activeLabel}</SC.PlaceholderSpan> 
+                    <SC.PlaceholderSpan title={activeLabel} 
+                    >{activeLabel}</SC.PlaceholderSpan> 
                     : 
                     <SC.PopupSpan >{activeLabel}</SC.PopupSpan>}
                     
