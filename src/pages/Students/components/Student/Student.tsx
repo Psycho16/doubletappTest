@@ -19,11 +19,12 @@ const Student: FC<studentProps> = (props) => {
   const age: number = getAgeFromBirthday(birthday)
   const layoutColor: string = layoutColors[color]
   const ageWord: string = fixAgeWord(age)
-  const { studentsStore: { deleteStudentRequest} } = useRootStore()
+  const { studentsStore: { deleteStudentRequest, getStudentsRequest} } = useRootStore()
 
   
   const onDelete = (id: number) => {
     deleteStudentRequest.send(id)
+    .then(() => getStudentsRequest.send(undefined))
   }  
   
   return (

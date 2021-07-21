@@ -23,7 +23,7 @@ export default class StudentsStore {
   input = '';
   sortType = 'Имя А-Я';
 
-  studentsRequest = new ApiRequestStore({
+  getStudentsRequest = new ApiRequestStore({
     apiFunction: getStudents
   })
 
@@ -41,7 +41,7 @@ export default class StudentsStore {
   }
 
   get students() {
-    const studentsTemp = this.studentsRequest.data?.students || []
+    const studentsTemp = this.getStudentsRequest.data?.students || []
     const sortedStudents = sortStudents(studentsTemp, this.sortType)
     return filterStudents(sortedStudents, this.input) 
   }

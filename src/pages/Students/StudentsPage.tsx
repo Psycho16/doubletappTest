@@ -14,12 +14,12 @@ import * as SC from './styled'
 
 
 const StudentsPage = () => {
-  const { studentsStore: { studentsRequest, students } } = useRootStore()
+  const { studentsStore: { getStudentsRequest, students } } = useRootStore()
   React.useEffect(() => {
 
-    studentsRequest.send(undefined)
+    getStudentsRequest.send(undefined)
 
-  }, [studentsRequest])
+  }, [getStudentsRequest])
 
   return (
     <MainLayout>
