@@ -26,7 +26,7 @@ export default class StudentsStore {
   studentsRequest = new ApiRequestStore({
     apiFunction: getStudents
   })
-  
+
   addStudentRequest = new ApiRequestStore({
     apiFunction: addStudent
   })
@@ -40,9 +40,9 @@ export default class StudentsStore {
     makeAutoObservable(this)
   }
 
-  get students1() {
-    const students = this.studentsRequest.data?.students || []
-    const sortedStudents = sortStudents(students, this.sortType)
+  get students() {
+    const studentsTemp = this.studentsRequest.data?.students || []
+    const sortedStudents = sortStudents(studentsTemp, this.sortType)
     return filterStudents(sortedStudents, this.input) 
   }
 
