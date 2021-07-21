@@ -21,17 +21,17 @@ const PopupComponent: FC<PopupProps> = (props) => {
         placeholder
     } = props
 
-    const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false)
+    const [isVisiblePopup, setIsVisiblePopup] = React.useState<boolean>(false)
     const [activeLabel, setActiveLabel] = React.useState<string>(placeholder || items[0])
     const {studentsStore} = useRootStore()
     const popupRef = React.useRef(null)
 
     useOutsideClick(popupRef, () => {
-        setVisiblePopup(false)
+        setIsVisiblePopup(false)
     })
 
     const toggleVisiblePopup = () => {
-      setVisiblePopup(!visiblePopup)
+      setIsVisiblePopup(!isVisiblePopup)
     }
     const changeActiveLabel = (index: number) =>{
         toggleVisiblePopup()
@@ -55,7 +55,7 @@ const PopupComponent: FC<PopupProps> = (props) => {
                     {icon && <SC.Icon>{React.createElement(icon)}</SC.Icon>}
                 </SC.PopupLabel>
 
-                {visiblePopup ? (
+                {isVisiblePopup ? (
                 <SC.Popup>
                      <SC.PopupUl>
                         {items ? 
