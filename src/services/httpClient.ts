@@ -10,8 +10,10 @@ export const http = axios.create({
   baseURL: config.api.baseUrl,
   headers: {
     secret: config.api.secret,
-    Authorization: authToken && `Bearer ${authToken}`
+    Authorization: config.api.token,
+    ['X-TOKEN']: config.api.token
   }
+
 })
 
 export const setToken = (token: string): void => {
