@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { rusGroups, layoutColors, rusSpecialties, specialties } from '@consts/studentArrays'
 
-import { getRusGroup, getRusSpecialty, getAgeFromBirthday, fixAgeWord } from '@utils/getStudentInfo'
+import { getRusGroup, getRusSpecialty, getAgeFromBirthday, fixAgeWord, getStudentInitials } from '@utils/getStudentInfo'
 import { ReactComponent as DeleteIcon } from '@assets/icons/delete.svg'
 import { useRootStore } from "@hooks/common/useStore"
 import {ReactComponent as StarIcon} from '@assets/icons/star.svg'
@@ -19,14 +19,25 @@ const Student: FC<studentProps> = (props) => {
   const age: number = getAgeFromBirthday(birthday)
   const layoutColor: string = layoutColors[color]
   const ageWord: string = fixAgeWord(age)
-  const {StudentsStore} = useRootStore()
+  const { studentsStore: { deleteStudentRequest} } = useRootStore()
+
+  
+  const onDelete = (id: number) => {
+    deleteStudentRequest.send(id)
+  }  
+  
   return (
     <SC.StudentWrapper>
-      <SC.StudentAvatar alt="student" src={avatar} />
-      {/* <SC.StudentDivAvatar style={{backgroundImage: `url(${avatar})`}}/> */}
+      {
+         avatar ? <SC.StudentAvatar alt="student" src={avatar} />
+         : <SC.EmptyStudentAvatar>
+           <SC.EmptyStudentAvatarText>{getStudentInitials(name)}</SC.EmptyStudentAvatarText>
+         </SC.EmptyStudentAvatar>
+      }
+      
       <SC.StudentName>{name}</SC.StudentName>
       <SC.SeparatingLine />
-      <SC.StudentSpecialty>
+      <SC.StudentSpecialty title={rusSpecialty}>
         <SC.ListPoint />
         {rusSpecialty}
       </SC.StudentSpecialty>
@@ -52,7 +63,7 @@ const Student: FC<studentProps> = (props) => {
       </SC.StudentRatingAndColor>
 
       <SC.DeleteButton
-        onClick={() => StudentsStore.deleteStudent(id)}
+        onClick={() => onDelete(id)}
       >
         <SC.DeleteWrapper>
           <DeleteIcon/>

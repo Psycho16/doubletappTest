@@ -41,20 +41,37 @@ export const StudentAvatar = styled.img`
   width: 40px;
   height: 40px;
   margin-right: 20px;
-  /* &:before{
-    content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  } */
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
-    /* margin-right: 0; */
     align-self: flex-start;
   }
+`
+export const EmptyStudentAvatar = styled.div`
+ border: 2px solid rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 300px;
+  max-width: 100%;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  background: #ffffff;
+  box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    align-self: flex-start;
+  }
+`
+export const EmptyStudentAvatarText = styled.p`
+      display: flex;
+    justify-content: center;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 25px;
+    color: #49C2E8;
+  color: ${props => props.theme.palette.action.active};
 `
 
 export const StudentDivAvatar = styled.div`
@@ -126,11 +143,15 @@ export const SeparatingLine = styled.span`
   }
 `
 export const StudentSpecialty = styled.h2`
+cursor: default;
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
   max-width: 300px;
   width: 100%;
+  overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     max-width: 213px;
     min-width: 213px;
@@ -270,6 +291,7 @@ export const RatingStar = styled.div`
 export const ListPoint = styled.div`
   display: none;
   width: 5px;
+  min-width: 5px;
   height: 5px;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: inline-block;
@@ -287,7 +309,7 @@ export const AgeWord = styled.span`
     margin-left: 5px;
   }
 ` 
-export const StudentColor = styled.h1`
+export const StudentColor = styled.h2`
   box-sizing: border-box;
   border-radius: 300px;
   min-width: 30px;
