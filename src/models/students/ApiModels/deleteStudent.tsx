@@ -1,5 +1,5 @@
 export type deleteStudentRequest = {
-  
+  id: string
 }
 
 export type deleteStudentResponse = {
