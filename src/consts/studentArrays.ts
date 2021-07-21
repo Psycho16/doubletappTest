@@ -1,12 +1,14 @@
-export const specialties: string[] = ['mt', 'kb', 'kn']
+export const specialties: string[] = ['mt', 'kb', 'kn', 'ft','ms']
 
 export const rusSpecialties: string[] = [
   'Математика',
   'Компьютерная безопасность',
-  'Компьютерные науки'
+  'Компьютерные науки',
+  'Фундаментальная информатика и информационные технологии',
+  'Математическое обеспечение и администрирование информационных систем'
 ]
 
-export const rusGroups: string[] = ['МТ', 'КБ', 'КН']
+export const rusGroups: string[] = ['МТ', 'КБ', 'КН', 'ФИИТ', "Моаис"]
 
 type colorsOfLayout = {
   [key: string]: string
