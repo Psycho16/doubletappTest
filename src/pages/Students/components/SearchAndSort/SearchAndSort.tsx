@@ -10,15 +10,19 @@ import * as SC from './styled'
 
 
 const StudentsFields: FC = () => {
-  const {StudentsStore} = useRootStore()
+  const {studentsStore} = useRootStore()
+
   return (
     <SC.SearchAndSortContainer>
       <SC.InputWrapper>
-        <SearchIcon style={{position:"absolute", top: "calc(50% - 9px)", left: "10px"}}/>
+        <SC.SearchIconWrapper>
+          <SearchIcon/>
+        </SC.SearchIconWrapper>
+        
         <InputComponent
-          onChange={event => StudentsStore.setInput(event.target.value)}
+          onChange={event => studentsStore.setInput(event.target.value)}
           name="search"
-          value={StudentsStore.input}
+          value={studentsStore.input}
           placeholder="Поиск по имени"
           mask={false}
         ></InputComponent>

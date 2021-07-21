@@ -26,6 +26,12 @@ export const SearchAndSortContainer = styled.div`
     max-width: 414px;
   }
 `
+export const SearchIconWrapper = styled.div`
+margin: 0;
+position: absolute;
+top: calc(50% - 9px);
+left: 10px;
+`
 export const InputWrapper = styled.div`
   width: 80%;
   position: relative;
