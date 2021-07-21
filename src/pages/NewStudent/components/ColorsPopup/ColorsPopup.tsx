@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 
+import {useOutsideClick} from '@hooks/common/useOutsideClick'
 
 import * as SC from './styled'
 
@@ -28,11 +29,17 @@ const ColorsPopup: FC<ColorsPopupProps> = (props) => {
       toggleVisiblePopup()
       setActiveLabel(items[index])
   }
+  const popupRef = React.useRef(null)
+
+    useOutsideClick(popupRef, () => {
+        setVisiblePopup(false)
+    })
+
 
   return (
     <SC.Base>
     <SC.ColorsPopupWrapper>
-        <SC.ColorsPopupLabel onClick={toggleVisiblePopup}>
+        <SC.ColorsPopupLabel onClick={toggleVisiblePopup} ref={popupRef}>
             <SC.ColorsPopupSpan >{
             (activeLabel === placeholder) ?
             placeholder
