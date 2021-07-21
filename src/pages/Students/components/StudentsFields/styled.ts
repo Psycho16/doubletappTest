@@ -27,7 +27,7 @@ export const StudentsFieldsContainer = styled.div`
     padding: 0 10px;
   }
 `
-export const StudentName = styled.h1`
+export const StudentName = styled.h2`
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
