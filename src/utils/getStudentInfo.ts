@@ -29,3 +29,8 @@ export function getRusSpecialty(
       number % 100 > 4 && number % 100 < 20 ? 2 : cases[number % 10 < 5 ? number % 10 : 5]
     ]
   }
+  
+  export function getStudentInitials(name: string): string {
+    const [firstName, SecondName] = name.split(" ")
+    return SecondName ?  firstName[0]+SecondName[0] : firstName[0]
+  }
