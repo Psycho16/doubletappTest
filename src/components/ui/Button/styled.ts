@@ -42,6 +42,7 @@ export const Icon = styled.div`
   height: 16px;
   margin-right: 16px;
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+    display: none;
   margin-right: 1px;
 }
 ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {

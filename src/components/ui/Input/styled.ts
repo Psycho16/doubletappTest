@@ -54,7 +54,7 @@ export const Input = styled(MaskedInput)`
   background: transparent;
   width: 100%;
   height: 100%;
-  padding: 0 20px 0 32px;
+  padding: 0 20px 0 44px;
   color: ${props => props.theme.palette.text.primary};
   box-sizing: border-box;
   &::placeholder {
