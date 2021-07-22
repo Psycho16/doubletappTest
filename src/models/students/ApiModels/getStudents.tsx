@@ -1,8 +1,8 @@
-export type getStudentsRequest = {
+export type GetStudentsRequest = {
   
 }
 
-export type getStudentsResponse = {
+export type GetStudentsResponse = {
   students: 
     {
       id: number,

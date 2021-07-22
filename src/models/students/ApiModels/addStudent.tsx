@@ -1,4 +1,4 @@
-export type addStudentRequest = {
+export type AddStudentRequest = {
           email: string,
           name: string,
           sex: string,
@@ -10,6 +10,6 @@ export type addStudentRequest = {
           avatar?: string
     }
 
-export type addStudentResponse = {
+export type AddStudentResponse = {
   success: boolean;
 }

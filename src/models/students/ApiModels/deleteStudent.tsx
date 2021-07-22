@@ -1,7 +1,7 @@
-export type deleteStudentRequest = {
+export type DeleteStudentRequest = {
   id: string
 }
 
-export type deleteStudentResponse = {
+export type DeleteStudentResponse = {
   success: boolean;
 }
