@@ -70,8 +70,30 @@ export const Option = styled.div`
   text-overflow: ellipsis;
   :active,
   :hover {
-    background: rgba(73, 194, 232, 0.5);
+    background: ${props => props.theme.palette.action.hover};
     border-radius: 5px;
+  } 
+`
+export const OptionActive = styled.div`
+position: relative;
+  background: rgba(73, 194, 232, 0.11);
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 96%;
+  height: 35px;
+  margin: 0 auto;
+  margin-bottom: 4px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 15px;
+  list-style-type: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  :active,
+  :hover {
+    background: ${props => props.theme.palette.action.hover};
   } 
 `
 export const ErrorMessage = styled.p`
@@ -107,6 +129,17 @@ export const RotatedIcon = styled.div`
   margin-left: 5px;
   margin-top: 13px;
   transform: rotate(180deg);
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`
+export const IconActive = styled.div`
+    top: 13px;
+    right: 13px;
+    position: absolute;
+    max-width: 10px;
+    height: 10px;
   svg {
     width: 100%;
     height: 100%;

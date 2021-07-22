@@ -3,6 +3,7 @@ import { UseFormSetValue, UseFormRegister } from 'react-hook-form'
 
 import useOutsideClick from '@hooks/common/useOutsideClick'
 import { IFormInput } from "@models/students/EntityModels/student"
+import {ReactComponent as CheckIcon} from '@assets/icons/check.svg'
 
 import * as SC from './styled'
 
@@ -81,13 +82,23 @@ const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormReg
           <SC.Options>
             {options &&
               options.map(option => 
+                option.label === selectedValue 
+                ?
+                <SC.OptionActive 
+                  onClick={() => onChangeSelect(option.label, option.value)} 
+                  key={option.value}
+                >
+                  {option.label}
+                  <SC.IconActive>{React.createElement(CheckIcon)}</SC.IconActive> </SC.OptionActive>
+                :
              
               <SC.Option 
                 onClick={() => onChangeSelect(option.label, option.value)} 
                 key={option.value}
               >
                 {option.label}
-              </SC.Option>) 
+              </SC.Option>
+              ) 
             }
           </SC.Options>
           : ""
