@@ -3,21 +3,18 @@ import { viewportWidth, widthBreakpoints } from 'styles/mediaQueryMixins'
 
 
 export const StudentWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
     max-width: 1024px;
   }
-
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     box-sizing: border-box;
     max-width: 768px;
   }
-
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
-    /* display: none; */
     max-width: 414px;
     padding: 16px;
     position: relative;
@@ -28,7 +25,6 @@ export const StudentWrapper = styled.div`
     margin-bottom: 10px;
     box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
     border-radius: 6px;
-    /* padding: 0; */
     align-content: flex-start;
   }
 `
@@ -46,7 +42,7 @@ export const StudentAvatar = styled.img`
   }
 `
 export const EmptyStudentAvatar = styled.div`
- border: 2px solid rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
   position: relative;
   border-radius: 300px;
@@ -62,44 +58,16 @@ export const EmptyStudentAvatar = styled.div`
   }
 `
 export const EmptyStudentAvatarText = styled.p`
-      display: flex;
-    justify-content: center;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 25px;
-    color: #49C2E8;
-  color: ${props => props.theme.palette.action.active};
-`
-
-export const StudentDivAvatar = styled.div`
-    /* border: 2px solid rgba(255, 255, 255, 0.6); */
-    box-sizing: border-box;
-  border-radius: 300px;
-  background-position: center center;
-    background-size: contain;
-  background-repeat: no-repeat;
-  max-width: 100%;
-  min-width: 40px;
-  width: 40px;
-  height: 40px;
-  margin-right: 20px;
-  &:before{
-    content: '';
+  display: flex;
+  justify-content: center;
   position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 50%;
-  }
-  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
-    /* margin-right: 0; */
-    align-self: flex-start;
-  }
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: ${props => props.theme.palette.action.active};
 `
 export const StudentName = styled.h2`
   font-weight: 500;
@@ -110,7 +78,6 @@ export const StudentName = styled.h2`
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     max-width: 220px;
   }
-
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     padding: 0 7px;
     max-width: 100px;
@@ -118,9 +85,7 @@ export const StudentName = styled.h2`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    /* font-size: 14px; */
   }
-
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     font-size: 15px;
     height: 20px;
@@ -153,18 +118,16 @@ cursor: default;
   max-width: 300px;
   width: 100%;
   overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     max-width: 213px;
     min-width: 213px;
     padding: 0 5px;
   }
-
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 173px;
     min-width: 165px;
-    /* font-size: 14px; */
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -189,9 +152,7 @@ export const StudentGroup = styled.h2`
   min-width: 88px;
   max-width: 141px;
   width: 100%;
-  /* margin-right: 53px; */
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    /* font-size: 14px; */
     max-width: 87px;
     min-width: 78px;
   }
@@ -216,18 +177,15 @@ export const StudentAge = styled.h2`
   line-height: 20px;
   max-width: 135px;
   width: 100%;
-  /* margin-right: 60px; */
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     max-width: 130px;
     min-width: 126px;
     padding: 0 5px;
   }
-
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 82px;
     min-width: 78px;
   }
-
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: flex;
     align-items: center;
@@ -299,7 +257,7 @@ export const ListPoint = styled.div`
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: inline-block;
     margin-right: 13px;
-    background-color: #49C2E8;
+    background-color: ${props => props.theme.palette.action.active};
     border-radius: 50%;
   }
 `
@@ -326,7 +284,7 @@ export const StudentColor = styled.h2`
   }
 `
 export const DeleteButton = styled.div`
-position: relative;
+  position: relative;
   min-width: 30px;
   width: 30px;
   height: 30px;
@@ -341,9 +299,9 @@ position: relative;
   }
 `
 export const DeleteWrapper = styled.div`
-    position: absolute;
-    top: calc(50% - 7px);
-    left: calc(50% - 7px);
-    width: 14px;
-    height: 14px;
+  position: absolute;
+  top: calc(50% - 7px);
+  left: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
 `
