@@ -4,20 +4,20 @@ import { viewportWidth, widthBreakpoints } from "styles/mediaQueryMixins"
 
 
 export const PageTitle = styled.h1`
-text-align: start;
+  text-align: start;
   font-weight: bold;
   font-size: 40px;
   line-height: 50px;
   margin-bottom: 30px;
 `
 export const BackToPage = styled(Link)`
-position: relative;
-width: max-content;
+  position: relative;
+  width: max-content;
   text-decoration: none;
   height: 20px;
   font-size: 12px;
   line-height: 15px;
-  color: #000000;
+  color: ${props => props.theme.palette.text.primary};;
   display: flex;
   align-items: center;
   padding-left: 35px;
