@@ -63,26 +63,6 @@ export const Options = styled.div`
   top: 47px;
   left: 0;
 `
-export const Option = styled.div`
-  box-sizing: border-box;
-  width: 96%;
-  height: 35px;
-  margin: 0 auto;
-  margin-bottom: 4px;
-  padding: 12px 20px;
-  cursor: pointer;
-  font-size: 12px;
-  line-height: 15px;
-  list-style-type: none;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  :active,
-  :hover {
-    background: rgba(73, 194, 232, 0.5);
-    border-radius: 5px;
-  } 
-`
 export const ErrorMessage = styled.p`
   color: ${props => props.theme.palette.error.main};
   margin: 0;
