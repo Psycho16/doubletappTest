@@ -29,7 +29,6 @@ export const StudentWrapper = styled.div`
   }
 `
 export const StudentAvatar = styled.img`
-  border: 2px solid rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
   border-radius: 300px;
   max-width: 100%;
@@ -41,8 +40,21 @@ export const StudentAvatar = styled.img`
     align-self: flex-start;
   }
 `
+export const AvatarWrapper = styled.div`
+  position: relative;
+`
+export const StudentAvatarBorder = styled.div`
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  max-width: 100%;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 0px 0px 0px 3px rgba(130, 130, 130, 0.4),5px 5px 15px 3px rgba(0,0,0,0);
+`
 export const EmptyStudentAvatar = styled.div`
-  border: 2px solid rgba(255, 255, 255, 0.6);
   box-sizing: border-box;
   position: relative;
   border-radius: 300px;
@@ -52,7 +64,8 @@ export const EmptyStudentAvatar = styled.div`
   height: 40px;
   margin-right: 20px;
   background: #ffffff;
-  box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
+  box-shadow: 0px 0px 0px 3px  rgba(230, 230, 230, 0.3);
+  /* box-shadow: 0px 0px 0px 3px rgba(130, 130, 130, 0.1),5px 5px 15px 3px rgba(0,0,0,0); */
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     align-self: flex-start;
   }
@@ -61,6 +74,7 @@ export const EmptyStudentAvatarText = styled.p`
   display: flex;
   justify-content: center;
   position: absolute;
+  top: 5px;
   margin: 0;
   padding: 0;
   width: 100%;

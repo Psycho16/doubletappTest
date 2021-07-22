@@ -30,8 +30,14 @@ const Student: FC<StudentProps> = (props) => {
   return (
     <SC.StudentWrapper>
       {
-         avatar ? <SC.StudentAvatar alt="student" src={avatar} />
-         : <SC.EmptyStudentAvatar>
+         avatar ? 
+         (<SC.AvatarWrapper>
+          <SC.StudentAvatar alt="student" src={avatar} />
+         <SC.StudentAvatarBorder/>
+         </SC.AvatarWrapper>
+         )
+         : 
+         <SC.EmptyStudentAvatar>
            <SC.EmptyStudentAvatarText>{getStudentInitials(name)}</SC.EmptyStudentAvatarText>
          </SC.EmptyStudentAvatar>
       }
