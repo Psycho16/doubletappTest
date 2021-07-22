@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { Container } from '@components/styled/Container'
 import MainLayout from '@components/shared/MainLayout'
 import { useRootStore } from '@hooks/common/useStore'
-import { studentProps } from '@models/students/EntityModels/student'
+import { StudentProps } from '@models/students/EntityModels/student'
 
 import StudentsTitle from './components/StudentsTitle'
 import StudentsFields from './components/StudentsFields'
@@ -31,7 +31,7 @@ const StudentsPage = () => {
           {
             students &&
             students.length !== 0 ? students
-            .map((student: studentProps) => <Student key={student.id} {...student} />) 
+            .map((student: StudentProps) => <Student key={student.id} {...student} />) 
             : <p>Нет студентов</p>
           }
         </SC.StudentWrapper>

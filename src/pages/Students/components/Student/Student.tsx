@@ -5,13 +5,13 @@ import { getRusGroup, getRusSpecialty, getAgeFromBirthday, fixAgeWord, getStuden
 import { ReactComponent as DeleteIcon } from '@assets/icons/delete.svg'
 import { useRootStore } from "@hooks/common/useStore"
 import {ReactComponent as StarIcon} from '@assets/icons/star.svg'
-import { studentProps } from '@models/students/EntityModels/student'
+import { StudentProps } from '@models/students/EntityModels/student'
 
 import * as SC from './styled'
 
 
 
-const Student: FC<studentProps> = (props) => {
+const Student: FC<StudentProps> = (props) => {
   const { id, avatar, name, specialty, group, color, rating, birthday } = props
 
   const rusSpecialty: string = getRusSpecialty(specialty, rusSpecialties, specialties)
