@@ -25,21 +25,22 @@ export const PopupLabel = styled.div`
   justify-content: space-between;
 `
 export const PlaceholderSpan = styled.p`
-font-size: 16px;
-    line-height: 20px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 70%;
-opacity: 0.3;
+  font-size: 16px;
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 70%;
+  opacity: 0.3;
 ` 
 export const PopupSpan = styled.span`
-    font-size: 12px;
-    line-height: 15px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 70%;
+  font-size: 12px;
+  line-height: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 70%;
+  font-weight: 500;
 `
 export const Icon = styled.div`
   max-width: 16px;

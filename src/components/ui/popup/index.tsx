@@ -46,11 +46,8 @@ const PopupComponent: FC<PopupProps> = (props) => {
         <SC.Base>
             <SC.PopupWrapper>
                 <SC.PopupLabel onClick={toggleVisiblePopup} ref={popupRef}>
-                    {(type === "withPlaceholder") ?
-                    <SC.PlaceholderSpan title={activeLabel} 
-                    >{activeLabel}</SC.PlaceholderSpan> 
-                    : 
-                    <SC.PopupSpan >{activeLabel}</SC.PopupSpan>}
+                    
+                    <SC.PopupSpan >{activeLabel}</SC.PopupSpan>
                     
                     {icon && <SC.Icon>{React.createElement(icon)}</SC.Icon>}
                 </SC.PopupLabel>
