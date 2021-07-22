@@ -1,9 +1,9 @@
-import { studentProps } from '@models/students/EntityModels/student'
+import { StudentProps } from '@models/students/EntityModels/student'
 
 import { getAgeFromBirthday } from './getStudentInfo'
 
 
-export function sortBy(a: studentProps, b: studentProps, type: string): number {
+export function sortBy(a: StudentProps, b: StudentProps, type: string): number {
   switch (type) {
     case 'Имя А-Я':
       return a.name.localeCompare(b.name)

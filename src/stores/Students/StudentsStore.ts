@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 // import { getStudents } from 'api/students'
 import { addStudent, getStudents, deleteStudent } from 'api/students'
 
-import { studentProps } from '@models/students/EntityModels/student'
+import { StudentProps } from '@models/students/EntityModels/student'
 import { sortBy } from '@utils/manipulateStudents'
 import RootStore from '@stores/RootStore'
 import ApiRequestStore from '@stores/common/ApiRequestStore'
@@ -10,11 +10,11 @@ import ApiRequestStore from '@stores/common/ApiRequestStore'
 
 
 
-export const filterStudents = (students: studentProps[], input: string) => {
+export const filterStudents = (students: StudentProps[], input: string) => {
   return students.slice().filter(student => student.name.toLowerCase().includes(input.toLowerCase()))
 }
 
-export const sortStudents = (students: studentProps[], sortType: string) => {
+export const sortStudents = (students: StudentProps[], sortType: string) => {
   return students.slice().sort((a, b) => sortBy(a, b, sortType))
 }
 
