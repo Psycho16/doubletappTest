@@ -1,5 +1,6 @@
 import React from "react"
 import { useForm } from "react-hook-form"
+import { Redirect } from "react-router"
 
 import Select from "@components/ui/Select"
 import { useRootStore } from '@hooks/common/useStore'
@@ -21,6 +22,7 @@ export default function AddStudentForm() {
   const { register, handleSubmit, formState: {errors}, setValue } = useForm<IFormInput>()
   const { studentsStore: { addStudentRequest } } = useRootStore()
   const [img, setImg] = React.useState("")
+  const [isSubmitted, setIsSubmitted] = React.useState(false)
 
   const onSubmit = (data: IFormInput) => {
     data.avatar = ( img ?  img : "")
@@ -30,19 +32,11 @@ export default function AddStudentForm() {
       formData.append(key, value)
     }
     
-    addStudentRequest.send(formData)
+    addStudentRequest.send(formData).then(() =>  setIsSubmitted(true))
 
-    setImg("")
-    setValue("name", "")
-    setValue("birthday", "")
-    setValue("email", "")
-    setValue("rating", "")
-    setValue("color", "")
-    setValue("group", "")
-    setValue("specialty", "")
-    setValue("sex", "")
   }
 
+  if (isSubmitted) return <Redirect to="/" />
   const onImageChange = (e: any) => {
       if (e.target.files && e.target.files[0]) {
         setImg(e.target.files[0])
@@ -131,6 +125,8 @@ export default function AddStudentForm() {
         <Select
           options={[
             {value:"mt-101", label:'МТ-101'},
+            {value:"mt-102",label:'МТ-102'},
+            {value:"mt-202",label:'МТ-202'},
             {value:"mt-201",label:'МТ-201'},
             {value:"mt-301",label:'МТ-301'},
             {value:"mt-401",label:'МТ-401'},
@@ -150,8 +146,7 @@ export default function AddStudentForm() {
             {value:"kb-201",label:'КБ-201'},
             {value:"kb-301",label:'КБ-301'},
             {value:"kb-401",label:'КБ-401'},
-            {value:"mt-102",label:'МТ-102'},
-            {value:"mt-202",label:'МТ-202'}
+            {value:"kb-501",label:'КБ-501'}
           ]}
           {...register("group", {required: true})}
           setValue={setValue}

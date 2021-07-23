@@ -6,7 +6,7 @@ export const FormWrapper = styled.form`
   display: flex;
   position: relative;
   flex-direction: column;
-  margin-bottom: 41px;
+  margin-bottom: 150px;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     height: max-content;
   }
