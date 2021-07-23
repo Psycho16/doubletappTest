@@ -1,10 +1,10 @@
 import axios from 'axios'
 import config from '@consts/appConfig'
 
-import { getAuthToken, setAuthToken } from '@utils/localStorage'
+import { setAuthToken } from '@utils/localStorage'
 
 
-const authToken = getAuthToken()
+// const authToken = getAuthToken()
 
 export const http = axios.create({
   baseURL: config.api.baseUrl,
