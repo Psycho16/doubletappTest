@@ -52,7 +52,7 @@ export const StudentAvatarBorder = styled.div`
   height: 34px;
   background: transparent;
   border-radius: 50%;
-  box-shadow: 0px 0px 0px 3px rgba(130, 130, 130, 0.4),5px 5px 15px 3px rgba(0,0,0,0);
+  box-shadow: 0px 0px 0px 3px rgba(230, 230, 230, 0.4),5px 5px 15px 3px rgba(0,0,0,0);
 `
 export const EmptyStudentAvatar = styled.div`
   box-sizing: border-box;
