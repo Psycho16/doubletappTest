@@ -43,7 +43,7 @@ export const PopupSpanPlaceholder = styled.span`
 export const Options = styled.div`
   position: absolute;
   overflow: auto;
-  height: 110px;
+  max-height: 110px;
   background: #ffffff;
   box-shadow: 0px 5px 15px rgb(0 0 0 / 9%);
   border-radius: 10px;
