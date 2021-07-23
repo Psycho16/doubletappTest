@@ -37,6 +37,7 @@ export default function AddStudentForm() {
   }
 
   if (isSubmitted) return <Redirect to="/" />
+  
   const onImageChange = (e: any) => {
       if (e.target.files && e.target.files[0]) {
         setImg(e.target.files[0])
