@@ -6,6 +6,8 @@ export const StudentWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 40px;
+  margin-bottom: 25px;
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
     max-width: 1024px;

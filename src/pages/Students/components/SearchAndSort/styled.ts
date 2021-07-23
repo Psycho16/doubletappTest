@@ -11,7 +11,7 @@ export const SearchAndSortContainer = styled.div`
   align-items: center;
   text-align: start;
   justify-content: space-between;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
     max-width: 1024px;

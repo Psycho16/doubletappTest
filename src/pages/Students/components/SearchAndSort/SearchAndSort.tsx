@@ -15,9 +15,6 @@ const StudentsFields: FC = () => {
   return (
     <SC.SearchAndSortContainer>
       <SC.InputWrapper>
-        <SC.SearchIconWrapper>
-          <SearchIcon/>
-        </SC.SearchIconWrapper>
         
         <InputComponent
           onChange={event => studentsStore.setInput(event.target.value)}
@@ -25,6 +22,7 @@ const StudentsFields: FC = () => {
           value={studentsStore.input}
           placeholder="Поиск по имени"
           mask={false}
+          hasPrefixIcon={SearchIcon}
         ></InputComponent>
       </SC.InputWrapper>
       <SC.PopupWrapper>

@@ -5,13 +5,13 @@ import { viewportWidth, widthBreakpoints } from 'styles/mediaQueryMixins'
 export const StudentsFieldsContainer = styled.div`
   width: 100%;
   max-width: 1180px;
-  height: 40px;
+  height: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   text-align: start;
   padding-right: 17px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
     max-width: 1024px;
