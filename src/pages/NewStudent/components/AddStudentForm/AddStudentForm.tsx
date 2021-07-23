@@ -5,7 +5,7 @@ import { Redirect } from "react-router"
 import Select from "@components/ui/Select"
 import { useRootStore } from '@hooks/common/useStore'
 import Button from "@components/ui/Button"
-import { isEmailValid, isDateValid } from "@utils/validators"
+import { isEmailValidRegex, isDateValidRegex } from "@utils/validators"
 import { ReactComponent as smallTriangle } from '@assets/icons/smallTriangleDown.svg'
 import { IFormInput } from "@models/students/EntityModels/student"
 
@@ -33,11 +33,9 @@ export default function AddStudentForm() {
     }
     
     addStudentRequest.send(formData).then(() =>  setIsSubmitted(true))
-
   }
 
   if (isSubmitted) return <Redirect to="/" />
-  
   const onImageChange = (e: any) => {
       if (e.target.files && e.target.files[0]) {
         setImg(e.target.files[0])
@@ -93,9 +91,9 @@ export default function AddStudentForm() {
 
       <SC.InputWrapper>
         <SC.InputTitle>Email</SC.InputTitle>
-        <SC.CustomInput 
+        <SC.CustomInput
           placeholder="ivanov@mail.ru"
-          {...register("email",{required: true, pattern: isEmailValid})} 
+          {...register("email",{required: true, pattern: isEmailValidRegex})} 
         />
         {errors.email?.type === 'required' && <SC.ErrorMessage>Это поле обязательное</SC.ErrorMessage>}
         {errors.email?.type === 'pattern' && <SC.ErrorMessage>Введите email в виде {"ivanov@mail.ru"}</SC.ErrorMessage>}
@@ -173,7 +171,7 @@ export default function AddStudentForm() {
         <SC.InputTitle>Дата рождения</SC.InputTitle>
         <SC.CustomInput 
           placeholder="YYYY-MM-DD" 
-          {...register("birthday", {required: true,pattern: isDateValid })} 
+          {...register("birthday", {required: true,pattern: isDateValidRegex })} 
         />
         {errors.birthday?.type === 'required' && <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage>}
         {errors.birthday?.type === 'pattern' && <SC.ErrorMessage>Введите email в виде {"YYYY-MM-DD"}</SC.ErrorMessage>}
