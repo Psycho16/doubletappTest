@@ -43,11 +43,11 @@ export const Icon = styled.div`
   margin-right: 16px;
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     display: none;
-  margin-right: 1px;
-}
-${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
-  margin-right: 20px;
-}
+    margin-right: 1px;
+  }
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    margin-right: 20px;
+  }
   svg {
     width: 100%;
     height: 100%;

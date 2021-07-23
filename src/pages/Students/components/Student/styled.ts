@@ -125,7 +125,7 @@ export const SeparatingLine = styled.span`
   }
 `
 export const StudentSpecialty = styled.h2`
-cursor: default;
+  cursor: default;
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;

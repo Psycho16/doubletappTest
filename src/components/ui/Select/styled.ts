@@ -77,7 +77,7 @@ export const Option = styled.div`
   } 
 `
 export const OptionActive = styled.div`
-position: relative;
+  position: relative;
   background: rgba(73, 194, 232, 0.11);
   border-radius: 5px;
   box-sizing: border-box;
@@ -137,11 +137,11 @@ export const RotatedIcon = styled.div`
   }
 `
 export const IconActive = styled.div`
-    top: 13px;
-    right: 13px;
-    position: absolute;
-    max-width: 10px;
-    height: 10px;
+  top: 13px;
+  right: 13px;
+  position: absolute;
+  max-width: 10px;
+  height: 10px;
   svg {
     width: 100%;
     height: 100%;

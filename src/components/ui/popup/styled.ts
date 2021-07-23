@@ -51,11 +51,11 @@ export const Icon = styled.div`
   }
 `
 export const IconActive = styled.div`
-    top: 13px;
-    right: 13px;
-    position: absolute;
-    max-width: 10px;
-    height: 10px;
+  top: 13px;
+  right: 13px;
+  position: absolute;
+  max-width: 10px;
+  height: 10px;
   svg {
     width: 100%;
     height: 100%;

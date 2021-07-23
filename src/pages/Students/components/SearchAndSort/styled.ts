@@ -3,16 +3,16 @@ import { viewportWidth, widthBreakpoints } from 'styles/mediaQueryMixins'
 
 
 export const SearchAndSortContainer = styled.div`
-    width: 100%;
-    max-width: 1180px;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: start;
-    justify-content: space-between;
-    margin-bottom: 36px;
-    ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
+  width: 100%;
+  max-width: 1180px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
     max-width: 1024px;
   }
@@ -27,10 +27,10 @@ export const SearchAndSortContainer = styled.div`
   }
 `
 export const SearchIconWrapper = styled.div`
-margin: 0;
-position: absolute;
-top: calc(50% - 9px);
-left: 10px;
+  margin: 0;
+  position: absolute;
+  top: calc(50% - 9px);
+  left: 10px;
 `
 export const InputWrapper = styled.div`
   width: 80%;

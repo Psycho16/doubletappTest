@@ -16,9 +16,9 @@ export const InputsWrapper = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 486px;
-${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
-  height: max-content;
-}
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    height: max-content;
+  }
 `
 export const InputWrapper = styled.div`
   max-width: 380px;
@@ -95,9 +95,9 @@ export const LabelTextTitle = styled.h3`
   font-size: 16px;
   margin: 0;
   margin-bottom: 8px;
-:hover {
-  text-decoration-line: underline;
-}
+  :hover {
+    text-decoration-line: underline;
+  }
 `
 export const LabelTextSubtitle = styled.h4`
   font-style: normal;

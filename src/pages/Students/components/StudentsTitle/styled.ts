@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 
 
 export const StudentsTitleContainer = styled.div`
-    display: flex;
-    width: 100%;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 39px;
-    ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 39px;
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     flex-direction: column;
   }
 `

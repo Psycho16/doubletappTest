@@ -3,16 +3,16 @@ import { viewportWidth, widthBreakpoints } from 'styles/mediaQueryMixins'
 
 
 export const StudentsFieldsContainer = styled.div`
-    width: 100%;
-    max-width: 1180px;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: start;
-    padding-right: 17px;
-    margin-bottom: 12px;
-    ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
+  width: 100%;
+  max-width: 1180px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: start;
+  padding-right: 17px;
+  margin-bottom: 12px;
+  ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
     max-width: 1024px;
   }
@@ -91,10 +91,6 @@ export const StudentAge = styled.h2`
   line-height: 20px;
   max-width: 135px;
   width: 100%;
-  ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
-    /* max-width: 135px; */
-  }
-
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 88px;
   }
