@@ -8,6 +8,7 @@ type InputBlockProps = {
   error?: string;
   icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   disabled?: boolean;
+  hasPrefixIcon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 }
 
 type ErrorProps = {
@@ -23,7 +24,7 @@ export const InputBlock = styled.div<InputBlockProps>`
   border-radius: 6px;
   box-shadow: ${props => props.theme.boxShadow.common};
   overflow: hidden;
-  
+  padding-left: ${props => props.hasPrefixIcon ? "20px" : 0};
   ${props => props.error && css`
     border: 1px solid ${props.theme.palette.error.main};
 
@@ -45,6 +46,16 @@ export const Icon = styled.div`
     max-height: 100%;
   }
 `
+export const PrefixIconWrapper = styled.div`
+  margin: 0;
+  max-width: 16.8px;
+  max-height: 16.8px;
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+`
 
 export const Input = styled(MaskedInput)`
   border: none;
@@ -54,7 +65,7 @@ export const Input = styled(MaskedInput)`
   background: transparent;
   width: 100%;
   height: 100%;
-  padding: 0 20px 0 44px;
+  padding: 0 20px 0 16px;
   color: ${props => props.theme.palette.text.primary};
   box-sizing: border-box;
   &::placeholder {

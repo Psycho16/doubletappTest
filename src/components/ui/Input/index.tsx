@@ -22,6 +22,7 @@ export interface InputProps {
     indexesOfPipedChars: number[];
   };
   autoComplete?: string;
+  hasPrefixIcon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>; 
 }
 
 const InputComponent: FC<InputProps> = (props) => {
@@ -39,16 +40,21 @@ const InputComponent: FC<InputProps> = (props) => {
     type,
     icon,
     pipe,
-    autoComplete
+    autoComplete,
+    hasPrefixIcon
   } = props
 
   return (
     <SC.Base>
-      <SC.InputBlock 
+      <SC.InputBlock
         error={error}
         icon={icon}
         disabled={disabled}
+        hasPrefixIcon={hasPrefixIcon}
       >
+        {/* <SC.IconWrapper> */}
+          {hasPrefixIcon ? <SC.PrefixIconWrapper >{React.createElement(hasPrefixIcon)}</SC.PrefixIconWrapper> : ""}
+        {/* </SC.IconWrapper> */}
         <SC.Input 
           name={name}
           onChange={onChange}
