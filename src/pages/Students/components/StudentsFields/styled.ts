@@ -32,14 +32,16 @@ export const StudentName = styled.h2`
   font-size: 16px;
   line-height: 20px;
   margin-left: 80px;
-  max-width: 320px;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.name};
   width: 100%;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
-    max-width: 216px;
+    max-width: ${props => props.theme.studentsTableSizes.desktopRegular.name}
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    max-width: 115px;
+    max-width: ${props => props.theme.studentsTableSizes.tablet.name};
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -52,13 +54,15 @@ export const StudentSpecialty = styled.h2`
   font-size: 16px;
   line-height: 20px;
   width: 100%;
-  max-width: 297px;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.specialty};
+  
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
-    max-width: 220px;
+    max-width: ${props => props.theme.studentsTableSizes.desktopRegular.specialty}
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    max-width: 180px;
+    max-width: ${props => props.theme.studentsTableSizes.tablet.specialty};
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -70,14 +74,16 @@ export const StudentGroup = styled.h2`
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-  max-width: 135px;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.group};
   width: 100%;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
-    /* max-width: 135px; */
+    max-width: ${props => props.theme.studentsTableSizes.desktopRegular.group}
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    max-width: 88px;
+    max-width: ${props => props.theme.studentsTableSizes.tablet.group};
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -89,10 +95,16 @@ export const StudentAge = styled.h2`
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-  max-width: 135px;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.age};
   width: 100%;
+  
+  ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
+    max-width: ${props => props.theme.studentsTableSizes.desktopRegular.age};
+  }
+  
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    max-width: 88px;
+    max-width: ${props => props.theme.studentsTableSizes.tablet.age};
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -104,5 +116,6 @@ export const StudentRating = styled.h2`
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-  width: 6.8%;
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.rating};
+  width: 100%;
 `

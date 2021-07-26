@@ -48,5 +48,39 @@ export const defaultTheme: DefaultTheme = {
   borderRadius: 10,
   boxShadow: {
     common: '0px 7px 64px rgba(0, 0, 0, 0.07);'
+  },
+  studentsTableSizes: {
+    desktopHD: {
+      name: '300px',
+      specialty: '280px',
+      group: '120px',
+      age: '120px',
+      rating: '120px',
+      marginW: '20px'
+    },
+    desktopRegular: {
+      name: '160px',
+      specialty: '213px',
+      group: '130px',
+      age: '130px',
+      rating: '130px',
+      marginW: '20px'
+    },
+    tablet: {
+      name: '105px',
+      specialty: '160px',
+      group: '80px',
+      age: '70px',
+      rating: '70px',
+      marginW: '20px'
+    },
+    mobile: {
+      name: '235px',
+      specialty: '250px',
+      group: '250px',
+      age: '250px',
+      rating: '70px',
+      marginW: '67px'
+    }
   }
 }

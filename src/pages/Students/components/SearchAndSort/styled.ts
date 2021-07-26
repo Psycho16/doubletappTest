@@ -24,6 +24,7 @@ export const SearchAndSortContainer = styled.div`
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     max-width: 414px;
+    margin-bottom: 10px;
   }
 `
 export const SearchIconWrapper = styled.div`

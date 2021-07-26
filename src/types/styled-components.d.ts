@@ -42,6 +42,25 @@ type Palette = {
   action: ActionColor;
 }
 
+type StudentsFileds = {
+  name: string;
+  specialty: string;
+  group: string;
+  age: string;
+  rating: string;
+  marginW: string;
+}
+
+type StudentsTableSizes = {
+  desktopHD: StudentsFileds;
+  desktopRegular: StudentsFileds;
+  desktopXS?: StudentsFileds;
+  tablet: StudentsFileds;
+  mobile: StudentsFileds;
+  mobileS?: StudentsFileds;
+  mobileXS?: StudentsFileds;
+}
+
 // extension for styled components theme
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -50,5 +69,6 @@ declare module 'styled-components' {
     boxShadow: {
       common: string;
     }
+    studentsTableSizes: StudentsTableSizes;
   }
 }

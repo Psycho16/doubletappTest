@@ -13,6 +13,7 @@ export const StudentsTitleContainer = styled.div`
   margin-bottom: 39px;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     flex-direction: column;
+    margin-bottom: 10px;
   }
 `
 export const StudentsTitle = styled.h1`
@@ -21,8 +22,10 @@ export const StudentsTitle = styled.h1`
   font-weight: bold;
   font-size: 40px;
   line-height: 50px;
+  margin: 0;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     width: 100%;
+    margin: 39px 0 22px 0;
   }
 `
 export const ButtonWrapper = styled(Link)`
