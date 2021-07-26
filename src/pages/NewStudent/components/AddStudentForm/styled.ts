@@ -15,7 +15,9 @@ export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 486px;
+  height: 550px;
+  width: 100%;
+  max-width: 960px;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     height: max-content;
   }
@@ -34,6 +36,7 @@ export const InputWrapper = styled.div`
 `
 export const AvatarInputWrapper = styled.div`
   display: block;
+  margin-bottom: 30px;
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 280px;
   }
@@ -113,6 +116,7 @@ export const AvatarInput = styled.input`
 export const InputTitle = styled.h3`
   font-size: 15px;
   line-height: 20px;
+  margin: 0;
   margin-bottom: 8px;
 `
 export const CustomInput = styled.input`
@@ -135,13 +139,13 @@ export const CustomInput = styled.input`
 export const ButtonWrapper = styled.div`
   max-width: 380px;
   width: 100%;
-  position: absolute;
-  bottom: -100px;
+  margin-top: 20px;
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 280px;
   }
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     max-width: 335px;
+    order: 1;
   }
 `
 export const CustomSelect = styled.select`
