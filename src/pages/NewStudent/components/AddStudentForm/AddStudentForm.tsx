@@ -167,6 +167,13 @@ export default function AddStudentForm() {
         {errors.rating?.type === 'max' && <SC.ErrorMessage>Введите значение меньше тысячи</SC.ErrorMessage>}
       </SC.InputWrapper>
 
+      <SC.ButtonWrapper>
+      <Button 
+        onClick={handleSubmit(onSubmit)} 
+        text="Создать"
+      />
+      </SC.ButtonWrapper>
+
       <SC.InputWrapper>
         <SC.InputTitle>Дата рождения</SC.InputTitle>
         <SC.CustomInput 
@@ -213,14 +220,7 @@ export default function AddStudentForm() {
       </SC.InputWrapper>
     
       </SC.InputsWrapper>
-      
-      
-      <SC.ButtonWrapper>
-      <Button 
-        onClick={handleSubmit(onSubmit)} 
-        text="Добавить студента"
-      />
-      </SC.ButtonWrapper>
+
       
     </SC.FormWrapper>
   )
