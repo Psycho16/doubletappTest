@@ -19,7 +19,7 @@ export const PopupLabel = styled.div`
   box-sizing: border-box;
   text-align: start;
   height: 100%;
-  padding: 0 20px;
+  padding: 0 15px 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
