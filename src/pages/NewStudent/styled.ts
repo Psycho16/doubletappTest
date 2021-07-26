@@ -8,7 +8,7 @@ export const PageTitle = styled.h1`
   font-weight: bold;
   font-size: 40px;
   line-height: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 `
 export const BackToPage = styled(Link)`
   position: relative;
@@ -22,7 +22,7 @@ export const BackToPage = styled(Link)`
   align-items: center;
   padding-left: 35px;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 33px;
   margin-top: 25px;
   :hover {
     text-decoration-skip-ink: none;
@@ -31,6 +31,11 @@ export const BackToPage = styled(Link)`
   :focus {
     outline: none;
     border: none;
+  }
+
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    margin-bottom: 18px;
+    margin-top: 31px;
   }
 `
 export const ArrowIconWrapper = styled.div`
@@ -43,7 +48,7 @@ export const InputsWrapper = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 486px;
-  margin-bottom: 41px;
+  /* margin-bottom: 41px; */
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     height: max-content;
   }

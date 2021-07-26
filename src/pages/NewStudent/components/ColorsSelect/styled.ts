@@ -11,6 +11,7 @@ export const Input = styled.input`
 export const Title = styled.h2`
   font-size: 15px;
   line-height: 20px;
+  margin: 0;
   margin-bottom: 8px;
 `
 export const PopupSelect = styled.div`
