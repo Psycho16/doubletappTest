@@ -8,19 +8,24 @@ export const StudentWrapper = styled.div`
   align-items: center;
   height: 40px;
   margin-bottom: 25px;
+  :last-child {
+    margin-bottom: 0;
+  }
+
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
     max-width: 1024px;
   }
+  
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     box-sizing: border-box;
     max-width: 768px;
   }
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     max-width: 414px;
     padding: 16px;
     position: relative;
-    min-width: 100%;
     width: 100%;
     height: 170px;
     flex-wrap: wrap;
@@ -28,6 +33,9 @@ export const StudentWrapper = styled.div`
     box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
     border-radius: 6px;
     align-content: flex-start;
+    :last-child {
+    margin-bottom: 20px;
+  }
   }
 `
 export const StudentAvatar = styled.img`
@@ -37,13 +45,15 @@ export const StudentAvatar = styled.img`
   min-width: 40px;
   width: 40px;
   height: 40px;
-  margin-right: 20px;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     align-self: flex-start;
   }
 `
 export const AvatarWrapper = styled.div`
   position: relative;
+  max-height: 40px;
 `
 export const StudentAvatarBorder = styled.div`
   position: absolute;
@@ -64,10 +74,11 @@ export const EmptyStudentAvatar = styled.div`
   min-width: 40px;
   width: 40px;
   height: 40px;
-  margin-right: 20px;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
   background: #ffffff;
   box-shadow: 0px 0px 0px 3px  rgba(230, 230, 230, 0.3);
   /* box-shadow: 0px 0px 0px 3px rgba(130, 130, 130, 0.1),5px 5px 15px 3px rgba(0,0,0,0); */
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     align-self: flex-start;
   }
@@ -89,23 +100,25 @@ export const StudentName = styled.h2`
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
-  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.name};
   width: 100%;
+
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
-    max-width: 220px;
+    max-width: ${props => props.theme.studentsTableSizes.desktopRegular.name};
   }
+
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    padding: 0 7px;
-    max-width: 100px;
-    min-width: 94px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    max-width: ${props => props.theme.studentsTableSizes.tablet.name};
   }
+
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     font-size: 15px;
     height: 20px;
-    max-width: 200px;
+    max-width: ${props => props.theme.studentsTableSizes.mobile.name};
     line-height: 20px;
     align-self: flex-start;
     margin: 0;
@@ -117,6 +130,7 @@ export const StudentName = styled.h2`
 `
 export const SeparatingLine = styled.span`
   display: none;
+
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     width: 100%;
     opacity: 0.05;
@@ -131,19 +145,19 @@ export const StudentSpecialty = styled.h2`
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
-  max-width: 300px;
-  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.specialty};
+  width: 100%;
+
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
-    max-width: 213px;
-    min-width: 213px;
-    padding: 0 5px;
+    max-width: ${props => props.theme.studentsTableSizes.desktopRegular.specialty};
   }
+
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    max-width: 173px;
-    min-width: 165px;
+    max-width: ${props => props.theme.studentsTableSizes.tablet.specialty};
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -151,11 +165,11 @@ export const StudentSpecialty = styled.h2`
     align-items: center;
     order: 4;
     margin: 0;
-    margin-left: 77px;
+    margin-left: ${props => props.theme.studentsTableSizes.mobile.marginW};
     margin-bottom: 5px;
     padding:0;
-    min-width: 200px;
-    width: 100%;
+    max-width: ${props => props.theme.studentsTableSizes.mobile.specialty};
+    font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     height: 20px;
@@ -165,23 +179,30 @@ export const StudentGroup = styled.h2`
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
-  min-width: 88px;
-  max-width: 141px;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.group};
   width: 100%;
-  ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    max-width: 87px;
-    min-width: 78px;
+
+  ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
+    max-width: ${props => props.theme.studentsTableSizes.desktopRegular.group};
   }
+  
+  ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+    max-width: ${props => props.theme.studentsTableSizes.tablet.group};
+    /* min-width: 78px; */
+  }
+
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: flex;
     align-items: center;
     order: 4;
     margin: 0;
-    margin-left: 77px;
+    margin-left: ${props => props.theme.studentsTableSizes.mobile.marginW};
     margin-bottom: 5px;
     padding:0;
-    min-width: 200px;
+    max-width: ${props => props.theme.studentsTableSizes.mobile.group};
     width: 100%;
+    font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     height: 20px;
@@ -191,26 +212,29 @@ export const StudentAge = styled.h2`
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
-  max-width: 135px;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.age};
   width: 100%;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
-    max-width: 130px;
-    min-width: 126px;
-    padding: 0 5px;
+    max-width: ${props => props.theme.studentsTableSizes.desktopRegular.age};
   }
+  
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    max-width: 82px;
-    min-width: 78px;
+    max-width: ${props => props.theme.studentsTableSizes.tablet.age};
+    /* min-width: 78px; */
   }
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: flex;
     align-items: center;
     order: 4;
     margin: 0;
-    margin-left: 77px;
+    margin-left: ${props => props.theme.studentsTableSizes.mobile.marginW};
     padding:0;
-    min-width: 200px;
+    max-width: ${props => props.theme.studentsTableSizes.tablet.age};
     width: 100%;
+    font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     height: 20px;
@@ -219,12 +243,14 @@ export const StudentAge = styled.h2`
 export const StudentRatingAndColor = styled.div`
   display: flex;
   margin-right: 20px;
-  min-width: 132px;
-  width: 132px;
+  /* min-width: 132px; */
+  width: 100%;
+  max-width: 132px;
   align-items: center;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
-    max-width: 116px;
-    min-width: 110px;
+    max-width: 98px;
+    /* min-width: 110px; */
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -241,8 +267,14 @@ export const StudentRating = styled.div`
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
-  width: 80px;
-  margin-right: 22px;
+  max-width: ${props => props.theme.studentsTableSizes.desktopHD.rating};
+  width: 100%;
+  margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
+
+  ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+    max-width: ${props => props.theme.studentsTableSizes.tablet.rating};
+  }
+
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: flex;
     order: 3;
@@ -260,6 +292,7 @@ export const RatingStar = styled.div`
   display: none;
   max-width: 10px;
   width: 100%;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: flex;
     margin-right: 10px;
@@ -270,6 +303,7 @@ export const ListPoint = styled.div`
   width: 5px;
   min-width: 5px;
   height: 5px;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: inline-block;
     margin-right: 13px;
@@ -279,6 +313,7 @@ export const ListPoint = styled.div`
 `
 export const AgeWord = styled.span`
   display: none;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: inline-block;
     font-size: 12px;
@@ -292,6 +327,7 @@ export const StudentColor = styled.h2`
   min-width: 30px;
   width: 30px;
   height: 30px;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     min-width: 12px;
     width: 12px;
@@ -299,7 +335,7 @@ export const StudentColor = styled.h2`
     margin: 0;
   }
 `
-export const DeleteButton = styled.div`
+export const DeleteButton = styled.button`
   position: relative;
   min-width: 30px;
   width: 30px;
@@ -308,6 +344,28 @@ export const DeleteButton = styled.div`
   box-shadow: 0px 0px 16.3715px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   border-radius: 17px;
+  border: none;
+  outline: none;
+  
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    position: absolute;
+    right: 18px;
+    top: 16px; 
+  }
+`
+export const DeleteButtonDisabled = styled.button`
+  position: relative;
+  min-width: 30px;
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  opacity: .5;
+  box-shadow: 0px 0px 16.3715px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border-radius: 17px;
+  border: none;
+  outline: none;
+  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     position: absolute;
     right: 18px;

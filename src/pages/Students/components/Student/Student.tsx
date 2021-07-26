@@ -20,11 +20,13 @@ const Student: FC<StudentProps> = (props) => {
   const layoutColor: string = layoutColors[color]
   const ageWord: string = fixAgeWord(age)
   const { studentsStore: { deleteStudentRequest, getStudentsRequest} } = useRootStore()
-
+  const [isLoading, setIsLoading] = React.useState(false)
   
   const onDelete = (id: number) => {
     deleteStudentRequest.send(id)
     .then(() => getStudentsRequest.send(undefined))
+    .then(() => setIsLoading(false))
+      setIsLoading(true)
   }  
   
   return (
@@ -69,14 +71,28 @@ const Student: FC<StudentProps> = (props) => {
         <SC.StudentColor style={{ background: layoutColor }} />
       </SC.StudentRatingAndColor>
 
-      <SC.DeleteButton
-        onClick={() => onDelete(id)}
+
+      {(isLoading) ? 
+      <SC.DeleteButtonDisabled
+        disabled
       >
+        
         <SC.DeleteWrapper>
           <DeleteIcon/>
         </SC.DeleteWrapper>
         
-      </SC.DeleteButton>
+      </SC.DeleteButtonDisabled> : 
+      
+      <SC.DeleteButton
+        onClick={() => onDelete(id)}
+      >
+      
+      <SC.DeleteWrapper>
+        <DeleteIcon/>
+      </SC.DeleteWrapper>
+      
+    </SC.DeleteButton>
+    }
       
     </SC.StudentWrapper>
   )
