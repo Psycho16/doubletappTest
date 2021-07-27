@@ -17,7 +17,6 @@ const DeleteButton: FC<DeleteButtonProps> = (props) => {
     onClick,
     disabled
   } = props
-  console.log(disabled)
   
   return (
     <SC.Base
