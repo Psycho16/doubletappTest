@@ -1,8 +1,3 @@
-//TODO: delete
-export type GetStudentsRequest = {
-  
-}
-
 export type GetStudentsResponse = {
   students: 
     {
