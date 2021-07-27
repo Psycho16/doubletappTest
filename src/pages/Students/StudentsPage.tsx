@@ -14,9 +14,9 @@ import * as SC from './styled'
 
 
 const StudentsPage = () => {
-  // const students = []
   const { studentsStore: { 
      students, filteredAndSortedStudents }, studentsStore } = useRootStore()
+
   React.useEffect(() => {
     studentsStore.fetchStudents()
   }, [studentsStore])
@@ -25,6 +25,7 @@ const StudentsPage = () => {
     isLoading,
     deleteStudent
   } = UseDeleteStudentLogic()
+
   const onDelete = (id: number) => {
     deleteStudent(id)
     .then((data) =>{
@@ -32,12 +33,6 @@ const StudentsPage = () => {
         studentsStore.deleteStudentFromPage(id)
       }
     })
-      
-      
-    // .then(() => console.log(deleteStudentRequest.isLoading))
-    // .then(() => setIsLoading(false))
-    // setIsLoading(true)
-    // console.log(deleteStudentRequest.isLoading)
   } 
 
   return (
@@ -51,8 +46,12 @@ const StudentsPage = () => {
           students.length !== 0 ? 
         <SC.StudentsWrapper>
           {
-            filteredAndSortedStudents.map(student => <Student key={student.id} {...student} 
-              onDelete={onDelete} isLoadingDelete={isLoading} />) 
+            filteredAndSortedStudents.map(student => <Student 
+                key={student.id} 
+                onDelete={onDelete} 
+                isLoadingDelete={isLoading} 
+                {...student} 
+              />) 
           }
         </SC.StudentsWrapper>
         :
