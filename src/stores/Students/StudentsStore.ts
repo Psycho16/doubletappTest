@@ -1,6 +1,5 @@
 import { runInAction,makeAutoObservable } from 'mobx'
-// import { getStudents } from 'api/students'
-import { addStudent, getStudents, deleteStudent } from 'api/students'
+import { addStudent, getStudentsFromServer, deleteStudent } from 'api/students'
 
 import { StudentProps } from '@models/students/EntityModels/student'
 import { sortBy } from '@utils/manipulateStudents'
@@ -29,7 +28,7 @@ export default class StudentsStore {
   students: StudentProps[]  = []
 
   getStudentsRequest = new ApiRequestStore({
-    apiFunction: getStudents
+    apiFunction: getStudentsFromServer
   })
 
   addStudentRequest = new ApiRequestStore({
@@ -46,11 +45,8 @@ export default class StudentsStore {
   }
 
   fetchStudents() {
-    // eslint-disable-next-line no-debugger
-    // debugger
     this.getStudentsRequest.send(undefined)
     .then((studentsData) => {
-      // this.students = studentsData?.students || []
       runInAction(() => {
         this.students = studentsData?.students || []
       })
