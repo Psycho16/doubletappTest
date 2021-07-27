@@ -15,7 +15,7 @@ export const InputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 550px;
+  height: 480px;
   width: 100%;
   max-width: 960px;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -27,6 +27,7 @@ export const InputWrapper = styled.div`
   width: 100%;
   height: 76px;
   margin-bottom: 20px;
+  outline: none;
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 280px;
   }

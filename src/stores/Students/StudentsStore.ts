@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx'
+import { runInAction,makeAutoObservable } from 'mobx'
 // import { getStudents } from 'api/students'
 import { addStudent, getStudents, deleteStudent } from 'api/students'
 
@@ -18,10 +18,15 @@ export const sortStudents = (students: StudentProps[], sortType: string) => {
   return students.slice().sort((a, b) => sortBy(a, b, sortType))
 }
 
+export const deleteStudentFromPage = (students: StudentProps[], id: number) => {
+  return students.slice().filter(student => student.id !== id)
+}
+
 export default class StudentsStore {
   private _rootStore: RootStore
   input = '';
   sortType = 'Имя А-Я';
+  students: StudentProps[]  = []
 
   getStudentsRequest = new ApiRequestStore({
     apiFunction: getStudents
@@ -40,16 +45,41 @@ export default class StudentsStore {
     makeAutoObservable(this)
   }
 
-  get students() {
-    const studentsTemp = this.getStudentsRequest.data?.students || []
-    const sortedStudents = sortStudents(studentsTemp, this.sortType)
+  fetchStudents() {
+    // eslint-disable-next-line no-debugger
+    // debugger
+    this.getStudentsRequest.send(undefined)
+    .then((studentsData) => {
+      // this.students = studentsData?.students || []
+      runInAction(() => {
+        this.students = studentsData?.students || []
+      })
+    })
+  }
+
+  get filteredAndSortedStudents() {
+    // const students = this.getStudentsRequest.data?.students || []
+    const sortedStudents = sortStudents(this.students, this.sortType)
     return filterStudents(sortedStudents, this.input) 
   }
 
+  deleteStudentFromPage( id: number) {
+    runInAction(() => {
+      this.students = deleteStudentFromPage(this.students, id)
+    })
+    // this.students = deleteStudentFromPage(this.students, id)
+  }
+
   setSortType(label: string) {
-    this.sortType = label
+    runInAction(() => {
+      this.sortType = label
+    })
+    
   }
   setInput(input: string) {
-    this.input = input
+    runInAction(() => {
+      this.input = input
+    })
+    
   }
 }

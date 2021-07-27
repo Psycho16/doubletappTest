@@ -16,6 +16,7 @@ export type SelectProps = {
   placeholder?: string
   error?: string
   icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  tabIndex?: number
 }
 type OptionType = {
   value: string
@@ -34,7 +35,8 @@ const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormReg
       onChange,
       onBlur,
       setValue,
-      icon
+      icon,
+      tabIndex
     } = props
 
     const [selectedValue, setSelectedValue] = React.useState(placeholder)
@@ -58,6 +60,7 @@ const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormReg
           name={name} 
           onChange={onChange} 
           onBlur={onBlur}
+          tabIndex={tabIndex}
         />
         <SC.Title>
           {subTitle}
@@ -111,7 +114,8 @@ const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormReg
           }
           
         </SC.PopupSelect>
-        {error === 'required' && <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage>}
+        {selectedValue === placeholder && error === 'required' ? 
+        <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> : ""}
         
       </SC.Base>
     )

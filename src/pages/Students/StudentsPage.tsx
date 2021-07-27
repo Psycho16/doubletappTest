@@ -4,8 +4,8 @@ import { observer } from 'mobx-react-lite'
 import { Container } from '@components/styled/Container'
 import MainLayout from '@components/shared/MainLayout'
 import { useRootStore } from '@hooks/common/useStore'
-import { StudentProps } from '@models/students/EntityModels/student'
 
+import UseDeleteStudentLogic from './UseDeleteLogic'
 import StudentsTitle from './components/StudentsTitle'
 import StudentsFields from './components/StudentsFields'
 import SearchAndSort from './components/SearchAndSort'
@@ -14,12 +14,31 @@ import * as SC from './styled'
 
 
 const StudentsPage = () => {
-  const { studentsStore: { getStudentsRequest, students } } = useRootStore()
+  // const students = []
+  const { studentsStore: { 
+     students, filteredAndSortedStudents }, studentsStore } = useRootStore()
   React.useEffect(() => {
+    studentsStore.fetchStudents()
+  }, [studentsStore])
 
-    getStudentsRequest.send(undefined)
-
-  }, [getStudentsRequest])
+  const {
+    isLoading,
+    deleteStudent
+  } = UseDeleteStudentLogic()
+  const onDelete = (id: number) => {
+    deleteStudent(id)
+    .then((data) =>{
+      if(data?.success) {
+        studentsStore.deleteStudentFromPage(id)
+      }
+    })
+      
+      
+    // .then(() => console.log(deleteStudentRequest.isLoading))
+    // .then(() => setIsLoading(false))
+    // setIsLoading(true)
+    // console.log(deleteStudentRequest.isLoading)
+  } 
 
   return (
     <MainLayout>
@@ -27,14 +46,18 @@ const StudentsPage = () => {
         <StudentsTitle />
         <SearchAndSort />
         <StudentsFields />
-        <SC.StudentWrapper>
+        {
+          students &&
+          students.length !== 0 ? 
+        <SC.StudentsWrapper>
           {
-            students &&
-            students.length !== 0 ? students
-            .map((student: StudentProps) => <Student key={student.id} {...student} />) 
-            : <p>Нет студентов</p>
+            filteredAndSortedStudents.map(student => <Student key={student.id} {...student} 
+              onDelete={onDelete} isLoadingDelete={isLoading} />) 
           }
-        </SC.StudentWrapper>
+        </SC.StudentsWrapper>
+        :
+        <div>Нет студентов</div>
+        }
         
       </Container>
     </MainLayout>

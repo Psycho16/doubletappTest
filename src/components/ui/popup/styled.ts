@@ -24,15 +24,7 @@ export const PopupLabel = styled.div`
   align-items: center;
   justify-content: space-between;
 `
-export const PlaceholderSpan = styled.p`
-  font-size: 16px;
-  line-height: 20px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  width: 70%;
-  opacity: 0.3;
-` 
+
 export const PopupSpan = styled.span`
   font-size: 12px;
   line-height: 15px;
@@ -80,7 +72,7 @@ export const PopupUl = styled.ul`
   margin: 0;
   padding: 0;
 `
-export const PopupLi = styled.p`
+export const PopupLi = styled.div`
   box-sizing: border-box;
   width: 96%;
   height: 35px;
@@ -100,7 +92,7 @@ export const PopupLi = styled.p`
     border-radius: 5px;
   }
 `
-export const PopupLiActive = styled.p`
+export const PopupLiActive = styled.div` 
   position: relative;
   background: rgba(73, 194, 232, 0.11);
   border-radius: 5px;

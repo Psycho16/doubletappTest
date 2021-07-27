@@ -87,13 +87,22 @@ const ColorsSelect = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseF
           {
             isVisiblePopup 
               ?
-            icon && <SC.RotatedIcon>{React.createElement(icon)}</SC.RotatedIcon>
+            icon && <SC.RotatedIcon 
+            onClick={() => setIsVisiblePopup(!isVisiblePopup)} 
+            >
+              {React.createElement(icon) }
+            </SC.RotatedIcon>
               :
-            icon && <SC.Icon>{React.createElement(icon)}</SC.Icon> 
+            icon && <SC.Icon 
+            onClick={() => setIsVisiblePopup(!isVisiblePopup)} 
+            >
+              {React.createElement(icon)}
+            </SC.Icon> 
           }
           
         </SC.PopupSelect>
-        {error === 'required' && <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage>}
+        {selectedLabel === placeholder && error === 'required' ?
+         <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> : ""}
         
       </SC.Base>
     )

@@ -6,7 +6,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1180px;
   padding: 0px 15px;
-  margin: auto;
+  margin: 0 auto;
 
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;

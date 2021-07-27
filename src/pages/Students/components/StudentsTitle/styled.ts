@@ -11,6 +11,7 @@ export const StudentsTitleContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 39px;
+  margin-top: 67px;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     flex-direction: column;
     margin-bottom: 10px;

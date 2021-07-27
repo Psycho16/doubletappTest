@@ -75,18 +75,20 @@ export default function AddStudentForm() {
               type="file"
               onChange={e => onImageChange(e)}
               accept="image/*"
+              tabIndex={0}
             />
       </SC.AvatarInputWrapper>
 
       <SC.InputsWrapper>
 
-      <SC.InputWrapper>
+      <SC.InputWrapper >
         <SC.InputTitle>ФИО</SC.InputTitle>
         <SC.CustomInput 
           placeholder="Иванов Иван Иванович"  
-          {...register("name", { required: true })} 
+          {...register("name", { required: true, minLength: 2 })}
         />
         {errors.name?.type === 'required' && <SC.ErrorMessage>Это поле обязательное</SC.ErrorMessage>}
+        {errors.name?.type === 'minLength' && <SC.ErrorMessage>Имя должно иметь минимум два символов</SC.ErrorMessage>}
       </SC.InputWrapper>
 
       <SC.InputWrapper>
@@ -100,7 +102,7 @@ export default function AddStudentForm() {
       </SC.InputWrapper>
 
 
-      <SC.InputWrapper>
+      <SC.InputWrapper tabIndex={0}>
         <Select
           options={[
             {value: 'mt', label: 'Математика'},
@@ -120,7 +122,7 @@ export default function AddStudentForm() {
       
       </SC.InputWrapper>
 
-      <SC.InputWrapper>
+      <SC.InputWrapper tabIndex={0}>
         <Select
           options={[
             {value:"mt-101", label:'МТ-101'},
@@ -156,7 +158,7 @@ export default function AddStudentForm() {
         />
       </SC.InputWrapper>
 
-      <SC.InputWrapper>
+      <SC.InputWrapper >
         <SC.InputTitle>Рейтинг</SC.InputTitle>
         <SC.CustomInput
           placeholder="0"
@@ -167,14 +169,8 @@ export default function AddStudentForm() {
         {errors.rating?.type === 'max' && <SC.ErrorMessage>Введите значение меньше тысячи</SC.ErrorMessage>}
       </SC.InputWrapper>
 
-      <SC.ButtonWrapper>
-      <Button 
-        onClick={handleSubmit(onSubmit)} 
-        text="Создать"
-      />
-      </SC.ButtonWrapper>
 
-      <SC.InputWrapper>
+      <SC.InputWrapper >
         <SC.InputTitle>Дата рождения</SC.InputTitle>
         <SC.CustomInput 
           placeholder="YYYY-MM-DD" 
@@ -184,7 +180,7 @@ export default function AddStudentForm() {
         {errors.birthday?.type === 'pattern' && <SC.ErrorMessage>Введите email в виде {"YYYY-MM-DD"}</SC.ErrorMessage>}
       </SC.InputWrapper>
 
-      <SC.InputWrapper>
+      <SC.InputWrapper tabIndex={0}>
         <Select
           options={[
             {value: 'm', label: 'Мужской'},
@@ -199,7 +195,7 @@ export default function AddStudentForm() {
         />
       </SC.InputWrapper>
 
-      <SC.InputWrapper>
+      <SC.InputWrapper tabIndex={0}>
         <ColorsSelect
           options={[
             {value:'blue', label:'Синий'},
@@ -220,7 +216,13 @@ export default function AddStudentForm() {
       </SC.InputWrapper>
     
       </SC.InputsWrapper>
-
+      <SC.ButtonWrapper tabIndex={0}>
+      <Button 
+        onClick={handleSubmit(onSubmit)} 
+        text="Создать"
+        disabled={addStudentRequest.isLoading}
+      />
+      </SC.ButtonWrapper>
       
     </SC.FormWrapper>
   )

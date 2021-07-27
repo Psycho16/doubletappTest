@@ -45,8 +45,8 @@ const PopupComponent: FC<PopupProps> = (props) => {
     
     return (
         <SC.Base>
-            <SC.PopupWrapper>
-                <SC.PopupLabel onClick={toggleVisiblePopup} ref={popupRef}>
+            <SC.PopupWrapper ref={popupRef}>
+                <SC.PopupLabel onClick={toggleVisiblePopup} >
                     
                     <SC.PopupSpan >{activeLabel}</SC.PopupSpan>                    
                     {icon && <SC.Icon>{React.createElement(icon)}</SC.Icon>}

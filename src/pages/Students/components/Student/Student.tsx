@@ -7,27 +7,45 @@ import { useRootStore } from "@hooks/common/useStore"
 import {ReactComponent as StarIcon} from '@assets/icons/star.svg'
 import { StudentProps } from '@models/students/EntityModels/student'
 
+import DeleteButton from '../DeleteButton'
+// import UseDeleteStudentLogic from '../DeleteButton/UseDeleteLogic'
+
 import * as SC from './styled'
 
 
+type Props = {
+  onDelete: (id: number) => void
+  isLoadingDelete: boolean
+}
 
-const Student: FC<StudentProps> = (props) => {
-  const { id, avatar, name, specialty, group, color, rating, birthday } = props
+const Student: FC<StudentProps & Props> = (props) => {
+  const { id, avatar, name, specialty, group, color, rating, birthday, onDelete, isLoadingDelete } = props
 
   const rusSpecialty: string = getRusSpecialty(specialty, rusSpecialties, specialties)
   const rusGroup: string = getRusGroup(group, rusGroups, specialties)
   const age: number = getAgeFromBirthday(birthday)
   const layoutColor: string = layoutColors[color]
   const ageWord: string = fixAgeWord(age)
-  const { studentsStore: { deleteStudentRequest, getStudentsRequest} } = useRootStore()
-  const [isLoading, setIsLoading] = React.useState(false)
-  
-  const onDelete = (id: number) => {
-    deleteStudentRequest.send(id)
-    .then(() => getStudentsRequest.send(undefined))
-    .then(() => setIsLoading(false))
-      setIsLoading(true)
-  }  
+  const { studentsStore: { deleteStudentRequest}, studentsStore } = useRootStore()
+  // const [isLoading, setIsLoading] = React.useState(false)
+  // const {
+  //   // isLoading,
+  //   deleteStudent
+  // } = UseDeleteStudentLogic()
+  // const onDelete = (id: number) => {
+  //   deleteStudent(id)
+  //   .then((data) =>{
+  //     if(data?.success) {
+  //       studentsStore.deleteStudentFromPage(id)
+  //     }
+  //   })
+      
+      
+  //   // .then(() => console.log(deleteStudentRequest.isLoading))
+  //   .then(() => setIsLoading(false))
+  //   setIsLoading(true)
+  //   // console.log(deleteStudentRequest.isLoading)
+  // } 
   
   return (
     <SC.StudentWrapper>
@@ -71,28 +89,11 @@ const Student: FC<StudentProps> = (props) => {
         <SC.StudentColor style={{ background: layoutColor }} />
       </SC.StudentRatingAndColor>
 
-
-      {(isLoading) ? 
-      <SC.DeleteButtonDisabled
-        disabled
-      >
-        
-        <SC.DeleteWrapper>
-          <DeleteIcon/>
-        </SC.DeleteWrapper>
-        
-      </SC.DeleteButtonDisabled> : 
-      
-      <SC.DeleteButton
-        onClick={() => onDelete(id)}
-      >
-      
-      <SC.DeleteWrapper>
-        <DeleteIcon/>
-      </SC.DeleteWrapper>
-      
-    </SC.DeleteButton>
-    }
+      <DeleteButton 
+      icon={DeleteIcon}
+      onClick={() => onDelete(id)}
+      disabled={isLoadingDelete}
+      />
       
     </SC.StudentWrapper>
   )
