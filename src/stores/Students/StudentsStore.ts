@@ -18,7 +18,7 @@ export const sortStudents = (students: StudentProps[], sortType: string) => {
 }
 
 export const deleteStudentFromPage = (students: StudentProps[], id: number) => {
-  return students.slice().filter(student => student.id !== id)
+  return students.filter(student => student.id !== id)
 }
 
 export default class StudentsStore {
