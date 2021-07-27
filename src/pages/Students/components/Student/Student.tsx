@@ -3,22 +3,20 @@ import { rusGroups, layoutColors, rusSpecialties, specialties } from '@consts/st
 
 import { getRusGroup, getRusSpecialty, getAgeFromBirthday, fixAgeWord, getStudentInitials } from '@utils/getStudentInfo'
 import { ReactComponent as DeleteIcon } from '@assets/icons/delete.svg'
-import { useRootStore } from "@hooks/common/useStore"
-import {ReactComponent as StarIcon} from '@assets/icons/star.svg'
+import { ReactComponent as StarIcon } from '@assets/icons/star.svg'
 import { StudentProps } from '@models/students/EntityModels/student'
 
 import DeleteButton from '../DeleteButton'
-// import UseDeleteStudentLogic from '../DeleteButton/UseDeleteLogic'
 
 import * as SC from './styled'
 
 
-type Props = {
+type DeleteButtonProps = {
   onDelete: (id: number) => void
   isLoadingDelete: boolean
 }
 
-const Student: FC<StudentProps & Props> = (props) => {
+const Student: FC<StudentProps & DeleteButtonProps> = (props) => {
   const { id, avatar, name, specialty, group, color, rating, birthday, onDelete, isLoadingDelete } = props
 
   const rusSpecialty: string = getRusSpecialty(specialty, rusSpecialties, specialties)
@@ -26,26 +24,6 @@ const Student: FC<StudentProps & Props> = (props) => {
   const age: number = getAgeFromBirthday(birthday)
   const layoutColor: string = layoutColors[color]
   const ageWord: string = fixAgeWord(age)
-  const { studentsStore: { deleteStudentRequest}, studentsStore } = useRootStore()
-  // const [isLoading, setIsLoading] = React.useState(false)
-  // const {
-  //   // isLoading,
-  //   deleteStudent
-  // } = UseDeleteStudentLogic()
-  // const onDelete = (id: number) => {
-  //   deleteStudent(id)
-  //   .then((data) =>{
-  //     if(data?.success) {
-  //       studentsStore.deleteStudentFromPage(id)
-  //     }
-  //   })
-      
-      
-  //   // .then(() => console.log(deleteStudentRequest.isLoading))
-  //   .then(() => setIsLoading(false))
-  //   setIsLoading(true)
-  //   // console.log(deleteStudentRequest.isLoading)
-  // } 
   
   return (
     <SC.StudentWrapper>
