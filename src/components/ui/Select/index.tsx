@@ -1,8 +1,6 @@
-import React, { forwardRef } from 'react'
-import { UseFormSetValue, UseFormRegister } from 'react-hook-form'
+import React, { FC } from 'react'
 
 import useOutsideClick from '@hooks/common/useOutsideClick'
-import { IFormInput } from "@models/students/EntityModels/student"
 import {ReactComponent as CheckIcon} from '@assets/icons/check.svg'
 
 import * as SC from './styled'
@@ -10,13 +8,12 @@ import * as SC from './styled'
 
 export type SelectProps = {
   options: OptionType[]
-  name: any
-  setValue: UseFormSetValue<IFormInput>
   subTitle: string
   placeholder?: string
   error?: string
   icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
   tabIndex?: number
+  onChange: (value: string) => void 
 }
 type OptionType = {
   value: string
@@ -24,19 +21,15 @@ type OptionType = {
 }
 
 
-const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormRegister<IFormInput>>>(
-  (props, ref) => {
+const Select: FC<SelectProps> =
+  (props) => {
     const {
       subTitle,
       placeholder,
       options,
       error,
-      name,
       onChange,
-      onBlur,
-      setValue,
-      icon,
-      tabIndex
+      icon
     } = props
 
     const [selectedValue, setSelectedValue] = React.useState(placeholder)
@@ -45,7 +38,7 @@ const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormReg
 
     const onChangeSelect = (label:string ,value: string) => {
       setSelectedValue(label)
-      setValue(name,value)
+      onChange(value)
     }
 
     useOutsideClick(popupRef, () => {
@@ -55,13 +48,6 @@ const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormReg
 
     return (
       <SC.Base>
-        <SC.Input 
-          ref={ref} 
-          name={name} 
-          onChange={onChange} 
-          onBlur={onBlur}
-          tabIndex={tabIndex}
-        />
         <SC.Title>
           {subTitle}
         </SC.Title>
@@ -81,30 +67,30 @@ const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormReg
             </SC.PopupSelectSpan> 
         }
           
-        {isVisiblePopup ? 
+        {isVisiblePopup &&
           <SC.Options>
             {options &&
               options.map(option => 
                 option.label === selectedValue 
                 ?
                 <SC.OptionActive 
-                  onClick={() => onChangeSelect(option.label, option.value)} 
+                  onClick={() => onChangeSelect(option.label,option.value)} 
                   key={option.value}
                 >
                   {option.label}
                   <SC.IconActive>{React.createElement(CheckIcon)}</SC.IconActive> </SC.OptionActive>
                 :
              
-              <SC.Option 
-                onClick={() => onChangeSelect(option.label, option.value)} 
-                key={option.value}
-              >
-                {option.label}
-              </SC.Option>
+                <SC.Option 
+                  onClick={() => onChangeSelect(option.label,option.value)} 
+                  key={option.value}
+                >
+                  {option.label}
+                </SC.Option>
               ) 
             }
           </SC.Options>
-          : ""
+
         }
           {
             isVisiblePopup ?
@@ -114,14 +100,12 @@ const Select = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormReg
           }
           
         </SC.PopupSelect>
-        {selectedValue === placeholder && error === 'required' ? 
-        <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> : ""}
+        {selectedValue === placeholder && error === 'required' && 
+        <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> }
         
       </SC.Base>
     )
   }
-)
 
-Select.displayName = "Select"
 
 export default Select

@@ -7,11 +7,11 @@ import {ReactComponent as CheckIcon} from '@assets/icons/check.svg'
 import * as SC from './styled'
 
 
-export interface PopupProps {
-    items: string[];
-    placeholder?: string;
-    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-    type?: string;
+export type PopupProps = {
+    items: string[]
+    placeholder?: string
+    icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+    type?: string
 }
 
 const PopupComponent: FC<PopupProps> = (props) => {
@@ -52,10 +52,10 @@ const PopupComponent: FC<PopupProps> = (props) => {
                     {icon && <SC.Icon>{React.createElement(icon)}</SC.Icon>}
                 </SC.PopupLabel>
 
-                {isVisiblePopup ? (
+                {isVisiblePopup && (
                 <SC.Popup>
                      <SC.PopupUl>
-                        {items ? 
+                        {items && 
                         items.map((item: string, index: number) => 
 
                                 item === activeLabel  ?
@@ -81,11 +81,10 @@ const PopupComponent: FC<PopupProps> = (props) => {
                                 {item}
                                 </SC.PopupLi>)
                         
-                            ) 
-                            : ''}
+                            )}
                     </SC.PopupUl>
                 </SC.Popup>
-                ) : '' }
+                )}
             </SC.PopupWrapper>
             
         </SC.Base>
