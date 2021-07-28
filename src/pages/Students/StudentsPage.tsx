@@ -1,11 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
+import { useDeleteStudentLogic } from '@pages/Students/useDeleteLogic'
 
 import { Container } from '@components/styled/Container'
 import MainLayout from '@components/shared/MainLayout'
 import { useRootStore } from '@hooks/common/useStore'
 
-import UseDeleteStudentLogic from './UseDeleteLogic'
 import StudentsTitle from './components/StudentsTitle'
 import StudentsFields from './components/StudentsFields'
 import SearchAndSort from './components/SearchAndSort'
@@ -24,7 +24,7 @@ const StudentsPage = () => {
   const {
     isLoading,
     deleteStudent
-  } = UseDeleteStudentLogic()
+  } = useDeleteStudentLogic()
 
   const onDelete = (id: number) => {
     deleteStudent(id)

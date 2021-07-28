@@ -1,7 +1,7 @@
-import { useRootStore } from "@hooks/common/useStore"
+import { useRootStore } from "../../hooks/common/useStore"
 
 
-const UseDeleteStudentLogic = () => {
+export function useDeleteStudentLogic() {
   const { studentsStore: { deleteStudentRequest } } = useRootStore()
   return {
     isLoading: deleteStudentRequest.isLoading,
@@ -9,5 +9,3 @@ const UseDeleteStudentLogic = () => {
     deletingError: deleteStudentRequest.errors && deleteStudentRequest.errors[0].message
   }
 }
-
-export default UseDeleteStudentLogic
