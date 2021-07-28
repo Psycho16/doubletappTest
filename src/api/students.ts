@@ -1,6 +1,7 @@
-import { GetStudentsResponse } from '@models/students/ApiModels/getStudents'
-import { AddStudentResponse } from '@models/students/ApiModels/addStudent'
-import { DeleteStudentResponse } from '@models/students/ApiModels/deleteStudent'
+import { GetStudentsResponse, 
+          DeleteStudentResponse,
+          AddStudentResponse
+        } from '@models/students/ApiModels/studentsRequestsModels'
 import { http } from '@services/httpClient'
 
 

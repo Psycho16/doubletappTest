@@ -18,5 +18,5 @@ export type IFormInput = {
   sex: string; 
   rating: string;
   color: string;
-  avatar: string;
+  avatar: string | File;
 }
