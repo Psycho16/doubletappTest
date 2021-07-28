@@ -68,16 +68,6 @@ export const LoadedImage = styled.img`
   box-shadow: 0px 7px 64px rgba(0, 0, 0, 0.07);
   border-radius: 50%;
 `
-export const DeleteAvatarButton = styled.button`
-  position: absolute;
-  top: 0;
-  left: 61px;
-  width: 100%;
-  height: 15px;
-  opacity: 0.5;
-  max-width: 15px;
-  border-radius: 50%;
-`
 export const LabelCircleText = styled.p`
   font-weight: 600;
   font-size: 28px;
@@ -114,29 +104,6 @@ export const AvatarInput = styled.input`
   display: none;
 `
 
-export const InputTitle = styled.h3`
-  font-size: 15px;
-  line-height: 20px;
-  margin: 0;
-  margin-bottom: 8px;
-`
-export const CustomInput = styled.input`
-  box-sizing: border-box;
-  width: 100%;
-  height: 49px;
-  box-shadow: 0px 7px 64px rgb(0 0 0 / 7%);
-  border-radius: 6px;
-  border: none;
-  padding-left: 20px;
-  outline: none;
-  ::placeholder {
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: rgba(0,0,0,0.3)
-  }
-`
-
 export const ButtonWrapper = styled.div`
   max-width: 380px;
   width: 100%;
@@ -148,20 +115,4 @@ export const ButtonWrapper = styled.div`
     max-width: 335px;
     order: 1;
   }
-`
-export const CustomSelect = styled.select`
-  position: relative;
-  width: 100%;
-  height: 49px;
-  box-shadow: 0px 7px 64px rgb(0 0 0 / 7%);
-  border-radius: 6px;
-  border: none;
-  padding-right: 30px;
-  padding-left: 20px;
-  outline: none;
-`
-export const ErrorMessage = styled.p`
-  color: ${props => props.theme.palette.error.main};;
-  margin: 0;
-  font-size: 14px;
 `
