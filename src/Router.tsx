@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
-import { PATH_NEWSTUDENT, PATH_ROOT } from "@consts/routes"
+import { PATH_NEW_STUDENT, PATH_ROOT } from "@consts/routes"
 import ScrollToTop from "ScrollToTop"
 import StudentsPage from "@pages/Students"
 import NotFoundPage from "@pages/NotFound"
@@ -16,7 +16,7 @@ const Router = (): JSX.Element => {
         <Route exact path={PATH_ROOT}>
           <StudentsPage />
         </Route>
-        <Route path={PATH_NEWSTUDENT}>
+        <Route path={PATH_NEW_STUDENT}>
           <NewStudentPage />
         </Route>
 
