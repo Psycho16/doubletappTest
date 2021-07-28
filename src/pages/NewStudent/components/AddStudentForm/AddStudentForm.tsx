@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ChangeEvent } from "react"
 import { useForm } from "react-hook-form"
 import { Redirect } from "react-router"
 
@@ -6,54 +6,148 @@ import Select from "@components/ui/Select"
 import { useRootStore } from '@hooks/common/useStore'
 import Button from "@components/ui/Button"
 import { isEmailValidRegex, isDateValidRegex } from "@utils/validators"
-import { ReactComponent as smallTriangle } from '@assets/icons/smallTriangleDown.svg'
+import { ReactComponent as smallTriangle } from '@assets/icons/small-triangle-down.svg'
 import { IFormInput } from "@models/students/EntityModels/student"
 
 import ColorsSelect from "../ColorsSelect"
+import InputForForm from "../InputForForm"
 
 import * as SC from './styled'
 
 
-
-
-
-
 export default function AddStudentForm() {
-  const { register, handleSubmit, formState: {errors}, setValue } = useForm<IFormInput>()
+  const { handleSubmit, formState: {errors}, setValue, setError } = useForm<IFormInput>()
   const { studentsStore: { addStudentRequest } } = useRootStore()
-  const [img, setImg] = React.useState("")
+  const [img, setImg] = React.useState<string | File>("")
   const [isSubmitted, setIsSubmitted] = React.useState(false)
 
+
+  React.useEffect(() => {
+    setValue('specialty', "")
+    setValue('group', "")
+    setValue('sex', "")
+    setValue('color', "")
+    setValue('email', "")
+    setValue('name', "")
+    setValue('rating', "")
+    setValue('birthday', "")
+  }, [setValue])
+
+  const validateFields = (data: IFormInput) => {
+    let isValidForm = true
+
+    if (data.specialty === "") {
+      isValidForm = false
+      setError("specialty", {
+                type: 'required',
+                message: 'Это обязательное поле'
+              })
+    }
+    if (data.group === "") {
+      isValidForm = false
+      setError("group", {
+                type: 'required',
+                message: 'Это обязательное поле'
+              })
+    }
+    if (data.color === "") {
+      isValidForm = false
+      setError("color", {
+                type: 'required',
+                message: 'Это обязательное поле'
+              })
+    }
+    if (data.sex === "") {
+      isValidForm = false
+      setError("sex", {
+                type: 'required',
+                message: 'Это обязательное поле'
+              })
+    }
+    if (data.email === "") {
+      isValidForm = false
+      setError("email", {
+        type: 'required',
+        message: 'Это обязательное поле'  
+              })
+    }
+    if (data.email !== "" && !isEmailValidRegex.test(data.email)) {
+      isValidForm = false
+      setError("email", {
+        type: 'emailPattern',
+        message: 'Введите корректный email(например ivanov@mail.ru)'  
+              })
+    }
+    if (data.name === "") {
+      isValidForm = false
+      setError("name", {
+        type: 'required',
+        message: 'Это обязательное поле'  
+              })
+    }
+    if (data.rating === "") {
+      isValidForm = false
+      setError("rating", {
+        type: 'required',
+        message: 'Это обязательное поле'  
+              })
+    }
+    if (data.rating !== "" && +data.rating < 1) {
+      isValidForm = false
+      setError("rating", {
+        type: 'min',
+        message: 'Рейтинг должен быть положительным'  
+              })
+    }
+    if (+data.rating > 999) {
+      isValidForm = false
+      setError("rating", {
+        type: 'max',
+        message: 'Рейтинг должен быть меньше 1000'  
+              })
+    }
+    if (data.birthday === "") {
+      isValidForm = false
+      setError("birthday", {
+        type: 'required',
+        message: 'Это обязательное поле'  
+              })
+    }
+    if (data.birthday !== "" && !isDateValidRegex.test(data.birthday)) {
+      isValidForm = false
+      setError("birthday", {
+        type: 'birthdayPattern',
+        message: 'Введите дату рождения в формате YYYY-MM-DD'  
+              })
+    }
+    return isValidForm
+  }
   const onSubmit = (data: IFormInput) => {
     data.avatar = ( img ?  img : "")
     const formData = new FormData()
-    
-    for (const [key, value] of Object.entries(data)) {
-      formData.append(key, value)
+          
+    if (validateFields(data)) {
+
+      for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value)
+      }
+
+      addStudentRequest.send(formData).then(() =>  setIsSubmitted(true))
     }
-    
-    addStudentRequest.send(formData).then(() =>  setIsSubmitted(true))
   }
 
   if (isSubmitted) return <Redirect to="/" />
-  const onImageChange = (e: any) => {
+
+  const onImageChange = (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0]) {
         setImg(e.target.files[0])
       }
-      
   }
-
-  // const deleteImage = () => {
-  //   setImg("")
-  //   // После этого действия нельзя еще раз добавить ту же самую картинку
-  // }
-
 
 
   return (
-    <SC.FormWrapper
-    onSubmit={handleSubmit(onSubmit)}
-    >
+      <SC.FormWrapper
+      >
       <SC.AvatarInputWrapper>
           <SC.AvatarLabel htmlFor="upload-avatar">
             {img === "" ? 
@@ -63,7 +157,6 @@ export default function AddStudentForm() {
             : 
               <SC.LoadedImage src={URL.createObjectURL(img)} alt="avatar" id="target"/>
             }
-            {/* <SC.DeleteAvatarButton type="button" onClick={() => deleteImage()}/> */}
               <SC.LabelText>
                 <SC.LabelTextTitle>Сменить аватар</SC.LabelTextTitle>
                 <SC.LabelTextSubtitle>500x500</SC.LabelTextSubtitle>
@@ -75,34 +168,36 @@ export default function AddStudentForm() {
               type="file"
               onChange={e => onImageChange(e)}
               accept="image/*"
-              tabIndex={0}
             />
       </SC.AvatarInputWrapper>
 
       <SC.InputsWrapper>
 
       <SC.InputWrapper >
-        <SC.InputTitle>ФИО</SC.InputTitle>
-        <SC.CustomInput 
-          placeholder="Иванов Иван Иванович"  
-          {...register("name", { required: true, minLength: 2 })}
+      <InputForForm
+        error={errors.name?.type}
+        placeholder="Иванов Иван Иванович"
+        subTitle={"ФИО"}
+        onChange={(value: string) => {
+          setValue('name', value)
+        }}
         />
-        {errors.name?.type === 'required' && <SC.ErrorMessage>Это поле обязательное</SC.ErrorMessage>}
-        {errors.name?.type === 'minLength' && <SC.ErrorMessage>Имя должно иметь минимум два символов</SC.ErrorMessage>}
+        
       </SC.InputWrapper>
 
       <SC.InputWrapper>
-        <SC.InputTitle>Email</SC.InputTitle>
-        <SC.CustomInput
-          placeholder="ivanov@mail.ru"
-          {...register("email",{required: true, pattern: isEmailValidRegex})} 
+        <InputForForm
+        error={errors.email?.type}
+        placeholder="ivanov@mail.ru"
+        subTitle={"Email"}
+        onChange={(value: string) => {
+          setValue('email', value)
+        }}
         />
-        {errors.email?.type === 'required' && <SC.ErrorMessage>Это поле обязательное</SC.ErrorMessage>}
-        {errors.email?.type === 'pattern' && <SC.ErrorMessage>Введите email в виде {"ivanov@mail.ru"}</SC.ErrorMessage>}
       </SC.InputWrapper>
 
 
-      <SC.InputWrapper tabIndex={0}>
+      <SC.InputWrapper>
         <Select
           options={[
             {value: 'mt', label: 'Математика'},
@@ -111,18 +206,17 @@ export default function AddStudentForm() {
             {value: 'kn', label: 'Компьютерные науки'},
             {value: 'ms', label: 'Математическое обеспечение и администрирование информационных систем'}
           ]}
-          {...register("specialty", {required: true})}
-          setValue={setValue}
           subTitle="Специальность"
           placeholder="Выбрать"
-          error={errors.specialty?.type}
           icon={smallTriangle}
-        />
-
-      
+          onChange={(value: string) => {
+            setValue('specialty', value)
+          }}
+          error={errors.specialty?.type}
+        />      
       </SC.InputWrapper>
 
-      <SC.InputWrapper tabIndex={0}>
+      <SC.InputWrapper>
         <Select
           options={[
             {value:"mt-101", label:'МТ-101'},
@@ -149,49 +243,52 @@ export default function AddStudentForm() {
             {value:"kb-401",label:'КБ-401'},
             {value:"kb-501",label:'КБ-501'}
           ]}
-          {...register("group", {required: true})}
-          setValue={setValue}
           subTitle="Группа"
           placeholder="Выбрать"
           error={errors.group?.type}
           icon={smallTriangle}
+          onChange={(value: string) => {
+            setValue('group', value)
+          }}
         />
       </SC.InputWrapper>
 
       <SC.InputWrapper >
-        <SC.InputTitle>Рейтинг</SC.InputTitle>
-        <SC.CustomInput
-          placeholder="0"
-          {...register("rating", {required: true, min: 0, max: 1000})} 
+      <InputForForm
+        error={errors.rating?.type}
+        placeholder="0"
+        subTitle={"Рейтинг"}
+        onChange={(value: string) => {
+          setValue('rating', value)
+        }}
         />
-        {errors.rating?.type === 'required' && <SC.ErrorMessage>Это поле обязательное</SC.ErrorMessage>}
-        {errors.rating?.type === 'min' && <SC.ErrorMessage>Введите значение больше нуля</SC.ErrorMessage>}
-        {errors.rating?.type === 'max' && <SC.ErrorMessage>Введите значение меньше тысячи</SC.ErrorMessage>}
       </SC.InputWrapper>
 
 
       <SC.InputWrapper >
-        <SC.InputTitle>Дата рождения</SC.InputTitle>
-        <SC.CustomInput 
-          placeholder="YYYY-MM-DD" 
-          {...register("birthday", {required: true,pattern: isDateValidRegex })} 
+      <InputForForm
+        error={errors.birthday?.type}
+        placeholder="YYYY-MM-DD"
+        subTitle={"День Рождения"}
+        onChange={(value: string) => {
+          setValue('birthday', value)
+        }}
         />
-        {errors.birthday?.type === 'required' && <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage>}
-        {errors.birthday?.type === 'pattern' && <SC.ErrorMessage>Введите email в виде {"YYYY-MM-DD"}</SC.ErrorMessage>}
       </SC.InputWrapper>
 
-      <SC.InputWrapper tabIndex={0}>
+      <SC.InputWrapper >
         <Select
           options={[
             {value: 'm', label: 'Мужской'},
             {value: 'f', label: 'Женский'}
           ]}
-          {...register("sex", {required: true})}
-          setValue={setValue}
           subTitle="Пол"
           placeholder="Выбрать"
           error={errors.sex?.type}
           icon={smallTriangle}
+          onChange={(value: string) => {
+            setValue('sex', value)
+          }}
         />
       </SC.InputWrapper>
 
@@ -206,12 +303,13 @@ export default function AddStudentForm() {
             {value:'orange', label:'Оранжевый'},
             {value: 'rainbow', label: 'Радужный'}
           ]}
-          {...register("color", {required: true})}
-          setValue={setValue}
           subTitle={"Любимый цвет"}
           placeholder="Выбрать"
           error={errors.color?.type}
           icon={smallTriangle}
+          onChange={(value: string) => {
+            setValue('color', value)
+          }}
         />
       </SC.InputWrapper>
     
