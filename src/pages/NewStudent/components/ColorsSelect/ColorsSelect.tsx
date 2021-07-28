@@ -1,57 +1,53 @@
-import React, { forwardRef } from 'react'
-import { UseFormRegister } from 'react-hook-form'
+import React, { FC } from 'react'
 import { layoutColors } from '@consts/studentArrays'
 
 import useOutsideClick from '@hooks/common/useOutsideClick'
-import { IFormInput } from "@models/students/EntityModels/student"
 import { SelectProps } from '@components/ui/Select'
 
 import * as SC from './styled'
 
 
-const ColorsSelect = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseFormRegister<IFormInput>>>(
-  (props, ref) => {
+const ColorsSelect: FC<SelectProps> =
+  (props) => {
     const {
       subTitle,
       placeholder,
       options,
       error,
-      name,
       onChange,
-      onBlur,
-      setValue,
       icon
   } = props
 
   const [selectedLabel, setSelectedLabel] = React.useState(placeholder)
   const [selectedValue, setSelectedValue] = React.useState('ffffff')
   const [isVisiblePopup, setIsVisiblePopup] = React.useState(false)
+  const [isTryToFix, setIsTryToFix] = React.useState(true)
   const popupRef = React.useRef(null)
 
   const onChangeSelect = (label:string ,value: string) => {
     setSelectedLabel(label)
     setSelectedValue(value)
-    setValue(name,value)
+    onChange(value)
+  }
+
+  const openPopup = () => {
+    setIsVisiblePopup(!isVisiblePopup)
+    setIsTryToFix(!isTryToFix)
   }
 
   useOutsideClick(popupRef, () => {
     setIsVisiblePopup(false)
+    setIsTryToFix(true)
   })
 
 
     return (
       <SC.Base>
-        <SC.Input 
-          ref={ref} 
-          name={name} 
-          onChange={onChange} 
-          onBlur={onBlur}
-        />
         <SC.Title>
           {subTitle}
         </SC.Title>
         <SC.PopupSelect 
-          onClick={() => setIsVisiblePopup(!isVisiblePopup)} 
+          onClick={openPopup} 
           ref={popupRef}
         >
           {
@@ -70,19 +66,18 @@ const ColorsSelect = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseF
           }
           
           {isVisiblePopup 
-            ? 
+            && 
           <SC.Options>
             { options &&
               options.map(option => 
                 <SC.ColorCircle 
-                  onClick={() => onChangeSelect(option.label, option.value)} 
+                  onClick={() => onChangeSelect(option.label,option.value)} 
                   key={option.value}
                   style={{ background: layoutColors[option.value]}}
                 />
               )
             }
           </SC.Options>
-            : ""
           }
           {
             isVisiblePopup 
@@ -101,14 +96,12 @@ const ColorsSelect = forwardRef<HTMLInputElement,  SelectProps & ReturnType<UseF
           }
           
         </SC.PopupSelect>
-        {selectedLabel === placeholder && error === 'required' ?
+        {isTryToFix && selectedLabel === placeholder && error === 'required' ?
          <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> : ""}
         
       </SC.Base>
     )
   }
-)
 
-ColorsSelect.displayName = "ColorsSelect"
 
 export default ColorsSelect

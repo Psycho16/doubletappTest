@@ -34,16 +34,25 @@ const Select: FC<SelectProps> =
 
     const [selectedValue, setSelectedValue] = React.useState(placeholder)
     const [isVisiblePopup, setIsVisiblePopup] = React.useState(false)
+    const [isTryToFix, setIsTryToFix] = React.useState(true)
     const popupRef = React.useRef(null)
 
     const onChangeSelect = (label:string ,value: string) => {
       setSelectedValue(label)
       onChange(value)
+      setIsTryToFix(false)
+    }
+
+    const openPopup = () => {
+      setIsVisiblePopup(!isVisiblePopup)
+      setIsTryToFix(!isTryToFix)
     }
 
     useOutsideClick(popupRef, () => {
       setIsVisiblePopup(false)
+      setIsTryToFix(true)
     })
+
 
 
     return (
@@ -52,7 +61,7 @@ const Select: FC<SelectProps> =
           {subTitle}
         </SC.Title>
         <SC.PopupSelect 
-          onClick={() => setIsVisiblePopup(!isVisiblePopup)} 
+          onClick={openPopup} 
           ref={popupRef}
         >
         {
@@ -100,7 +109,7 @@ const Select: FC<SelectProps> =
           }
           
         </SC.PopupSelect>
-        {selectedValue === placeholder && error === 'required' && 
+        {isTryToFix && selectedValue === placeholder && error === 'required' && 
         <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> }
         
       </SC.Base>
