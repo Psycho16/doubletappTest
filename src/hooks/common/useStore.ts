@@ -13,8 +13,3 @@ export function useRootStore() {
   return context
 }
 
-export function useUserStore() {
-  const { userStore } = useRootStore()
-
-  return userStore
-}
