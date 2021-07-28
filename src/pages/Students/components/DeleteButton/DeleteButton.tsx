@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, SyntheticEvent } from 'react'
 
 import * as SC from './styled'
 
@@ -17,11 +17,21 @@ const DeleteButton: FC<DeleteButtonProps> = (props) => {
     onClick,
     disabled
   } = props
+
+  const [isLoading, setIsLoading] = React.useState(disabled)
+
+  const onDeleteClick = (event: SyntheticEvent<HTMLElement, Event>) => {
+    if (!disabled) {
+      setIsLoading(true)
+      onClick(event)
+    }
+
+  }
   
   return (
     <SC.Base
-    onClick={event => !disabled && onClick(event)}
-    disabled={disabled}
+    onClick={onDeleteClick}
+    disabled={isLoading}
     >
     {icon &&  <SC.DeleteWrapper>{React.createElement(icon)}</SC.DeleteWrapper>}
       
