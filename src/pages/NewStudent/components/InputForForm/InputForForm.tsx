@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 
 import * as SC from './styled'
 
@@ -20,8 +20,8 @@ const InputForForm: FC<InputFormProps> = (props) => {
     onChange
   } = props
 
-  const [value, setValue] = React.useState('')
-  const [isTryToFix, setIsTryToFix] = React.useState(true)
+  const [value, setValue] = useState('')
+  const [isTryToFix, setIsTryToFix] = useState(false)
   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
@@ -37,20 +37,19 @@ const InputForForm: FC<InputFormProps> = (props) => {
       placeholder={placeholder}
       value={value}
       onChange={handleChange}
-      onFocus={() => setIsTryToFix(false)}
-      onBlur={() => setIsTryToFix(true)}
-      // onChange={onChange}
+      onFocus={() => setIsTryToFix(true)}
+      onBlur={() => setIsTryToFix(false)}
       />
     
-      {isTryToFix && value === "" && error && error==='required' ?
+      {!isTryToFix && value === "" && error && error==='required' ?
         <SC.ErrorMessage>Это поле обязательное</SC.ErrorMessage> : ""}
-      {isTryToFix && value !== "" && error && error==='emailPattern' ?
+      {!isTryToFix && value !== "" && error && error==='emailPattern' ?
         <SC.ErrorMessage>Введите email в виде ivanov@mail.ru</SC.ErrorMessage> : ""} 
-           {isTryToFix && value !== "" && +value < 1  && subTitle === "Рейтинг" && error && error==='min' ?
+           {!isTryToFix && value !== "" && +value < 1  && subTitle === "Рейтинг" && error && error==='min' ?
         <SC.ErrorMessage>Рейтинг должен быть больше нуля</SC.ErrorMessage> : ""} 
-         {isTryToFix && value !== "" && +value > 999 && subTitle === "Рейтинг" && error && error==='max' ?
+         {!isTryToFix && value !== "" && +value > 999 && subTitle === "Рейтинг" && error && error==='max' ?
         <SC.ErrorMessage>Рейтинг должен быть меньше 1000</SC.ErrorMessage> : ""} 
-        {isTryToFix && value !== "" && error && error==='birthdayPattern' ?
+        {!isTryToFix && value !== "" && error && error==='birthdayPattern' ?
         <SC.ErrorMessage>Введите дату рождения в формате YYYY-MM-DD</SC.ErrorMessage> : ""} 
     </SC.Base>
   )

@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent } from 'react'
+import React, { FC, SyntheticEvent, useState } from 'react'
 
 import * as SC from './styled'
 
@@ -18,7 +18,7 @@ const DeleteButton: FC<DeleteButtonProps> = (props) => {
     disabled
   } = props
 
-  const [isLoading, setIsLoading] = React.useState(disabled)
+  const [isLoading, setIsLoading] = useState(disabled)
 
   const onDeleteClick = (event: SyntheticEvent<HTMLElement, Event>) => {
     if (!disabled) {

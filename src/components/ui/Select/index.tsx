@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState, useRef } from 'react'
 
 import useOutsideClick from '@hooks/common/useOutsideClick'
 import {ReactComponent as CheckIcon} from '@assets/icons/check.svg'
@@ -32,15 +32,15 @@ const Select: FC<SelectProps> =
       icon
     } = props
 
-    const [selectedValue, setSelectedValue] = React.useState(placeholder)
-    const [isVisiblePopup, setIsVisiblePopup] = React.useState(false)
-    const [isTryToFix, setIsTryToFix] = React.useState(true)
-    const popupRef = React.useRef(null)
+    const [selectedValue, setSelectedValue] = useState(placeholder)
+    const [isVisiblePopup, setIsVisiblePopup] = useState(false)
+    const [isTryToFix, setIsTryToFix] = useState(false)
+    const popupRef = useRef(null)
 
     const onChangeSelect = (label:string ,value: string) => {
       setSelectedValue(label)
       onChange(value)
-      setIsTryToFix(false)
+      setIsTryToFix(true)
     }
 
     const openPopup = () => {
@@ -50,7 +50,7 @@ const Select: FC<SelectProps> =
 
     useOutsideClick(popupRef, () => {
       setIsVisiblePopup(false)
-      setIsTryToFix(true)
+      setIsTryToFix(false)
     })
 
 
@@ -109,7 +109,7 @@ const Select: FC<SelectProps> =
           }
           
         </SC.PopupSelect>
-        {isTryToFix && selectedValue === placeholder && error === 'required' && 
+        {!isTryToFix && selectedValue === placeholder && error === 'required' && 
         <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> }
         
       </SC.Base>

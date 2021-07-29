@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState, useRef } from 'react'
 
 import { useRootStore } from '@hooks/common/useStore'
 import { useOutsideClick } from '@hooks/common/useOutsideClick'
@@ -22,10 +22,10 @@ const PopupComponent: FC<PopupProps> = (props) => {
         placeholder
     } = props
 
-    const [isVisiblePopup, setIsVisiblePopup] = React.useState<boolean>(false)
-    const [activeLabel, setActiveLabel] = React.useState<string>(placeholder || items[0])
+    const [isVisiblePopup, setIsVisiblePopup] = useState<boolean>(false)
+    const [activeLabel, setActiveLabel] = useState<string>(placeholder || items[0])
     const {studentsStore} = useRootStore()
-    const popupRef = React.useRef(null)
+    const popupRef = useRef(null)
 
     useOutsideClick(popupRef, () => {
         setIsVisiblePopup(false)

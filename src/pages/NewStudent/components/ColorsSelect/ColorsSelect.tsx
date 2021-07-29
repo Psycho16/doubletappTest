@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState, useRef } from 'react'
 import { layoutColors } from '@consts/studentArrays'
 
 import useOutsideClick from '@hooks/common/useOutsideClick'
@@ -18,11 +18,11 @@ const ColorsSelect: FC<SelectProps> =
       icon
   } = props
 
-  const [selectedLabel, setSelectedLabel] = React.useState(placeholder)
-  const [selectedValue, setSelectedValue] = React.useState('ffffff')
-  const [isVisiblePopup, setIsVisiblePopup] = React.useState(false)
-  const [isTryToFix, setIsTryToFix] = React.useState(true)
-  const popupRef = React.useRef(null)
+  const [selectedLabel, setSelectedLabel] = useState(placeholder)
+  const [selectedValue, setSelectedValue] = useState('ffffff')
+  const [isVisiblePopup, setIsVisiblePopup] = useState(false)
+  const [isTryToFix, setIsTryToFix] = useState(false)
+  const popupRef = useRef(null)
 
   const onChangeSelect = (label:string ,value: string) => {
     setSelectedLabel(label)
@@ -37,7 +37,7 @@ const ColorsSelect: FC<SelectProps> =
 
   useOutsideClick(popupRef, () => {
     setIsVisiblePopup(false)
-    setIsTryToFix(true)
+    setIsTryToFix(false)
   })
 
 
@@ -96,7 +96,7 @@ const ColorsSelect: FC<SelectProps> =
           }
           
         </SC.PopupSelect>
-        {isTryToFix && selectedLabel === placeholder && error === 'required' ?
+        {!isTryToFix && selectedLabel === placeholder && error === 'required' ?
          <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> : ""}
         
       </SC.Base>
