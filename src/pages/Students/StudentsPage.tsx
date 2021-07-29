@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useDeleteStudentLogic } from '@pages/Students/useDeleteLogic'
 
@@ -13,7 +13,7 @@ import Student from './components/Student'
 import * as SC from './styled'
 
 
-const StudentsPage = () => {
+const StudentsPage: FC = () => {
   const { studentsStore: { 
      students, filteredAndSortedStudents }, studentsStore } = useRootStore()
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { PATH_ROOT } from '@consts/routes'
 
 import { Container } from '@components/styled/Container'
@@ -10,7 +10,7 @@ import * as SC from './styled'
 
 
 
-const NewStudentPage = () => {
+const NewStudentPage: FC = () => {
   
   return (
     <MainLayout>

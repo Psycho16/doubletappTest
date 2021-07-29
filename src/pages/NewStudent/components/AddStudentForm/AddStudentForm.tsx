@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect } from "react"
+import React, { ChangeEvent, useState, useEffect, FC } from "react"
 import { useForm } from "react-hook-form"
 import { Redirect } from "react-router"
 
@@ -15,7 +15,7 @@ import InputForForm from "../InputForForm"
 import * as SC from './styled'
 
 
-export default function AddStudentForm() {
+export const AddStudentForm: FC = () => {
   const { handleSubmit, formState: {errors}, setValue, setError } = useForm<IFormInput>()
   const { studentsStore: { addStudentRequest } } = useRootStore()
   const [img, setImg] = useState<string | File>("")
@@ -326,3 +326,4 @@ export default function AddStudentForm() {
   )
 }
 
+export default AddStudentForm
