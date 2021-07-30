@@ -18,8 +18,8 @@ import * as SC from './styled'
 const AddStudentForm: FC = () => {
   const { handleSubmit, setValue } = useForm<IFormInput>()
   const { studentsStore: { addStudentRequest } } = useRootStore()
-  const [img, setImg] = useState<string | File>("")
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [currentImg, setCurrentImg] = useState<string | File>("")
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [isFormHasError, setIsFormHasError] = useState(false)
 
 
@@ -35,7 +35,7 @@ const AddStudentForm: FC = () => {
   }, [setValue])
 
   const onSubmit = (data: IFormInput) => {
-    data.avatar = ( img ?  img : "")
+    data.avatar = ( currentImg ?  currentImg : "")
           
     if (isValidFields(data, true)) {
       const formData = new FormData()
@@ -44,7 +44,7 @@ const AddStudentForm: FC = () => {
         formData.append(key, value)
       }
       
-      addStudentRequest.send(formData).then(() =>  setIsSubmitted(true))
+      addStudentRequest.send(formData).then(() =>  setIsFormSubmitted(true))
     } else {
       setIsFormHasError(true)
     }
@@ -53,12 +53,12 @@ const AddStudentForm: FC = () => {
 
   const onImageChange = (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0]) {
-        setImg(e.target.files[0])
+        setCurrentImg(e.target.files[0])
       }
   }
 
   // const onSubmitTestData = (data: IFormInput) => {
-  //   data.avatar = ( img ?  img : "")
+  //   data.avatar = ( currentImg ?  currentImg : "")
   //   data.specialty = "mt"
   //   data.group  = "mt-301"
   //   data.sex = "m"
@@ -74,21 +74,21 @@ const AddStudentForm: FC = () => {
   //     formData.append(key, value)
   //   }
     
-  //   addStudentRequest.send(formData).then(() => setIsSubmitted(true))
+  //   addStudentRequest.send(formData).then(() => setIsFormSubmitted(true))
   // }
 
   return (
       <SC.FormWrapper
       >
-        {isSubmitted && <Redirect to="/" />}
+        {isFormSubmitted && <Redirect to="/" />}
       <SC.AvatarInputWrapper>
           <SC.AvatarLabel htmlFor="upload-avatar">
-            {img === "" ? 
+            {currentImg === "" ? 
               <SC.LabelCircle>
                 <SC.LabelCircleText>ФИ</SC.LabelCircleText>
               </SC.LabelCircle> 
             : 
-              <SC.LoadedImage src={URL.createObjectURL(img)} alt="avatar" id="target"/>
+              <SC.LoadedImage src={URL.createObjectURL(currentImg)} alt="avatar" id="target"/>
             }
               <SC.LabelText>
                 <SC.LabelTextTitle>Сменить аватар</SC.LabelTextTitle>
