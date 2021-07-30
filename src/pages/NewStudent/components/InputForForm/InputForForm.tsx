@@ -1,12 +1,14 @@
 import React, { FC, useState } from 'react'
 
+import { isEmailValid, isDateValid, isNumberValid, isEmptyField } from "@utils/validators"
+
 import * as SC from './styled'
 
 
 export type InputFormProps = {
   subTitle: string,
   placeholder?: string
-  error?: string
+  error?: boolean
   onChange: (value: string) => void;
 } 
 
@@ -27,6 +29,10 @@ const InputForForm: FC<InputFormProps> = (props) => {
     setValue(event.target.value)
     onChange(event.target.value)
   }
+
+  const isEmptyAndTryingTofix = (value: string, isTryToFix: boolean):boolean => {
+    return !isTryToFix && !isEmptyField(value) 
+  }
   
   return (
     <SC.Base>
@@ -41,16 +47,45 @@ const InputForForm: FC<InputFormProps> = (props) => {
       onBlur={() => setIsTryToFix(false)}
       />
     
-      {!isTryToFix && value === "" && error && error==='required' ?
-        <SC.ErrorMessage>Это поле обязательное</SC.ErrorMessage> : ""}
-      {!isTryToFix && value !== "" && error && error==='emailPattern' ?
-        <SC.ErrorMessage>Введите email в виде ivanov@mail.ru</SC.ErrorMessage> : ""} 
-           {!isTryToFix && value !== "" && +value < 1  && subTitle === "Рейтинг" && error && error==='min' ?
-        <SC.ErrorMessage>Рейтинг должен быть больше нуля</SC.ErrorMessage> : ""} 
-         {!isTryToFix && value !== "" && +value > 999 && subTitle === "Рейтинг" && error && error==='max' ?
-        <SC.ErrorMessage>Рейтинг должен быть меньше 1000</SC.ErrorMessage> : ""} 
-        {!isTryToFix && value !== "" && error && error==='birthdayPattern' ?
-        <SC.ErrorMessage>Введите дату рождения в формате YYYY-MM-DD</SC.ErrorMessage> : ""} 
+      { error
+        && !isTryToFix 
+        && isEmptyField(value) 
+        && <SC.ErrorMessage>Это поле обязательное</SC.ErrorMessage>
+      }
+
+      { error
+        && subTitle === "Email" 
+        && isEmptyAndTryingTofix(value, isTryToFix)
+        && !isEmailValid(value) 
+        && <SC.ErrorMessage>Введите email в виде ivanov@mail.ru</SC.ErrorMessage>
+      } 
+      
+      { error
+        && subTitle === "Рейтинг"
+        && isEmptyAndTryingTofix(value, isTryToFix) 
+        && +value < 1   
+        && <SC.ErrorMessage>Рейтинг должен быть больше нуля</SC.ErrorMessage>
+      }
+
+      { error
+        && subTitle === "Рейтинг"
+        && isEmptyAndTryingTofix(value, isTryToFix)
+        && +value > 999  
+        && <SC.ErrorMessage>Рейтинг должен быть меньше 1000</SC.ErrorMessage>
+      }
+
+      { error
+        && subTitle === "Рейтинг" 
+        && isEmptyAndTryingTofix(value, isTryToFix) 
+        && !isNumberValid(value)  
+        && <SC.ErrorMessage>Рейтинг должен быть числом</SC.ErrorMessage>
+      } 
+      { error
+        && subTitle === "День Рождения"  
+        && isEmptyAndTryingTofix(value, isTryToFix) 
+        && !isDateValid(value)  
+        && <SC.ErrorMessage>Введите дату рождения в формате YYYY-MM-DD</SC.ErrorMessage>
+      } 
     </SC.Base>
   )
 }
