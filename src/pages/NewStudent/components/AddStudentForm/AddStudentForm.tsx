@@ -5,7 +5,7 @@ import { Redirect } from "react-router"
 import Select from "@components/ui/Select"
 import { useRootStore } from '@hooks/common/useStore'
 import Button from "@components/ui/Button"
-import { isEmailValidRegex, isDateValidRegex } from "@utils/validators"
+import { isValidFields } from "@utils/validators"
 import { ReactComponent as smallTriangle } from '@assets/icons/small-triangle-down.svg'
 import { IFormInput } from "@models/students/EntityModels/student"
 
@@ -15,11 +15,12 @@ import InputForForm from "../InputForForm"
 import * as SC from './styled'
 
 
-export const AddStudentForm: FC = () => {
-  const { handleSubmit, formState: {errors}, setValue, setError } = useForm<IFormInput>()
+const AddStudentForm: FC = () => {
+  const { handleSubmit, setValue } = useForm<IFormInput>()
   const { studentsStore: { addStudentRequest } } = useRootStore()
   const [img, setImg] = useState<string | File>("")
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isFormHasError, setIsFormHasError] = useState(false)
 
 
   useEffect(() => {
@@ -33,110 +34,22 @@ export const AddStudentForm: FC = () => {
     setValue('birthday', "")
   }, [setValue])
 
-  const validateFields = (data: IFormInput) => {
-    let isValidForm = true
-
-    if (data.specialty === "") {
-      isValidForm = false
-      setError("specialty", {
-                type: 'required',
-                message: 'Это обязательное поле'
-              })
-    }
-    if (data.group === "") {
-      isValidForm = false
-      setError("group", {
-                type: 'required',
-                message: 'Это обязательное поле'
-              })
-    }
-    if (data.color === "") {
-      isValidForm = false
-      setError("color", {
-                type: 'required',
-                message: 'Это обязательное поле'
-              })
-    }
-    if (data.sex === "") {
-      isValidForm = false
-      setError("sex", {
-                type: 'required',
-                message: 'Это обязательное поле'
-              })
-    }
-    if (data.email === "") {
-      isValidForm = false
-      setError("email", {
-        type: 'required',
-        message: 'Это обязательное поле'  
-              })
-    }
-    if (data.email !== "" && !isEmailValidRegex.test(data.email)) {
-      isValidForm = false
-      setError("email", {
-        type: 'emailPattern',
-        message: 'Введите корректный email(например ivanov@mail.ru)'  
-              })
-    }
-    if (data.name === "") {
-      isValidForm = false
-      setError("name", {
-        type: 'required',
-        message: 'Это обязательное поле'  
-              })
-    }
-    if (data.rating === "") {
-      isValidForm = false
-      setError("rating", {
-        type: 'required',
-        message: 'Это обязательное поле'  
-              })
-    }
-    if (data.rating !== "" && +data.rating < 1) {
-      isValidForm = false
-      setError("rating", {
-        type: 'min',
-        message: 'Рейтинг должен быть положительным'  
-              })
-    }
-    if (+data.rating > 999) {
-      isValidForm = false
-      setError("rating", {
-        type: 'max',
-        message: 'Рейтинг должен быть меньше 1000'  
-              })
-    }
-    if (data.birthday === "") {
-      isValidForm = false
-      setError("birthday", {
-        type: 'required',
-        message: 'Это обязательное поле'  
-              })
-    }
-    if (data.birthday !== "" && !isDateValidRegex.test(data.birthday)) {
-      isValidForm = false
-      setError("birthday", {
-        type: 'birthdayPattern',
-        message: 'Введите дату рождения в формате YYYY-MM-DD'  
-              })
-    }
-    return isValidForm
-  }
   const onSubmit = (data: IFormInput) => {
     data.avatar = ( img ?  img : "")
-    const formData = new FormData()
           
-    if (validateFields(data)) {
+    if (isValidFields(data, true)) {
+      const formData = new FormData()
 
       for (const [key, value] of Object.entries(data)) {
         formData.append(key, value)
       }
-
+      
       addStudentRequest.send(formData).then(() =>  setIsSubmitted(true))
+    } else {
+      setIsFormHasError(true)
     }
   }
 
-  if (isSubmitted) return <Redirect to="/" />
 
   const onImageChange = (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0]) {
@@ -144,10 +57,30 @@ export const AddStudentForm: FC = () => {
       }
   }
 
+  // const onSubmitTestData = (data: IFormInput) => {
+  //   data.avatar = ( img ?  img : "")
+  //   data.specialty = "mt"
+  //   data.group  = "mt-301"
+  //   data.sex = "m"
+  //   data.color = "green"
+  //   data.email = "andrey@mail.ru"
+  //   data.name = "andrey"
+  //   data.rating = "23"
+  //   data.birthday = "2000-06-16"
+    
+  //   const formData = new FormData()
+    
+  //   for (const [key, value] of Object.entries(data)) {
+  //     formData.append(key, value)
+  //   }
+    
+  //   addStudentRequest.send(formData).then(() => setIsSubmitted(true))
+  // }
 
   return (
       <SC.FormWrapper
       >
+        {isSubmitted && <Redirect to="/" />}
       <SC.AvatarInputWrapper>
           <SC.AvatarLabel htmlFor="upload-avatar">
             {img === "" ? 
@@ -170,12 +103,11 @@ export const AddStudentForm: FC = () => {
               accept="image/*"
             />
       </SC.AvatarInputWrapper>
-
       <SC.InputsWrapper>
 
       <SC.InputWrapper >
       <InputForForm
-        error={errors.name?.type}
+        error={isFormHasError}
         placeholder="Иванов Иван Иванович"
         subTitle={"ФИО"}
         onChange={(value: string) => {
@@ -187,7 +119,7 @@ export const AddStudentForm: FC = () => {
 
       <SC.InputWrapper>
         <InputForForm
-        error={errors.email?.type}
+        error={isFormHasError}
         placeholder="ivanov@mail.ru"
         subTitle={"Email"}
         onChange={(value: string) => {
@@ -212,7 +144,7 @@ export const AddStudentForm: FC = () => {
           onChange={(value: string) => {
             setValue('specialty', value)
           }}
-          error={errors.specialty?.type}
+          error={isFormHasError}
         />      
       </SC.InputWrapper>
 
@@ -245,7 +177,7 @@ export const AddStudentForm: FC = () => {
           ]}
           subTitle="Группа"
           placeholder="Выбрать"
-          error={errors.group?.type}
+          error={isFormHasError}
           icon={smallTriangle}
           onChange={(value: string) => {
             setValue('group', value)
@@ -255,7 +187,7 @@ export const AddStudentForm: FC = () => {
 
       <SC.InputWrapper >
       <InputForForm
-        error={errors.rating?.type}
+        error={isFormHasError}
         placeholder="0"
         subTitle={"Рейтинг"}
         onChange={(value: string) => {
@@ -267,7 +199,7 @@ export const AddStudentForm: FC = () => {
 
       <SC.InputWrapper >
       <InputForForm
-        error={errors.birthday?.type}
+        error={isFormHasError}
         placeholder="YYYY-MM-DD"
         subTitle={"День Рождения"}
         onChange={(value: string) => {
@@ -284,7 +216,7 @@ export const AddStudentForm: FC = () => {
           ]}
           subTitle="Пол"
           placeholder="Выбрать"
-          error={errors.sex?.type}
+          error={isFormHasError}
           icon={smallTriangle}
           onChange={(value: string) => {
             setValue('sex', value)
@@ -305,7 +237,7 @@ export const AddStudentForm: FC = () => {
           ]}
           subTitle={"Любимый цвет"}
           placeholder="Выбрать"
-          error={errors.color?.type}
+          error={isFormHasError}
           icon={smallTriangle}
           onChange={(value: string) => {
             setValue('color', value)
@@ -321,7 +253,7 @@ export const AddStudentForm: FC = () => {
         disabled={addStudentRequest.isLoading}
       />
       </SC.ButtonWrapper>
-      
+      {/* <Button onClick={handleSubmit(onSubmitTestData)} text={"Отправить тестовые данные"}/> */}
     </SC.FormWrapper>
   )
 }
