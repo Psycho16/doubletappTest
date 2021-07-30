@@ -66,7 +66,7 @@ const PopupComponent: FC<PopupProps> = (props) => {
                                     onClick={() => changeActiveLabel(index)}
                                 >
                                 {activeLabel}
-                                {type === "sort" ? <SC.IconActive>{React.createElement(CheckIcon)}</SC.IconActive> : ""}
+                                {type === "sort" && <SC.IconActive>{React.createElement(CheckIcon)}</SC.IconActive>}
                                 </SC.PopupLiActive>
                                 )
                                 :
