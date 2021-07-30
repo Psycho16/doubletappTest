@@ -10,7 +10,7 @@ export type SelectProps = {
   options: OptionType[]
   subTitle: string
   placeholder?: string
-  error?: string
+  error?: boolean
   icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
   tabIndex?: number
   onChange: (value: string) => void 
@@ -34,25 +34,16 @@ const Select: FC<SelectProps> =
 
     const [selectedValue, setSelectedValue] = useState(placeholder)
     const [isVisiblePopup, setIsVisiblePopup] = useState(false)
-    const [isTryToFix, setIsTryToFix] = useState(false)
     const popupRef = useRef(null)
 
     const onChangeSelect = (label:string ,value: string) => {
       setSelectedValue(label)
       onChange(value)
-      setIsTryToFix(true)
-    }
-
-    const openPopup = () => {
-      setIsVisiblePopup(!isVisiblePopup)
-      setIsTryToFix(!isTryToFix)
     }
 
     useOutsideClick(popupRef, () => {
       setIsVisiblePopup(false)
-      setIsTryToFix(false)
     })
-
 
 
     return (
@@ -61,7 +52,7 @@ const Select: FC<SelectProps> =
           {subTitle}
         </SC.Title>
         <SC.PopupSelect 
-          onClick={openPopup} 
+          onClick={() => setIsVisiblePopup(!isVisiblePopup)} 
           ref={popupRef}
         >
         {
@@ -109,8 +100,12 @@ const Select: FC<SelectProps> =
           }
           
         </SC.PopupSelect>
-        {!isTryToFix && selectedValue === placeholder && error === 'required' && 
-        <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> }
+        
+        { error 
+          && !isVisiblePopup 
+          && selectedValue === placeholder 
+          && <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> 
+        }
         
       </SC.Base>
     )

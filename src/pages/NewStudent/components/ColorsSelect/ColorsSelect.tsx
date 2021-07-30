@@ -21,7 +21,6 @@ const ColorsSelect: FC<SelectProps> =
   const [selectedLabel, setSelectedLabel] = useState(placeholder)
   const [selectedValue, setSelectedValue] = useState('ffffff')
   const [isVisiblePopup, setIsVisiblePopup] = useState(false)
-  const [isTryToFix, setIsTryToFix] = useState(false)
   const popupRef = useRef(null)
 
   const onChangeSelect = (label:string ,value: string) => {
@@ -30,14 +29,8 @@ const ColorsSelect: FC<SelectProps> =
     onChange(value)
   }
 
-  const openPopup = () => {
-    setIsVisiblePopup(!isVisiblePopup)
-    setIsTryToFix(!isTryToFix)
-  }
-
   useOutsideClick(popupRef, () => {
     setIsVisiblePopup(false)
-    setIsTryToFix(false)
   })
 
 
@@ -47,7 +40,7 @@ const ColorsSelect: FC<SelectProps> =
           {subTitle}
         </SC.Title>
         <SC.PopupSelect 
-          onClick={openPopup} 
+          onClick={() =>  setIsVisiblePopup(!isVisiblePopup)} 
           ref={popupRef}
         >
           {
@@ -96,8 +89,12 @@ const ColorsSelect: FC<SelectProps> =
           }
           
         </SC.PopupSelect>
-        {!isTryToFix && selectedLabel === placeholder && error === 'required' ?
-         <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage> : ""}
+        
+        { error 
+          && !isVisiblePopup 
+          && selectedLabel === placeholder 
+          && <SC.ErrorMessage>Это поле обязятельное</SC.ErrorMessage>
+        }
         
       </SC.Base>
     )
