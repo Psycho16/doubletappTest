@@ -52,9 +52,7 @@ const InputComponent: FC<InputProps> = (props) => {
         disabled={disabled}
         hasPrefixIcon={hasPrefixIcon}
       >
-        {/* <SC.IconWrapper> */}
-          {hasPrefixIcon ? <SC.PrefixIconWrapper >{React.createElement(hasPrefixIcon)}</SC.PrefixIconWrapper> : ""}
-        {/* </SC.IconWrapper> */}
+      {hasPrefixIcon && <SC.PrefixIconWrapper >{React.createElement(hasPrefixIcon)}</SC.PrefixIconWrapper>}
         <SC.Input 
           name={name}
           onChange={onChange}
