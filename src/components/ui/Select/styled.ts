@@ -1,13 +1,9 @@
 import styled from "styled-components"
-import { viewportWidth, widthBreakpoints } from "styles/mediaQueryMixins"
 
 
 export const Base = styled.div`
   width: 100%;
   height: 49px;
-`
-export const Input = styled.input`
-  display: none;
 `
 export const Title = styled.h2`
   font-size: 15px;
@@ -103,19 +99,6 @@ export const ErrorMessage = styled.p`
   color: ${props => props.theme.palette.error.main};
   margin: 0;
   font-size: 14px;
-`
-export const ColorCircle = styled.div`
-  box-sizing: border-box;
-  border-radius: 300px;
-  min-width: 30px;
-  width: 30px;
-  height: 30px;
-  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
-    min-width: 12px;
-    width: 12px;
-    height: 12px;
-    margin: 0;
-  }
 `
 export const Icon = styled.div`
   width: 12px;
