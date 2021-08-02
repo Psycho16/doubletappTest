@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form"
 import { Redirect } from "react-router"
 
 import Select from "@components/ui/Select"
-import { useRootStore } from '@hooks/common/useStore'
 import Button from "@components/ui/Button"
+import DatePickerWithText from "@components/ui/DatePickerWithText"
 import { isValidFields } from "@utils/validators"
 import { ReactComponent as smallTriangle } from '@assets/icons/small-triangle-down.svg'
 import { IFormInput } from "@models/students/EntityModels/student"
-import DatePickerWithText from "@components/ui/DatePickerWithText"
+import { useRootStore } from '@hooks/common/useStore'
 
 import ColorsSelect from "../ColorsSelect"
 import InputForForm from "../InputForForm"
