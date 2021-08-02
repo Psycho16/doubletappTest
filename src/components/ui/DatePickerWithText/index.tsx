@@ -2,9 +2,7 @@ import React, { FC, useState } from 'react'
 import DatePicker from 'react-datepicker'
 
 import './stylesOfDatePicker.css'
-
-
-require('react-datepicker/dist/react-datepicker.css')
+import 'react-datepicker/dist/react-datepicker.css'
 
 
 import { getBirthdayFromDate } from '@utils/getStudentInfo'
