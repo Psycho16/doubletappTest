@@ -8,6 +8,7 @@ import Button from "@components/ui/Button"
 import { isValidFields } from "@utils/validators"
 import { ReactComponent as smallTriangle } from '@assets/icons/small-triangle-down.svg'
 import { IFormInput } from "@models/students/EntityModels/student"
+import DatePickerWithText from "@components/ui/DatePickerWithText"
 
 import ColorsSelect from "../ColorsSelect"
 import InputForForm from "../InputForForm"
@@ -78,9 +79,8 @@ const AddStudentForm: FC = () => {
   // }
 
   return (
-      <SC.FormWrapper
-      >
-        {isFormSubmitted && <Redirect to="/" />}
+      <SC.FormWrapper>
+      {isFormSubmitted && <Redirect to="/" />}
       <SC.AvatarInputWrapper>
           <SC.AvatarLabel htmlFor="upload-avatar">
             {currentImg === "" ? 
@@ -90,44 +90,45 @@ const AddStudentForm: FC = () => {
             : 
               <SC.LoadedImage src={URL.createObjectURL(currentImg)} alt="avatar" id="target"/>
             }
-              <SC.LabelText>
-                <SC.LabelTextTitle>Сменить аватар</SC.LabelTextTitle>
-                <SC.LabelTextSubtitle>500x500</SC.LabelTextSubtitle>
-              </SC.LabelText>
+            <SC.LabelText>
+              <SC.LabelTextTitle>Сменить аватар</SC.LabelTextTitle>
+              <SC.LabelTextSubtitle>500x500</SC.LabelTextSubtitle>
+            </SC.LabelText>
+          </SC.AvatarLabel>
 
-            </SC.AvatarLabel>
             <SC.AvatarInput 
               id="upload-avatar" 
               type="file"
               onChange={e => onImageChange(e)}
               accept="image/*"
             />
+
       </SC.AvatarInputWrapper>
+
       <SC.InputsWrapper>
 
       <SC.InputWrapper >
-      <InputForForm
-        error={isFormHasError}
-        placeholder="Иванов Иван Иванович"
-        subTitle={"ФИО"}
-        onChange={(value: string) => {
-          setValue('name', value)
-        }}
+        <InputForForm
+          error={isFormHasError}
+          placeholder="Иванов Иван Иванович"
+          subTitle={"ФИО"}
+          onChange={(value: string) => {
+            setValue('name', value)
+          }}
         />
         
       </SC.InputWrapper>
 
       <SC.InputWrapper>
         <InputForForm
-        error={isFormHasError}
-        placeholder="ivanov@mail.ru"
-        subTitle={"Email"}
-        onChange={(value: string) => {
-          setValue('email', value)
-        }}
+          error={isFormHasError}
+          placeholder="ivanov@mail.ru"
+          subTitle={"Email"}
+          onChange={(value: string) => {
+            setValue('email', value)
+          }}
         />
       </SC.InputWrapper>
-
 
       <SC.InputWrapper>
         <Select
@@ -186,25 +187,27 @@ const AddStudentForm: FC = () => {
       </SC.InputWrapper>
 
       <SC.InputWrapper >
-      <InputForForm
-        error={isFormHasError}
-        placeholder="0"
-        subTitle={"Рейтинг"}
-        onChange={(value: string) => {
-          setValue('rating', value)
-        }}
+        <InputForForm
+          error={isFormHasError}
+          placeholder="0"
+          subTitle={"Рейтинг"}
+          onChange={(value: string) => {
+            setValue('rating', value)
+          }}
         />
       </SC.InputWrapper>
 
 
       <SC.InputWrapper >
-      <InputForForm
-        error={isFormHasError}
-        placeholder="YYYY-MM-DD"
-        subTitle={"День Рождения"}
-        onChange={(value: string) => {
-          setValue('birthday', value)
-        }}
+        <DatePickerWithText
+          error={isFormHasError}
+          placeholder="YYYY-MM-DD"
+          dateFormat="yyyy-MM-dd"
+          subTitle={"День Рождения"}
+          maxDate={new Date()}
+          onChange={(value: string) => {
+            setValue('birthday', value)
+          }}
         />
       </SC.InputWrapper>
 
@@ -246,12 +249,13 @@ const AddStudentForm: FC = () => {
       </SC.InputWrapper>
     
       </SC.InputsWrapper>
+
       <SC.ButtonWrapper tabIndex={0}>
-      <Button 
-        onClick={handleSubmit(onSubmit)} 
-        text="Создать"
-        disabled={addStudentRequest.isLoading}
-      />
+        <Button 
+          onClick={handleSubmit(onSubmit)} 
+          text="Создать"
+          disabled={addStudentRequest.isLoading}
+        />
       </SC.ButtonWrapper>
       {/* <Button onClick={handleSubmit(onSubmitTestData)} text={"Отправить тестовые данные"}/> */}
     </SC.FormWrapper>
