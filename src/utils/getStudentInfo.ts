@@ -21,6 +21,14 @@ export function getRusSpecialty(
   
     return m < 0 || (m === 0 && today.getDate() < dateBirthday.getDate()) ? --age : age
   }
+
+  export function getBirthdayFromDate(date: Date | null): string {
+    if (date === null) return ""
+    const year = `${date.getFullYear()}`
+    const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : `${(date.getMonth() + 1)}`
+    const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`
+    return `${year}-${month}-${day}`
+  }
   
   export function fixAgeWord(number: number) {
     const titles: string[] = ['год', 'года', 'лет']
