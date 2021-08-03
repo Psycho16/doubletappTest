@@ -52,6 +52,19 @@ export const Options = styled.div`
   z-index: 1;
   top: 47px;
   left: 0;
+  animation-duration: .4s;
+  animation-fill-mode: both; 
+  animation-name: fadeInDown; 
+  @keyframes fadeInDown { 
+    0% {                
+        opacity: 0;
+        transform: translate3d(0px, -20px, 0px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  }
 `
 export const Option = styled.div`
   box-sizing: border-box;

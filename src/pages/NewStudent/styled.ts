@@ -9,6 +9,19 @@ export const PageTitle = styled.h1`
   font-size: 40px;
   line-height: 50px;
   margin-bottom: 28px;
+  animation-duration: 0.55s;
+  animation-fill-mode: both; 
+  animation-name: fadeInLeft;
+  @keyframes fadeInLeft { 
+    0% {                
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  } 
 `
 export const BackToPage = styled(Link)`
   position: relative;
@@ -24,6 +37,19 @@ export const BackToPage = styled(Link)`
   text-transform: uppercase;
   margin-bottom: 33px;
   margin-top: 25px;
+  animation-duration: 0.55s;
+  animation-fill-mode: both; 
+  animation-name: fadeInLeft;
+  @keyframes fadeInLeft { 
+    0% {                
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  } 
   :hover {
     text-decoration-skip-ink: none;
     text-decoration: underline;

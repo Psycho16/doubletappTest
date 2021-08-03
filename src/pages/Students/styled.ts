@@ -7,7 +7,21 @@ export const StudentsWrapper = styled.div`
   border-radius: 6px;
   padding: 26px 16px 20px 19px;
   box-sizing: border-box;
+  animation-duration: 1s;
+  animation-fill-mode: both; 
+  animation-name: fadeInDown; 
+  @keyframes fadeInDown { 
+    0% {                
+        opacity: 0;
+        transform: translate3d(0px, -50px, 0px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  }
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     padding: 0;
+    animation: none;
   }
 `

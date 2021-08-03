@@ -1,9 +1,23 @@
 import styled from "styled-components"
 
 
-export const Base = styled.div`
+type PopupProps = {
+  type?: string
+}
+export const Base = styled.div<PopupProps>`
   width: 100%;
   height: 100%;
+  animation-duration: ${props => props.type === "sort" ? "0.55s" : ""};
+  animation-fill-mode: ${props => props.type === "sort" ? "both" : ""};
+  animation-name: ${props => props.type === "sort" ? "fadeInRight" : ""};; 
+  @keyframes fadeInRight { 
+    0% {                
+        transform: translateX( 50px);
+    }
+    100% {
+        transform: none;
+    }
+  }
 `
 export const PopupWrapper = styled.div`
   position: relative;
@@ -62,7 +76,20 @@ export const Popup = styled.div`
   text-align: start;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-top: 6px;
+  margin-top: 6px;  
+  animation-duration: .6s;
+  animation-fill-mode: both; 
+  animation-name: fadeInDown; 
+  @keyframes fadeInDown { 
+      0% {                
+          opacity: 0;
+          transform: translate3d(0px, -50px, 0px);
+      }
+      100% {
+          opacity: 1;
+          transform: none;
+      }
+  }
   z-index: 1;
 `
 export const PopupUl = styled.ul`

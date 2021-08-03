@@ -24,6 +24,19 @@ export const StudentsTitle = styled.h1`
   font-size: 40px;
   line-height: 50px;
   margin: 0;
+  animation-duration: 0.35s;
+  animation-fill-mode: both; 
+  animation-name: fadeInLeft; 
+  @keyframes fadeInLeft { 
+      0% {                
+          opacity: 0;
+          transform: translateX(-50px);
+      }
+      100% {
+          opacity: 1;
+          transform: none;
+      }
+  }
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     width: 100%;
     margin: 39px 0 22px 0;
@@ -33,6 +46,19 @@ export const ButtonWrapper = styled(Link)`
   width: 30%;
   position: relative;
   text-decoration: none;
+  animation-duration: 0.55s;
+  animation-fill-mode: both; 
+  animation-name: fadeInRight; 
+  @keyframes fadeInRight { 
+      0% {                
+          opacity: 0;
+          transform: translateX( 50px);
+      }
+      100% {
+          opacity: 1;
+          transform: none;
+      }
+  }
   :focus {
     outline: none;
     border: none;
@@ -43,6 +69,19 @@ export const ButtonWrapper = styled(Link)`
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     width: 100%;
     max-width: 100%;
+    animation-duration: 0.55s;
+    animation-fill-mode: both; 
+    animation-name: fadeInLeft;
+    @keyframes fadeInLeft { 
+      0% {                
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+      100% {
+          opacity: 1;
+          transform: none;
+        }
+      } 
   }
 `
 export const PlusWrapper = styled.div`

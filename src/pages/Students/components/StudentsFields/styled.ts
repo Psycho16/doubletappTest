@@ -12,6 +12,19 @@ export const StudentsFieldsContainer = styled.div`
   text-align: start;
   padding-right: 17px;
   margin-bottom: 16px;
+  animation-duration: 1s;
+  animation-fill-mode: both; 
+  animation-name: fadeInDown; 
+  @keyframes fadeInDown { 
+    0% {                
+        opacity: 0;
+        transform: translate3d(0px, -50px, 0px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  }
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     box-sizing: border-box;
     max-width: 1024px;

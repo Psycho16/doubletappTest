@@ -32,6 +32,7 @@ export const Base = styled.button<BaseProps>`
 
   ${props => !props.disabled && css`
     &:hover {
+      transition: all .3s;
       background-color: ${props => props.theme.palette.action.hover}
     }
   `}

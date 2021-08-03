@@ -44,7 +44,7 @@ const PopupComponent: FC<PopupProps> = (props) => {
     }
     
     return (
-        <SC.Base>
+        <SC.Base type="sort">
             <SC.PopupWrapper ref={popupRef}>
                 <SC.PopupLabel onClick={toggleVisiblePopup} >
                     

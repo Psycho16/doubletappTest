@@ -47,6 +47,18 @@ export const PopupSpanPlaceholder = styled.span`
   color: rgba(0,0,0,0.3);
 `
 export const Options = styled.div`
+  animation-duration: .4s;
+  animation-fill-mode: both; 
+  animation-name: fadeInDown; 
+  @keyframes fadeInDown { 
+    0% {                
+        opacity: 0;
+        transform: translate3d(0px, -20px, 0px);
+    }
+    100% {
+        opacity: 1;
+    }
+  }
   position: absolute;
   display: flex;
   flex-direction: row;

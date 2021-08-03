@@ -36,6 +36,19 @@ export const SearchIconWrapper = styled.div`
 export const InputWrapper = styled.div`
   width: 80%;
   position: relative;
+  animation-duration: 0.55s;
+  animation-fill-mode: both; 
+  animation-name: fadeInLeft; 
+  @keyframes fadeInLeft { 
+    0% {                
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  }
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     width: 100%;
   }

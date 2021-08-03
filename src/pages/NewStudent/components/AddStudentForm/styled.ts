@@ -28,6 +28,19 @@ export const InputWrapper = styled.div`
   height: 76px;
   margin-bottom: 20px;
   outline: none;
+  animation-duration: 0.55s;
+  animation-fill-mode: both; 
+  animation-name: fadeInLeft;
+  @keyframes fadeInLeft { 
+    0% {                
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  } 
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 280px;
   }
@@ -38,6 +51,19 @@ export const InputWrapper = styled.div`
 export const AvatarInputWrapper = styled.div`
   display: block;
   margin-bottom: 30px;
+  animation-duration: 0.55s;
+  animation-fill-mode: both; 
+  animation-name: fadeInLeft;
+  @keyframes fadeInLeft { 
+    0% {                
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  } 
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 280px;
   }
@@ -108,6 +134,19 @@ export const ButtonWrapper = styled.div`
   max-width: 380px;
   width: 100%;
   margin-top: 20px;
+  animation-duration: 0.55s;
+  animation-fill-mode: both; 
+  animation-name: fadeInLeft;
+  @keyframes fadeInLeft { 
+    0% {                
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+  } 
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 280px;
   }
