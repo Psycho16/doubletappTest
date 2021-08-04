@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { rusGroups, layoutColors, rusSpecialties, specialties } from '@consts/studentArrays'
+import { PATH_STUDENTS } from '@consts/routes'
 
 import { getRusGroup, getRusSpecialty, getAgeFromBirthday, fixAgeWord, getStudentInitials } from '@utils/getStudentInfo'
 import { ReactComponent as DeleteIcon } from '@assets/icons/delete.svg'
@@ -39,8 +40,7 @@ const Student: FC<StudentProps & DeleteButtonProps> = (props) => {
            <SC.EmptyStudentAvatarText>{getStudentInitials(name)}</SC.EmptyStudentAvatarText>
          </SC.EmptyStudentAvatar>
       }
-      
-      <SC.StudentName>{name}</SC.StudentName>
+      <SC.StudentName to={`${PATH_STUDENTS}/${id}`} >{name}</SC.StudentName>
       <SC.SeparatingLine />
       <SC.StudentSpecialty title={rusSpecialty}>
         <SC.ListPoint />
