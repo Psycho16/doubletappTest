@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { viewportWidth, widthBreakpoints } from 'styles/mediaQueryMixins'
 
@@ -90,8 +91,6 @@ export const EmptyStudentAvatar = styled.div`
   margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
   background: #ffffff;
   box-shadow: 0px 0px 0px 3px  rgba(230, 230, 230, 0.3);
-  /* box-shadow: 0px 0px 0px 3px rgba(130, 130, 130, 0.1),5px 5px 15px 3px rgba(0,0,0,0); */
-  
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     align-self: flex-start;
   }
@@ -109,7 +108,7 @@ export const EmptyStudentAvatarText = styled.p`
   text-transform: uppercase;
   color: ${props => props.theme.palette.action.active};
 `
-export const StudentName = styled.h2`
+export const StudentName = styled(Link)`
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
@@ -119,6 +118,8 @@ export const StudentName = styled.h2`
   margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
   max-width: ${props => props.theme.studentsTableSizes.desktopHD.name};
   width: 100%;
+  text-decoration: none;
+  color: ${props => props.theme.palette.text.primary};
 
   ${viewportWidth.lowerThan(widthBreakpoints.desktopRegular)} {
     max-width: ${props => props.theme.studentsTableSizes.desktopRegular.name};
@@ -139,6 +140,11 @@ export const StudentName = styled.h2`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  :hover {
+    text-decoration-skip-ink: none;
+    text-decoration: underline;
+    cursor: pointer;
   }
 `
 export const SeparatingLine = styled.span`
@@ -202,7 +208,6 @@ export const StudentGroup = styled.h2`
   
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: ${props => props.theme.studentsTableSizes.tablet.group};
-    /* min-width: 78px; */
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -235,7 +240,6 @@ export const StudentAge = styled.h2`
   
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: ${props => props.theme.studentsTableSizes.tablet.age};
-    /* min-width: 78px; */
   }
   
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
@@ -256,14 +260,12 @@ export const StudentAge = styled.h2`
 export const StudentRatingAndColor = styled.div`
   display: flex;
   margin-right: 20px;
-  /* min-width: 132px; */
   width: 100%;
   max-width: 132px;
   align-items: center;
   
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 98px;
-    /* min-width: 110px; */
   }
 
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
