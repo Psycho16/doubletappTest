@@ -1,3 +1,6 @@
+import { namesOfMonths } from "@consts/studentArrays"
+
+
 export function getRusSpecialty(
     specialty: string,
     rusSpecialties: string[],
@@ -22,11 +25,10 @@ export function getRusSpecialty(
     return m < 0 || (m === 0 && today.getDate() < dateBirthday.getDate()) ? --age : age
   }
 
-  export function getBirthdayFromDate(date: Date | null): string {
-    if (date === null) return ""
-    const year = `${date.getFullYear()}`
-    const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : `${(date.getMonth() + 1)}`
-    const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`
+  export function getBirthdayFromDate(date: Date): string {
+    const year = date.getFullYear()
+    const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : (date.getMonth() + 1)
+    const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
     return `${year}-${month}-${day}`
   }
   
@@ -39,6 +41,12 @@ export function getRusSpecialty(
   }
   
   export function getStudentInitials(name: string): string {
-    const [firstName, SecondName] = name.split(" ")
+    const [firstName, SecondName] = name.split(" ").map(elem => elem.toUpperCase())
     return SecondName ?  firstName[0]+SecondName[0] : firstName[0]
+  }
+
+  export function getDateDescription(date: string) {
+    const [year, month, day] = date.split('-')
+
+    return `${day} ${namesOfMonths[month]} ${year} года`
   }
