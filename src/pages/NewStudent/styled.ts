@@ -74,7 +74,6 @@ export const InputsWrapper = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   height: 486px;
-  /* margin-bottom: 41px; */
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     height: max-content;
   }

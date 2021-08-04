@@ -18,16 +18,6 @@ export const InputsWrapper = styled.div`
   height: 480px;
   width: 100%;
   max-width: 960px;
-  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
-    height: max-content;
-  }
-`
-export const InputWrapper = styled.div`
-  max-width: 380px;
-  width: 100%;
-  height: 76px;
-  margin-bottom: 20px;
-  outline: none;
   animation-duration: 0.55s;
   animation-fill-mode: both; 
   animation-name: fadeInLeft;
@@ -40,7 +30,17 @@ export const InputWrapper = styled.div`
         opacity: 1;
         transform: none;
     }
-  } 
+  }   
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    height: max-content;
+  }
+`
+export const InputWrapper = styled.div`
+  max-width: 380px;
+  width: 100%;
+  height: 76px;
+  margin-bottom: 20px;
+  outline: none;
   ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
     max-width: 280px;
   }
