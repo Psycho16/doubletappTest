@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState, useEffect, FC } from "react"
 import { useForm } from "react-hook-form"
 import { Redirect } from "react-router"
+import { colorsWithRusLabels, groupsWithRusLabels, specialtiesWithRusLabels } from "@consts/studentArrays"
 
 import Select from "@components/ui/Select"
 import Button from "@components/ui/Button"
@@ -132,13 +133,7 @@ const AddStudentForm: FC = () => {
 
       <SC.InputWrapper>
         <Select
-          options={[
-            {value: 'mt', label: 'Математика'},
-            {value: 'kb', label: 'Компьютерная безопасность'},
-            {value: 'ft', label: 'Фундаментальная информатика и информационные технологии'},
-            {value: 'kn', label: 'Компьютерные науки'},
-            {value: 'ms', label: 'Математическое обеспечение и администрирование информационных систем'}
-          ]}
+          options={specialtiesWithRusLabels}
           subTitle="Специальность"
           placeholder="Выбрать"
           icon={smallTriangle}
@@ -151,31 +146,7 @@ const AddStudentForm: FC = () => {
 
       <SC.InputWrapper>
         <Select
-          options={[
-            {value:"mt-101", label:'МТ-101'},
-            {value:"mt-102",label:'МТ-102'},
-            {value:"mt-202",label:'МТ-202'},
-            {value:"mt-201",label:'МТ-201'},
-            {value:"mt-301",label:'МТ-301'},
-            {value:"mt-401",label:'МТ-401'},
-            {value:"ft-101",label:'ФИИТ-101'},
-            {value:"ft-201",label:'ФИИТ-201'},
-            {value:"ft-301",label:'ФИИТ-301'},
-            {value:"ft-401",label:'ФИИТ-401'},
-            {value:"ms-101",label:'МОАиС-101'},
-            {value:"ms-201",label:'МОАиС-201'},
-            {value:"ms-301",label:'МОАиС-301'},
-            {value:"ms-401",label:'МОАиС-401'},
-            {value:"kn-101",label:'КН-101'},
-            {value:"kn-201",label:'КН-201'},
-            {value:"kn-301",label:'КН-301'},
-            {value:"kn-401",label:'КН-401'},
-            {value:"kb-101",label:'КБ-101'},
-            {value:"kb-201",label:'КБ-201'},
-            {value:"kb-301",label:'КБ-301'},
-            {value:"kb-401",label:'КБ-401'},
-            {value:"kb-501",label:'КБ-501'}
-          ]}
+          options={groupsWithRusLabels}
           subTitle="Группа"
           placeholder="Выбрать"
           error={isFormHasError}
@@ -229,15 +200,7 @@ const AddStudentForm: FC = () => {
 
       <SC.InputWrapper tabIndex={0}>
         <ColorsSelect
-          options={[
-            {value:'blue', label:'Синий'},
-            {value:'red', label:'Красный'}, 
-            {value:'green', label:'Зеленый'}, 
-            {value:'yellow', label:'Желтый'}, 
-            {value:'black', label:'Черный'}, 
-            {value:'orange', label:'Оранжевый'},
-            {value: 'rainbow', label: 'Радужный'}
-          ]}
+          options={colorsWithRusLabels}
           subTitle={"Любимый цвет"}
           placeholder="Выбрать"
           error={isFormHasError}
