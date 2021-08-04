@@ -56,6 +56,7 @@ export const InputWrapper = styled.div`
 export const PopupWrapper = styled.div`
   width: 17%;
   height: 48px;
+  z-index: 1;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     display: none;
   }
