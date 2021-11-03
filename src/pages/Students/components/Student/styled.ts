@@ -89,6 +89,9 @@ export const EmptyStudentAvatar = styled.div`
   margin-right: ${props => props.theme.studentsTableSizes.desktopHD.marginW};
   background: #ffffff;
   box-shadow: 0px 0px 0px 3px  rgba(230, 230, 230, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     align-self: flex-start;
   }

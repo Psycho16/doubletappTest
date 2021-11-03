@@ -4,8 +4,8 @@ import { PATH_STUDENTS } from '@consts/routes'
 import { Container } from '@components/styled/Container'
 import MainLayout from '@components/shared/MainLayout'
 import {ReactComponent as ArrowIcon} from '@assets/icons/arrow-left.svg'
+import StudentForm from '@components/widgets/StudentForm'
 
-import AddStudentForm from './components/AddStudentForm'
 import * as SC from './styled'
 
 
@@ -22,7 +22,7 @@ const NewStudentPage: FC = () => {
           назад к списку студентов
         </SC.BackToPage>
         <SC.PageTitle>Новый студент</SC.PageTitle>
-        <AddStudentForm/>
+        <StudentForm isStatic={false}/>
         </Container>
     </MainLayout>
   )

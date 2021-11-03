@@ -1,6 +1,10 @@
 import styled from "styled-components"
 
 
+type InputForFormProps = {
+  disabled?: boolean;
+}
+
 export const Base = styled.div`
   width: 100%;
   height: 49px;
@@ -18,11 +22,12 @@ export const ErrorMessage = styled.p`
   font-size: 14px;
 `
 
-export const CustomInput = styled.input`
+export const CustomInput = styled.input<InputForFormProps>`
   box-sizing: border-box;
   width: 100%;
   height: 49px;
-  box-shadow: 0px 7px 64px rgb(0 0 0 / 7%);
+  box-shadow: ${props => props.disabled ? "none" : "0px 7px 64px rgb(0 0 0 / 7%)"}; 
+  background: ${props => props.disabled ? "#ffffff" : ""}; 
   border-radius: 6px;
   border: none;
   padding-left: 20px;

@@ -7,6 +7,7 @@ export type StudentProps = {
   color: string
   rating: number
   birthday: string
+  sex: string
 }
 
 export type IFormInput = {

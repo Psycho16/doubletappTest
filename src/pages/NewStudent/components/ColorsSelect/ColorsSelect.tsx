@@ -41,7 +41,6 @@ const ColorsSelect: FC<SelectProps> =
         </SC.Title>
         <SC.PopupSelect 
           onClick={() =>  setIsVisiblePopup(!isVisiblePopup)} 
-          ref={popupRef}
         >
           {
             selectedLabel === placeholder 

@@ -6,11 +6,18 @@ import { viewportWidth, widthBreakpoints } from 'styles/mediaQueryMixins'
 export const StudentWrapper = styled.div`
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+    /* padding: 0;
+    flex-direction: column;
+    align-items: flex-start; */
+  }
   ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
     padding: 0;
+    flex-direction: column;
+    align-items: center;
   }
 `
 export const PageTitle = styled.h1`
@@ -32,6 +39,9 @@ export const PageTitle = styled.h1`
         transform: none;
     }
   } 
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    text-align: center;
+  }
 `
 export const BackToPage = styled(Link)`
   position: relative;
@@ -102,6 +112,10 @@ export const LabelCircle = styled.div`
         transform: none;
     }
   } 
+  /* ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+    width: 150px;
+    height: 150px;
+  } */
 `
 export const LoadedImage = styled.img`
   width: 80px;
@@ -138,6 +152,10 @@ export const StudentAvatar = styled.img`
         transform: none;
     }
   } 
+  /* ${viewportWidth.lowerThan(widthBreakpoints.tablet)} {
+    width: 220px;
+    height: 220px;
+  } */
 `
 
 export const StudentInfo = styled.div`
@@ -146,7 +164,7 @@ export const StudentInfo = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   height: 280px;
-  /* width: 65%; */
+  width: 57%;
   animation-duration: 0.55s;
   animation-fill-mode: both; 
   animation-name: fadeInRight; 
@@ -160,16 +178,27 @@ export const StudentInfo = styled.div`
           transform: none;
       }
   }
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    /* align-items: center; */
+    height: 220px;
+    width: auto;
+  }
 `
 export const StudentName = styled.h2`
   font-size: 35px;
   margin: 0;
   font-weight: bold;
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    font-size: 25px;
+  }
 `
 export const StudentSubInfo = styled.h3`
   font-weight: normal;
   font-size: 18px;
   margin: 0;
+  ${viewportWidth.lowerThan(widthBreakpoints.mobile)} {
+    font-size: 15px;
+  }
 `
 export const FavouriteColor = styled.div`
   display: flex;

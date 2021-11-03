@@ -9,7 +9,9 @@ export type InputFormProps = {
   subTitle: string,
   placeholder?: string
   error?: boolean
-  onChange: (value: string) => void;
+  onChange: (value: string) => void
+  disabled?: boolean
+  value?: string
 } 
 
 
@@ -19,10 +21,12 @@ const InputForForm: FC<InputFormProps> = (props) => {
     subTitle,
     placeholder,
     error,
-    onChange
+    onChange,
+    value,
+    disabled
   } = props
 
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState(value || "")
   const [isTryingToFix, setIsTryingToFix] = useState(false)
   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +49,7 @@ const InputForForm: FC<InputFormProps> = (props) => {
       onChange={handleChange}
       onFocus={() => setIsTryingToFix(true)}
       onBlur={() => setIsTryingToFix(false)}
+      disabled={disabled}
       />
     
       { error

@@ -116,6 +116,8 @@ const AddStudentForm: FC = () => {
           onChange={(value: string) => {
             setValue('name', value)
           }}
+          value="Имя"
+          disabled={true}
         />
         
       </SC.InputWrapper>
